@@ -60,6 +60,8 @@ class Annotater(object):
 
         self.mouse_pressed_coords = None
 
+        self.rectangles = []
+
         while True:
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -69,10 +71,13 @@ class Annotater(object):
                     # load next image
                     if event.key == K_f:
                         self.process_rectangles()
+                        self.rectangles = []
                         self.next_image()
 
                     # load previous image
                     if event.key == K_d:
+                        self.remove_previous_annotated_data()
+                        self.rectangles = []
                         self.previous_image()
 
                     # remove previously added rectangle
@@ -101,7 +106,7 @@ class Annotater(object):
         the correct folders """
 
         if self.next_image_index < 0:
-            print 'next image index can not be 0 in process_rectangles'
+            print 'next image index can not be 0 in process_rectangles in process_rectangles'
             exit()
 
         current_image_name = self.images[self.next_image_index - 1]
@@ -119,18 +124,29 @@ class Annotater(object):
                 current_image_name))
             pygame.image.save(sub_surface, out)
 
-    def remove_annotated_data_by_image(self, image):
+    def remove_previous_annotated_data(self):
         """ removes the possible derivatives of image from self.out_pic_folder
         and self.out_text_folder if they are present there"""
-        pass
-            #previous_image_index = self.next_image_index - 2
-            #if previous_image_index < 0:
-            #    print 'previous image index can not be < 0'
-            #    exit()
+        previous_image_index = self.next_image_index - 2
+        if previous_image_index < 0:
+            print 'previous image index can not be < 0 in remove_annotated_data_by_image'
+            exit()
+
+        previous_image_name = self.images[self.next_image_index - 2]
+
+        Annotater.empty_folder_containing(self.out_pic_folder, previous_image_name)
+        Annotater.empty_folder_containing(self.out_text_folder, previous_image_name)
+
+    @staticmethod
+    def empty_folder_containing(folder, name):
+        """ removes all files in folder that contains a part of name """
+        to_delete = [x for x in os.listdir(folder) if name in x]
+        for f in to_delete:
+            os.remove(os.path.join(folder, f))
+
 
     def next_image(self):
         """ loads the next image or stops the program if it was the last one """
-        self.rectangles = []
         if self.next_image_index >= len(self.images):
             print 'zero based image index (%d) exceeds number of images (%d)' % \
                 (self.next_image_index, len(self.images))
@@ -150,16 +166,18 @@ class Annotater(object):
 
     def reload_image(self):
         """ reloads the current image (makes sure the rectangles are all gone)"""
-        self.rectangles = []
         if self.next_image_index > 0:
             self.next_image_index -= 1
         self.next_image()
 
     def previous_image(self):
         """ loads the previous image """
-        self.rectangles = []
         if self.next_image_index > 1:
             self.next_image_index -= 2
+        else:
+            print 'this is madness'
+            exit()
+
         self.next_image()
 
     def draw_rectangle(self, pos, size):
