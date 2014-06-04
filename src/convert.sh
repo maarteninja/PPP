@@ -16,19 +16,27 @@ cd $1
 for f in $(ls)
 do
 
-    # only process jpg files!
-    if [ $f == *'.jpg' ]; then
+    # obtain extension
+    f_ext=$(echo $f | awk -F . '{print $NF}')
 
-        # if the output file already exists, well just stop
-        if [ -f 500_$f ]; then
-            echo 'converted file already existed: '$f
-            exit
-        fi
-
-
-        # convert all images to 500 pixels in width
-        convert $f -scale 500 500_$fsd
+    # to only process jpg files!
+    if [ $f_ext != 'jpg' ]; then
+        echo 'contains a file that is not jpg file'
+        exit
     fi
+
+    # obtain something before a '_'
+    f_500=$(echo $f | awk -F _ '{print $1; }')
+
+    # to check if the output file already exists, we'll just stop
+    if [ $f_500 == '500' ]; then
+    #if [ -f 500_$f ]; then
+        echo 'converted file already existed: '$f
+        exit
+    fi
+
+    # convert all images to 500 pixels in width
+    convert $f -scale 500 500_$f
 done
 
 
