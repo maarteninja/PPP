@@ -1,4 +1,8 @@
 import matplotlib.pyplot as plt
+import os, glob
+import numpy as np
+
+import Image
 
 from scipy import misc
 
@@ -18,7 +22,7 @@ def calculate_hog(image):
 	ax1.imshow(image, cmap=plt.cm.gray)
 	ax1.set_title('Input image')
 
-# Rescale histogram for better display
+	# Rescale histogram for better display
 	hog_image_rescaled = exposure.rescale_intensity(hog_image, in_range=(0, 0.02))
 
 	ax2.axis('off')
@@ -27,6 +31,14 @@ def calculate_hog(image):
 	plt.show()
 
 if __name__ == '__main__':
-	folder = '../data/atlas/annotated'
-	image = misc.imread(folder . '/0057.png');
-	calculate_hog(image)
+	folder = '../data/atlas/annotated/pic'
+	# folder = '../data/atlas/raw/'
+	images = glob.glob(folder + os.sep + '*.png')
+	for image in images:
+		print 'Reading %s' % (image)
+		im = misc.imread(image);
+		calculate_hog(im)
+
+		# To test if zlib works, run this:
+		# im = Image.open(image)
+		# pixels = im.load()

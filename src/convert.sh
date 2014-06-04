@@ -23,7 +23,7 @@ if [ "$f_ext" != 'pdf' ]; then
 fi
 
 # Write to raw data directory with the book name as root
-directory="../data/$2/raw/"
+directory="../data/$2/raw"
 
 # Create the output directory, if needed
 if [ ! -d "$directory" ]; then
@@ -35,7 +35,7 @@ fi
 # Google information
 for (( i=2; i<$numPages; i++ ))
 do
-	f="$directory`printf '%04d' $i`.png"
+	f="$directory/500_`printf '%04d' $i`.png"
 	echo "Exporting file $f"
 
 	# to check if the output file already exists, we'll just stop
