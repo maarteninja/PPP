@@ -100,6 +100,10 @@ class Annotater(object):
                     self.rectangles.append((pos, size))
 
                     self.mouse_pressed_coords = None
+                elif event.type == MOUSEMOITION:
+                    if self.mouse_pressed_coords:
+                        # TODO: draw rectangle whilst dragging
+                        pass
 
     def process_rectangles(self):
         """ actually cuts the image into pieces, if necessary, and places em in
