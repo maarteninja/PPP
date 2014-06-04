@@ -43,7 +43,7 @@ class Annotater(object):
 
         # get a list of the images
         self.images = [x for x in os.listdir(self.raw_folder) if x[:4] == '500_' and \
-            x[-4:] == '.jpg']
+            x[-4:] == '.png']
 
         # sorting not really necessary, but meh, lets sort anyway
         self.images.sort()
