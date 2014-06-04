@@ -4,6 +4,9 @@ import os
 
 from pygame.locals import *
 
+from StringIO import StringIO
+from PIL import Image
+
 
 class Annotater(object):
     """ Requires a data folder as input. The folder structure is as
@@ -57,8 +60,6 @@ class Annotater(object):
 
         self.mouse_pressed_coords = None
 
-        self.rectangles = []
-
         while True:
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -106,14 +107,17 @@ class Annotater(object):
         current_image_name = self.images[self.next_image_index - 1]
 
         # if no image found on page, store whole image in text folder
-        if len(self.rectangles) < 1:
-            self.current_image.tostring(os.path.join(self.out_text_folder,
-                current_image_name))
+        if len(self.rectangles) == 0:
+            out = os.path.join(self.out_text_folder, current_image_name)
+            pygame.image.save(self.screen, out)
             return
 
-       # otherwise, cut the rectangle out of the orignal images and store those
-
-
+        # otherwise, cut the rectangle out of the orignal images and store those
+        for i, (pos, size) in enumerate(self.rectangles):
+            sub_surface = self.current_image.subsurface(pos, size)
+            out = os.path.join(self.out_pic_folder, 'pic_%d_%s' % (i,
+                current_image_name))
+            pygame.image.save(sub_surface, out)
 
     def remove_annotated_data_by_image(self, image):
         """ removes the possible derivatives of image from self.out_pic_folder
@@ -126,6 +130,7 @@ class Annotater(object):
 
     def next_image(self):
         """ loads the next image or stops the program if it was the last one """
+        self.rectangles = []
         if self.next_image_index >= len(self.images):
             print 'zero based image index (%d) exceeds number of images (%d)' % \
                 (self.next_image_index, len(self.images))
@@ -145,12 +150,14 @@ class Annotater(object):
 
     def reload_image(self):
         """ reloads the current image (makes sure the rectangles are all gone)"""
+        self.rectangles = []
         if self.next_image_index > 0:
             self.next_image_index -= 1
         self.next_image()
 
     def previous_image(self):
         """ loads the previous image """
+        self.rectangles = []
         if self.next_image_index > 1:
             self.next_image_index -= 2
         self.next_image()
