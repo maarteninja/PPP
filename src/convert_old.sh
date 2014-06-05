@@ -1,6 +1,6 @@
 # !/bin/bash
 
-# require input directory with the jpg files to convert
+# require input directory with the png files to convert
 if [ $# -lt 1 ]; then
     echo 'need input dir as first argument'
     exit
@@ -19,9 +19,9 @@ do
     # obtain extension
     f_ext=$(echo $f | awk -F . '{print $NF}')
 
-    # to only process jpg files!
-    if [ $f_ext != 'jpg' ]; then
-        echo 'contains a file that is not jpg file'
+    # to only process png files!
+    if [ $f_ext != 'png' ]; then
+        echo 'contains a file that is not png file'
         exit
     fi
 
