@@ -7,15 +7,24 @@ from pygame.locals import *
 from StringIO import StringIO
 from PIL import Image
 
+import argparse
+import textwrap
+
+# constant for the verbosity level, assumes an integer value
+VERBOSE = None
+
 
 class Annotater(object):
     """ Requires a data folder as input. The folder structure is as
     followed:
-        - input_folder
+        - INPUT_FOLDER
             - raw (contains the raw images of a book)
             - annotated
                 - pic (contains annotated images)
                 - text (contains all the pages that are just text)
+
+    The following text Assumes the BEGIN_TAG is set to 500_ and the END_TAG is
+    set to .png:
 
     The images require a format of 500_*.png. The leading 500_ are enforced
     because we only want to work with images that have been converted by
@@ -28,7 +37,7 @@ class Annotater(object):
             page
     """
 
-    def __init__(self, folder):
+    def __init__(self, folder, begin_tag, end_tag):
         """ creates the folders where necessary, loads the image names,
         initiates pygame and loads the first image """
 
@@ -42,8 +51,10 @@ class Annotater(object):
         Annotater.create_folder_if_not_exist(self.out_text_folder)
 
         # get a list of the images
-        self.images = [x for x in os.listdir(self.raw_folder) if x[:4] == '500_' and \
-            x[-4:] == '.png']
+        self.images = [x for x in os.listdir(self.raw_folder) if \
+            x[:len(begin_tag)] == begin_tag and x[-len(end_tag):] == end_tag]
+        if VERBOSE > 0:
+            print 'found %d images in %s' % (len(self.images), self.raw_folder)
 
         # sorting not really necessary, but meh, lets sort anyway
         self.images.sort()
@@ -100,17 +111,13 @@ class Annotater(object):
                     self.rectangles.append((pos, size))
 
                     self.mouse_pressed_coords = None
-                elif event.type == MOUSEMOITION:
-                    if self.mouse_pressed_coords:
-                        # TODO: draw rectangle whilst dragging
-                        pass
 
     def process_rectangles(self):
         """ actually cuts the image into pieces, if necessary, and places em in
         the correct folders """
 
         if self.next_image_index < 0:
-            print 'next image index can not be 0 in process_rectangles in process_rectangles'
+            print 'next image index can not be 0 in process_rectangles in process_rectangles (quit)'
             exit()
 
         current_image_name = self.images[self.next_image_index - 1]
@@ -118,6 +125,8 @@ class Annotater(object):
         # if no image found on page, store whole image in text folder
         if len(self.rectangles) == 0:
             out = os.path.join(self.out_text_folder, current_image_name)
+            if VERBOSE > 1:
+                print '(text image) saving %s' % out
             pygame.image.save(self.screen, out)
             return
 
@@ -126,6 +135,8 @@ class Annotater(object):
             sub_surface = self.current_image.subsurface(pos, size)
             out = os.path.join(self.out_pic_folder, 'pic_%d_%s' % (i,
                 current_image_name))
+            if VERBOSE > 1:
+                print '(pic image) saving %s' % out
             pygame.image.save(sub_surface, out)
 
     def remove_previous_annotated_data(self):
@@ -133,7 +144,7 @@ class Annotater(object):
         and self.out_text_folder if they are present there"""
         previous_image_index = self.next_image_index - 2
         if previous_image_index < 0:
-            print 'previous image index can not be < 0 in remove_annotated_data_by_image'
+            print 'previous image index can not be < 0 in remove_annotated_data_by_image (quit)'
             exit()
 
         previous_image_name = self.images[self.next_image_index - 2]
@@ -146,14 +157,16 @@ class Annotater(object):
         """ removes all files in folder that contains a part of name """
         to_delete = [x for x in os.listdir(folder) if name in x]
         for f in to_delete:
+            if VERBOSE > 1:
+                print 'deleting %s' % f
             os.remove(os.path.join(folder, f))
 
 
     def next_image(self):
         """ loads the next image or stops the program if it was the last one """
         if self.next_image_index >= len(self.images):
-            print 'zero based image index (%d) exceeds number of images (%d)' % \
-                (self.next_image_index, len(self.images))
+            print 'zero based image index (%d) exceeds number of images (%d) (quit)'\
+                 % (self.next_image_index, len(self.images))
             exit()
 
         # load image
@@ -179,7 +192,7 @@ class Annotater(object):
         if self.next_image_index > 1:
             self.next_image_index -= 2
         else:
-            print 'this is madness'
+            print 'this is madness (quit)'
             exit()
 
         self.next_image()
@@ -218,14 +231,37 @@ class Annotater(object):
         specified existed, but not as a folder """
         if os.path.exists(folder):
             if not os.path.isdir(folder):
-                print 'supplied path is no folder'
+                print 'supplied path is no folder (quit)'
                 exit()
-            print '%s already exists' % folder
+            if VERBOSE > 0:
+                print '%s already exists' % folder
             return False
+        if VERBOSE > 0:
+            print 'creating folder %s' % folder
         os.mkdir(folder)
         return True
 
 
 if __name__ == '__main__':
-    annotater = Annotater('../data/test/')
+
+    parser = argparse.ArgumentParser(description=Annotater.__doc__)
+    parser.add_argument("input_folder", metavar='INPUT_FOLDER', type=str,
+                    help="""The input folder.""")
+    parser.add_argument("--verbose", '-v', action='count', help="""Set verbosity level (output
+general status messages of the program). For example, -v for level 1 and -vv for
+level 2""")
+    parser.add_argument('--begin_tag', '-b', type=str,
+        help='The string that all images should start with (for example 500_)', default='500_')
+    parser.add_argument('--end_tag', '-e', type=str,
+        help='The string that all images should start with (for example .png)', default='.png')
+
+    args = vars(parser.parse_args())
+    input_folder = args['input_folder']
+    if not(os.path.exists(input_folder) and os.path.isdir(input_folder)):
+        print 'INPUT_FOLDER should be a folder'
+        exit()
+
+    VERBOSE = args['verbose']
+
+    annotater = Annotater(input_folder, args['begin_tag'], args['end_tag'])
     annotater.loop()
