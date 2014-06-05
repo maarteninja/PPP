@@ -149,16 +149,19 @@ class Annotater(object):
 
         previous_image_name = self.images[self.next_image_index - 2]
 
-        Annotater.empty_folder_containing(self.out_pic_folder, previous_image_name)
-        Annotater.empty_folder_containing(self.out_text_folder, previous_image_name)
+        Annotater.empty_folder_containing(self.out_pic_folder,
+            previous_image_name, 'pic')
+        Annotater.empty_folder_containing(self.out_text_folder,
+            previous_image_name, 'text')
 
     @staticmethod
-    def empty_folder_containing(folder, name):
-        """ removes all files in folder that contains a part of name """
+    def empty_folder_containing(folder, name, cat):
+        """ removes all files in folder that contains a part of name
+            cat is the category (ie pic or text)"""
         to_delete = [x for x in os.listdir(folder) if name in x]
         for f in to_delete:
             if VERBOSE > 1:
-                print 'deleting %s' % f
+                print '(%s image) deleting %s' % (cat, f)
             os.remove(os.path.join(folder, f))
 
 
