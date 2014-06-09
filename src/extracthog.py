@@ -9,11 +9,14 @@ from scipy import misc
 from skimage.feature import hog
 from skimage import data, color, exposure
 
+from sklearn import svm
 
-def calculate_hog(image):
+PIXELS_PER_CELL = (60,60)
+
+def calculate_and_show_hog(image):
 	image = color.rgb2gray(image)
 
-	fd, hog_image = hog(image, orientations=8, pixels_per_cell=(32, 32),
+	fd, hog_image = hog(image, orientations=8, pixels_per_cell=PIXELS_PER_CELL,
 						cells_per_block=(1, 1), visualise=True)
 
 	fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4))
@@ -29,16 +32,43 @@ def calculate_hog(image):
 	ax2.imshow(hog_image_rescaled, cmap=plt.cm.gray)
 	ax2.set_title('Histogram of Oriented Gradients')
 	plt.show()
+	return fd
+
+def calculate_hog(image):
+	image = color.rgb2gray(image)
+	return hog(image, orientations=8, pixels_per_cell=PIXELS_PER_CELL,
+						cells_per_block=(1, 1))
 
 if __name__ == '__main__':
-	folder = '../data/atlas/annotated/pic'
+	folder = '../data/atlas/raw'
 	# folder = '../data/atlas/raw/'
 	images = glob.glob(folder + os.sep + '*.png')
-	for image in images:
+	# This array will hold the HOG feature descriptors for each class
+	descriptors= []
+	# This array will hold the labels of the images. Each index in this array
+	# corresponds to the same index in descriptors. The two of them together
+	# form the input for a classifier
+	labels = []
+	for image in images[1:10]:
 		print 'Reading %s' % (image)
 		im = misc.imread(image);
-		calculate_hog(im)
+		fd = calculate_hog(im)
+		descriptors.append(fd);
+		# Let's act as if all images are text, for the sake of testing
+		labels.append('text');
+	for image in images[11:20]:
+		print 'Reading %s' % (image)
+		im = misc.imread(image);
+		fd = calculate_hog(im)
+		descriptors.append(fd);
+		# Let's act as if all images are text, for the sake of testing
+		labels.append('pic');
+	print descriptors
+	print labels
 
-		# To test if zlib works, run this:
-		# im = Image.open(image)
-		# pixels = im.load()
+	# Start the classifier:
+	classifier = svm.SVC(probability=1)
+	classifier.fit(descriptors, labels)
+	im = misc.imread(images[21]);
+	fd = calculate_hog(im)
+	print classifier.predict_log_proba(fd)
