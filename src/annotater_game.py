@@ -7,6 +7,8 @@ from pygame.locals import *
 from StringIO import StringIO
 from PIL import Image
 
+from argparse import RawTextHelpFormatter
+
 import argparse
 import textwrap
 
@@ -15,40 +17,60 @@ VERBOSE = None
 
 
 class Annotater(object):
-    """ Requires a data folder as input. The folder structure is as
-    followed:
-        - INPUT_FOLDER
-            - raw (contains the raw images of a book)
-            - annotated
-                - pic (contains annotated images)
-                - text (contains all the pages that are just text)
+    """Provide a folder and start annotating right away! There are three
+classes: text, bagger and containing. Use text for all text pages, use bagger
+for pages that do not seem to make sense (erroneously scanned pages) and
+containing for those pages with pictures.
 
-    The following text Assumes the BEGIN_TAG is set to 500_ and the END_TAG is
-    set to .png:
+Simply drag the mouse to annotate the bounding box of an image. Furthermore use
+the following keys:
+* t, for [T]ext. Annotate image as text, and move on
+* b, for [B]agger. Annotate image as bagger, and move on
+* c, for [C]ontaining. Annotate image as containg some pictures, store the
+    drawn bounding boxes, and move one
+* p, for [P]revious image. Go back to the previous image, and remove the
+    annotated data for that image
+* r, for [R]emove last added bounding box. What if you selected a bounding
+    box for something that was no picture at all? No need to panic, press r
 
-    The images require a format of 500_*.png. The leading 500_ are enforced
-    because we only want to work with images that have been converted by
-    convert.sh.
+The folder structure is as followed:
+    - INPUT_FOLDER
+        - raw (contains the raw images of a book)
 
-    The output formad is as followed:
-        - text images: 500_*.png
-        - pic images: pic_x_500_*.png, where x is an integere (0, 1, n) that
-            indicates the amount of earlier annotated pictures from the same
-            page
-    """
+This program creates a folder: INPUT_FOLDER/annotated
+
+The following text Assumes the BEGIN_TAG is set to 500_ and the END_TAG is
+set to .png:
+
+The images require a format of 500_*.png. The leading 500_ are enforced
+because we only want to work with images that have been converted by
+convert.sh.
+
+The output format is as followed:
+    - pic images: pic_x_500_*.png, where x is an integere (0, 1, n) that
+        indicates the amount of earlier annotated pictures from the same
+        page
+    - py file: a file containing a python dictionairy containg the meta
+        information. Example to read this file in python:
+    >>> f = open('INPUT_FOLDER/annotated/500_test1.py')
+    >>> d = eval(f.read())
+    >>> d
+    {'rectangles': [((197, 109), (172, 58)), ((85, 98), (68, 132))], 'type':
+    'containing'}
+    >>> f.close()
+"""
 
     def __init__(self, folder, begin_tag, end_tag):
         """ creates the folders where necessary, loads the image names,
         initiates pygame and loads the first image """
 
+        self.begin_tag = begin_tag
+        self.end_tag = end_tag
+
         # make sure the folders are in order
         self.raw_folder = os.path.join(folder, 'raw')
         self.out_folder = os.path.join(folder, 'annotated')
-        self.out_pic_folder = os.path.join(self.out_folder, 'pic')
-        self.out_text_folder = os.path.join(self.out_folder, 'text')
         Annotater.create_folder_if_not_exist(self.out_folder)
-        Annotater.create_folder_if_not_exist(self.out_pic_folder)
-        Annotater.create_folder_if_not_exist(self.out_text_folder)
 
         # get a list of the images
         self.images = [x for x in os.listdir(self.raw_folder) if \
@@ -65,13 +87,17 @@ class Annotater(object):
         pygame.init()
         self.next_image()
 
+    def reset_annotation(self):
+        self.annotation = {'rectangles' : []}
+
+
     def loop(self):
         """ main loop, checks for input and calls the necessary functions to
         process that input"""
 
         self.mouse_pressed_coords = None
 
-        self.rectangles = []
+        self.reset_annotation()
 
         while True:
             for event in pygame.event.get():
@@ -79,25 +105,49 @@ class Annotater(object):
                     return
 
                 elif event.type == KEYDOWN:
-                    # load next image
-                    if event.key == K_f:
-                        self.process_rectangles()
-                        self.rectangles = []
+                    # load next image, annotate as [T]ext
+                    if event.key == K_t:
+                        self.reset_annotation()
+                        self.annotation['type'] = 'text'
+                        self.process_annotation()
+                        self.reset_annotation()
                         self.next_image()
 
-                    # load previous image
-                    if event.key == K_d:
+                    # load next image annotate as [C]ontaing
+                    elif event.key == K_c:
+                        self.annotation['type'] = 'containing'
+                        self.process_annotation()
+                        self.reset_annotation()
+                        self.next_image()
+
+                    # load next image annotate as [B]agger
+                    elif event.key == K_b:
+                        self.reset_annotation()
+                        self.annotation['type'] = 'bagger'
+                        self.process_annotation()
+                        self.reset_annotation()
+                        self.next_image()
+
+                    # load [P]revious image
+                    elif event.key == K_p:
                         self.remove_previous_annotated_data()
-                        self.rectangles = []
+                        self.reset_annotation()
                         self.previous_image()
 
-                    # remove previously added rectangle
-                    elif event.key == K_b:
-                        if len(self.rectangles) == 0:
+                    # [R]emove previously added rectangle
+                    elif event.key == K_r:
+                        if len(self.annotation['rectangles']) == 0:
                             continue
-                        self.rectangles = self.rectangles[:-1]
+
+                        if VERBOSE > 2:
+                            pos, size = self.annotation['rectangles'][-1]
+                            print 'removed bounding box: %s, %s' % (str(pos),
+                                str(size))
+
+                        self.annotation['rectangles'] = \
+                            self.annotation['rectangles'][:-1]
                         self.reload_image()
-                        for pos, size in self.rectangles:
+                        for pos, size in self.annotation['rectangles']:
                             self.draw_rectangle(pos, size)
 
                 elif event.type == MOUSEBUTTONDOWN:
@@ -107,41 +157,54 @@ class Annotater(object):
                     pos, size = Annotater.get_rectangle_pos_size(\
                         self.mouse_pressed_coords, pygame.mouse.get_pos())
 
+                    if VERBOSE > 2:
+                        print 'created bounding box: %s, %s' % (str(pos),
+                            str(size))
+
                     self.draw_rectangle(pos, size)
-                    self.rectangles.append((pos, size))
+                    self.annotation['rectangles'].append((pos, size))
+                    self.annotation['type'] = 'containing'
 
                     self.mouse_pressed_coords = None
 
-    def process_rectangles(self):
+
+    def process_annotation(self):
         """ actually cuts the image into pieces, if necessary, and places em in
-        the correct folders """
+        the correct folders. Creates a meta data file in which it writes the
+        annotated data """
 
         if self.next_image_index < 0:
             print 'next image index can not be 0 in process_rectangles in process_rectangles (quit)'
             exit()
 
         current_image_name = self.images[self.next_image_index - 1]
+        meta_name = current_image_name.replace(self.end_tag, '.py')
 
-        # if no image found on page, store whole image in text folder
-        if len(self.rectangles) == 0:
-            out = os.path.join(self.out_text_folder, current_image_name)
-            if VERBOSE > 1:
-                print '(text image) saving %s' % out
-            pygame.image.save(self.screen, out)
+        # create meta file
+        out = os.path.join(self.out_folder, meta_name)
+        if VERBOSE > 1:
+            print '(text image) saving meta file %s' % out
+        if VERBOSE > 2:
+            print ' ... contains %s' % str(self.annotation)
+        with open(out, 'w') as meta_file:
+            meta_file.write(str(self.annotation))
+
+        # stop if type is anything but containing
+        if self.annotation['type'] != 'containing':
             return
 
-        # otherwise, cut the rectangle out of the orignal images and store those
-        for i, (pos, size) in enumerate(self.rectangles):
+        # otherwise, store the rectangles
+        for i, (pos, size) in enumerate(self.annotation['rectangles']):
             sub_surface = self.current_image.subsurface(pos, size)
-            out = os.path.join(self.out_pic_folder, 'pic_%d_%s' % (i,
+            out = os.path.join(self.out_folder, 'pic_%d_%s' % (i,
                 current_image_name))
             if VERBOSE > 1:
-                print '(pic image) saving %s' % out
+                print '(pic image) saving rectangle picture %s' % out
             pygame.image.save(sub_surface, out)
 
     def remove_previous_annotated_data(self):
-        """ removes the possible derivatives of image from self.out_pic_folder
-        and self.out_text_folder if they are present there"""
+        """ removes the possible derivatives of image from self.out_folder
+        and delete meta file"""
         previous_image_index = self.next_image_index - 2
         if previous_image_index < 0:
             print 'previous image index can not be < 0 in remove_annotated_data_by_image (quit)'
@@ -149,20 +212,19 @@ class Annotater(object):
 
         previous_image_name = self.images[self.next_image_index - 2]
 
-        Annotater.empty_folder_containing(self.out_pic_folder,
-            previous_image_name, 'pic')
-        Annotater.empty_folder_containing(self.out_text_folder,
-            previous_image_name, 'text')
+        self.empty_folder_containing(self.out_folder,
+            previous_image_name)
 
-    @staticmethod
-    def empty_folder_containing(folder, name, cat):
+    def empty_folder_containing(self, name, cat):
         """ removes all files in folder that contains a part of name
             cat is the category (ie pic or text)"""
-        to_delete = [x for x in os.listdir(folder) if name in x]
+
+        # below matches everything that has the name, and deletes it
+        to_delete = [x for x in os.listdir(self.out_folder) if name in x]
         for f in to_delete:
             if VERBOSE > 1:
                 print '(%s image) deleting %s' % (cat, f)
-            os.remove(os.path.join(folder, f))
+            os.remove(os.path.join(self.out_folder, f))
 
 
     def next_image(self):
@@ -247,16 +309,19 @@ class Annotater(object):
 
 if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser(description=Annotater.__doc__)
+    parser = argparse.ArgumentParser(description=Annotater.__doc__, \
+        formatter_class=RawTextHelpFormatter)
     parser.add_argument("input_folder", metavar='INPUT_FOLDER', type=str,
                     help="""The input folder.""")
     parser.add_argument("--verbose", '-v', action='count', help="""Set verbosity level (output
 general status messages of the program). For example, -v for level 1 and -vv for
 level 2""")
     parser.add_argument('--begin_tag', '-b', type=str,
-        help='The string that all images should start with (for example 500_)', default='500_')
+        help='The string that all images should start with (default: 500_)',
+        default='500_')
     parser.add_argument('--end_tag', '-e', type=str,
-        help='The string that all images should start with (for example .png)', default='.png')
+        help='The string that all images should start with (for example .png)',
+        default='.png')
 
     args = vars(parser.parse_args())
     input_folder = args['input_folder']
