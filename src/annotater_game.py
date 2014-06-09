@@ -87,6 +87,16 @@ The output format is as followed:
         pygame.init()
         self.next_image()
 
+        self.set_cool_stuff()
+
+    def set_cool_stuff(self):
+        """ sets random cool stuff such as the title, and an icon if possible"""
+        pygame.display.set_caption('Annotater')
+        if os.path.exists('../resources'):
+            pygame.display.set_icon( pygame.image.load('../resources/uva_icon.jpg'))
+        elif VERBOSE > 2:
+            print 'could not find caption "../resources/uva_icon.jpg"'
+
     def reset_annotation(self):
         self.annotation = {'rectangles' : []}
 
