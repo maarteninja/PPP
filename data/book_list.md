@@ -1,14 +1,8 @@
 Aa, Pieter van der (I. De eerste scheeps-togt gedaan na Oost-Indien, op kosten
-van de Engelse 
-
-Maatschappy, in den jaare 1601. onder ’t beleyd van den generaal James
-Lancaster : 
-
-mitsgaders een beknopt berigt van eenige voyagien voor die tĳd na Oost en
-West-Indien door 
-
-Engelse en andere volkeren gedaan. Te Leyden: By Pieter vander Aa , Aa, Pieter
-van der I, 
+van de Engelse Maatschappy, in den jaare 1601. onder ’t beleyd van den generaal
+James Lancaster : mitsgaders een beknopt berigt van eenige voyagien voor die tĳd
+na Oost en West-Indien door Engelse en andere volkeren gedaan. Te Leyden: By
+Pieter vander Aa , Aa, Pieter van der I, 
 
 Leiden, 1706.
 
