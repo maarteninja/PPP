@@ -256,6 +256,10 @@ The output format is as followed:
         self.screen.blit(self.current_image, (0,0))
         pygame.display.flip()
 
+
+        pygame.display.set_caption('Annotater %d/%d' % (self.next_image_index-1,
+            len(self.images)))
+
     def reload_image(self):
         """ reloads the current image (makes sure the rectangles are all gone)"""
         if self.next_image_index > 0:

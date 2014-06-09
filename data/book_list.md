@@ -2,241 +2,106 @@ Aa, Pieter van der (I. De eerste scheeps-togt gedaan na Oost-Indien, op kosten
 van de Engelse Maatschappy, in den jaare 1601. onder ’t beleyd van den generaal
 James Lancaster : mitsgaders een beknopt berigt van eenige voyagien voor die tĳd
 na Oost en West-Indien door Engelse en andere volkeren gedaan. Te Leyden: By
-Pieter vander Aa , Aa, Pieter van der I, 
-
-Leiden, 1706.
+Pieter vander Aa , Aa, Pieter van der I, Leiden, 1706. BINNEN
 
 ———. Naaukeurige versameling der gedenk-waardigste zee en land-reysen, na Oost
-en West-
-Indiën [...] zedert het jaar 1563 tot 1576. Leyden: sold by Pvander Aa, Aa,
-Pieter van der I, 
-
-Leiden, 1707.
+en West- Indiën [...] zedert het jaar 1563 tot 1576. Leyden: sold by Pvander Aa, Aa,
+Pieter van der I, Leiden, 1707. BINNEN
 
 Acosta, José de. Ontdekking van West-Indien, vlĳtig ondersogt, en naauw-keurig
-aangeteekend, 
-
-door Joseph d’Acosta, Soc. Jesu, op sĳn reys-togt, derwaarts gedaan anno 1592.
-en 
-
-vervolgens : waar in dese Nieuwe Weereld niet alleen word beschreeven in sĳne
-Americaanse 
-
-volkeren, der selver Gods-dienst, zeeden, gewoontens en levens-manier: maar ook
-den aart 
-
-en eygenschap dier gewesten, met al het geen aanmerkens-waardig, tussen dien
-land aart en 
-
-hunne overwinnaars is voor gevallen. Te Leyden: By Pieter vander Aa , Aa, Pieter
-van der I, 
-
-Leiden, 1706.
+aangeteekend, door Joseph d’Acosta, Soc. Jesu, op sĳn reys-togt, derwaarts gedaan anno 1592.
+en vervolgens : waar in dese Nieuwe Weereld niet alleen word beschreeven in sĳne
+Americaanse volkeren, der selver Gods-dienst, zeeden, gewoontens en levens-manier: maar ook
+den aart en eygenschap dier gewesten, met al het geen aanmerkens-waardig, tussen dien
+land aart en hunne overwinnaars is voor gevallen. Te Leyden: By Pieter vander Aa , Aa, Pieter
+van der I, Leiden, 1706.
 
 Adams, William. Twee brieven van William Adams wegens sĳn reys uyt Holland na
-Oost-Indien, 
-
-met vĳf schepen, anno 1598 en vervolgens : en wat ontmoetingen hem in Japan
-overgekomen 
-
-zĳn. Te Leyden: By Pieter van der Aa, Aa, Pieter van der I, Leiden, 1706.
-
+Oost-Indien, met vĳf schepen, anno 1598 en vervolgens : en wat ontmoetingen hem in Japan
+overgekomen zĳn. Te Leyden: By Pieter van der Aa, Aa, Pieter van der I, Leiden, 1706.
 Almeida, Manuel de. Naauw-keurige aanteekeningen van den eerwaarden vader Manuel 
-
 d’Almeida, wegens Opper-Ethiopien, geduurende sĳn verblĳf aldaar gehouden :
-getrokken 
-
-uyt het Portugĳsche hand-schrift van den eerwaarden vader Balthasar Tellez :
-waar in 
-
-alle des selfs koningrĳken, rivieren, bergen, dorpen en verscheyde soorten van
-volkeren 
-
-worden aangeweesen : als mede een beschrĳving van den aart, imborst, zeden,
-gewoontens, 
-
-levensmanier, gods-dienst, regeering, oorlogen, huuwelĳken, begraaffenissen,
-kleedingen, 
-
-opschik en huys-houding deser volkeren : daar en boven een naam-rol, of register
-van alle 
-
-der selver koningen, die tot de tĳd van het verblĳf des schrĳvers aldaar geweest
-zĳn; ook 
-
-wat gediertens, koorn, vrugten, genees-middelen en andere zeldsaamheeden dat
-land voort-
-brengt: met noodig register verrĳkt. Te Leyden: by Pieter Vander Aa , Aa, Pieter
-van der I, 
-
-Leiden, 1707.
+getrokken uyt het Portugĳsche hand-schrift van den eerwaarden vader Balthasar Tellez :
+waar in alle des selfs koningrĳken, rivieren, bergen, dorpen en verscheyde soorten van
+volkeren worden aangeweesen : als mede een beschrĳving van den aart, imborst, zeden,
+gewoontens, levensmanier, gods-dienst, regeering, oorlogen, huuwelĳken, begraaffenissen,
+kleedingen, opschik en huys-houding deser volkeren : daar en boven een naam-rol, of register
+van alle der selver koningen, die tot de tĳd van het verblĳf des schrĳvers aldaar geweest
+zĳn; ook wat gediertens, koorn, vrugten, genees-middelen en andere zeldsaamheeden dat
+land voortbrengt: met noodig register verrĳkt. Te Leyden: by Pieter Vander Aa , Aa, Pieter
+van der I, Leiden, 1707. BINNEN?
 
 Archer, Gabriel 1602 fl. Bartholomeus Gosnols reys van Engeland na het Noorder
-gedeelte van 
-
-Virginien, anno 1602. Te Leyden: by Pieter vander Aa, boekverkoper, Aa, Pieter
-van der I, 
-
-Leiden, 1706.
+gedeelte van Virginien, anno 1602. Te Leyden: by Pieter vander Aa, boekverkoper, Aa, Pieter
+van der I, Leiden, 1706. BINNEN
 
 Aubigné, Agrippa d’. L’histoire vniverselle dv sievr d’Avbigné. À Maille: par
-Iean Movssat, 1616.
+Iean Movssat, 1616. BINNEN
 
 Balbi, Gasparo caca1623. Aanmerkelyke zee en landreysen, gedaan door Caspar
-Balby, 
-
-Venetiaans koopman, naar Oost-Indien, van ’t jaar 1579 tot het jaar 1588 :
-bevattende 
-
-veelerley gevaarlĳke bejegeningen; beschrĳvingen van landen en steeden;
-wonderlĳke zeeden 
-
-en gewoonten van menschen; nevens meer ander seer sonderlinge saken. Te Leyden:
-By 
-
-Pieter vander Aa , Aa, Pieter van der I, Leiden, 1706.
+Balby, Venetiaans koopman, naar Oost-Indien, van ’t jaar 1579 tot het jaar 1588 :
+bevattende veelerley gevaarlĳke bejegeningen; beschrĳvingen van landen en steeden;
+wonderlĳke zeeden en gewoonten van menschen; nevens meer ander seer sonderlinge saken. Te Leyden:
+By Pieter vander Aa , Aa, Pieter van der I, Leiden, 1706.
 
 Baldaeus, Philippus. Naauwkeurige beschryvinge van Malabar en Choromandel, der
-zelver 
-
-aangrenzende ryken, en het machtige eyland Ceylon : nevens een omstandige en
-grondigh 
-
-doorzochte ontdekking en wederlegginge van de afgoderye der Oost-Indische
-heydenen ... 
-
-Amsterdam: By Johannes Janssonius van Waasberge en Johannes van Someren,
-Someren, 
-
-Joannes van Amsterdam, Janssonius van Waesberge, Johannes I, Amsterdam,
-Bakkamude, 
-
-Daniel Amsterdam, 1672.
+zelver aangrenzende ryken, en het machtige eyland Ceylon : nevens een omstandige en
+grondigh doorzochte ontdekking en wederlegginge van de afgoderye der Oost-Indische
+heydenen Amsterdam: By Johannes Janssonius van Waasberge en Johannes van Someren,
+Someren, Joannes van Amsterdam, Janssonius van Waesberge, Johannes I, Amsterdam,
+Bakkamude, Daniel Amsterdam, 1672.
 
 Barros, João de. Aanzienelyke scheeps-togt door den grave Don Vasco da Gamma,
-als Ammiraal 
-
-ter Zee en Onder-Konink van Indien, derwaarts gedaan in ’t jaar 1524 :
-behelzende niet 
-
-alleen desselfs aankomst en verrigting ontrent den oorlog en koophandel op Goa,
-Couchin 
-
-en elders, tot aan zyn dood aldaar; maar ook de scheeps-togten en krygs-bedryven
-onder zyn 
-
-staatvolger Don Henrique de Menezes uitgevoerd ... Te Leyden: by Pieter vander
-Aa , Aa, 
-
-Pieter van der I, Leiden, 1707.
+als Ammiraal ter Zee en Onder-Konink van Indien, derwaarts gedaan in ’t jaar 1524 :
+behelzende niet alleen desselfs aankomst en verrigting ontrent den oorlog en koophandel op Goa,
+Couchin en elders, tot aan zyn dood aldaar; maar ook de scheeps-togten en krygs-bedryven
+onder zyn staatvolger Don Henrique de Menezes uitgevoerd ... Te Leyden: by Pieter vander
+Aa , Aa, Pieter van der I, Leiden, 1707. BINNEN
 
 ———. Bloedige scheeps-togt van den Maarschalk Don Fernando Coutinho na
-Oost-Indien, met 
-
-een vloot van 15 scheepen in ’t jaar 1509 : behelsende het verdelgen van
-Calicut, en den 
-
-ongelukkige dood van den Maarschalk en veele aansienelĳke Portugysen. Leyden: by
-Pieter 
-
-vander Aa , Aa, Pieter van der I, Leiden, 1706.
-
-———. Eerste scheeps-togt van Vasco da Gamma, tot ontdekking van de Indien, in
-het 
-
-jaar 1497. en vervolgens, zĳnde de eerste, die dese landen heeft ontdekt, waar
-in veel 
-
-aanmerkenswaardige saken vermeld staan. Te Leyden: by Pieter Vander Aa , Aa,
-Pieter van 
-
-der I, Leiden, 1706.
-
-———. Roem-rugte scheeps-togt van Francisco d’Almeida na Oost-Indien, eerste
-Onder-Koning 
-
-dier landen, in “t jaar 1505 : behelsende een naauw-keurige beschrĳving van het
-geheele 
-
-Indiën, een groot gedeelte van Africa, der selver zee-havens, steeden, rivieren,
-oorlogs-daden 
-
-der Portugysen tegen de Mooren, Heydenen en Turken, gewoontens en levens-manier
-der 
-
-Nairen en andere volkeren, het ramp-zalig eynde van Don Lourenzo, des
-Onder-Koonings 
-
-soon tegen de Rumes, en die van d”Almeida aan de water-plaats van Saldanha.
-Leyden: by 
-
+Oost-Indien, met een vloot van 15 scheepen in ’t jaar 1509 : behelsende het verdelgen van
+Calicut, en den ongelukkige dood van den Maarschalk en veele aansienelĳke Portugysen. Leyden: by
 Pieter vander Aa , Aa, Pieter van der I, Leiden, 1706.
 
+———. Eerste scheeps-togt van Vasco da Gamma, tot ontdekking van de Indien, in
+het jaar 1497. en vervolgens, zĳnde de eerste, die dese landen heeft ontdekt, waar
+in veel aanmerkenswaardige saken vermeld staan. Te Leyden: by Pieter Vander Aa , Aa,
+Pieter van der I, Leiden, 1706. BINNEN
+
+———. Roem-rugte scheeps-togt van Francisco d’Almeida na Oost-Indien, eerste
+Onder-Koning dier landen, in “t jaar 1505 : behelsende een naauw-keurige beschrĳving van het
+geheele Indiën, een groot gedeelte van Africa, der selver zee-havens, steeden, rivieren,
+oorlogs-daden der Portugysen tegen de Mooren, Heydenen en Turken, gewoontens en levens-manier
+der Nairen en andere volkeren, het ramp-zalig eynde van Don Lourenzo, des
+Onder-Koonings soon tegen de Rumes, en die van d”Almeida aan de water-plaats van Saldanha.
+Leyden: by Pieter vander Aa , Aa, Pieter van der I, Leiden, 1706.
+
 ———. Roemwaardige scheeps-togten en dappere krygs-bedryven ter zee en te land,
-onder ’t 
-
-bestuur van don Duarte de Menezes, als opperhoofd van de vloot en gouverneur van
-Oost-
-Indien; ter aflossing van den heer generaal Diego Lopez de Sequeira, met XII
-schepen 
-
+onder ’t bestuur van don Duarte de Menezes, als opperhoofd van de vloot en gouverneur van
+Oost- Indien; ter aflossing van den heer generaal Diego Lopez de Sequeira, met XII schepen 
 uit Portugaal derwaarts gedaan, in ’t jaar 1521 : verhalende, (behalven de
-toestand der 
-
-Portugyzen sterkten en komptooren, ter voortzetting van den koophandel door
-gants Indiën tot 
-
-in China,) de opstand des Konings van Ormus, onder bloedige gevegten, moorden en
-branden 
-
-ten einde geloopen. Te Leyden: by Pieter vander Aa , Aa, Pieter van der I,
-Leiden, 1707.
+toestand der Portugyzen sterkten en komptooren, ter voortzetting van den koophandel door
+gants Indiën tot in China,) de opstand des Konings van Ormus, onder bloedige gevegten, moorden en
+branden ten einde geloopen. Te Leyden: by Pieter vander Aa , Aa, Pieter van der I,
+Leiden, 1707. BINNEN
 
 ———. Scheeps-togt door Fernando Perez d’Andrade, als opperhoofd der vloot, uit
-last des 
-
-Konings Don Manuel van Portugaal, van Malacca afgezonden na de Golf van Bengale
-en 
-
-de kusten van China, in’t jaar 1516 : verhaalende (behalven desselfs ontdekking
-van ’t 
-
-eiland Sumatra, en deerlyk verbranden van een zyner ryk-gelaade schepen en
-andere 
-
-rampspoeden op zyn togt na Bengale en elders onder stormen en tempeesten
-geleeden,) zyn 
-
-zeldzaame en onverwagte aankomst in China; en beschryving van dat koningryk :
-als mede 
-
-zyn onderhandeling met de koningen van Ternate en Bantam. Te Leyden: by Pieter
-vander 
-
-Aa , Aa, Pieter van der I, Leiden, 1706.
+last des Konings Don Manuel van Portugaal, van Malacca afgezonden na de Golf van Bengale
+en de kusten van China, in’t jaar 1516 : verhaalende (behalven desselfs ontdekking
+van ’t eiland Sumatra, en deerlyk verbranden van een zyner ryk-gelaade schepen en
+andere rampspoeden op zyn togt na Bengale en elders onder stormen en tempeesten
+geleeden,) zyn zeldzaame en onverwagte aankomst in China; en beschryving van dat koningryk :
+als mede zyn onderhandeling met de koningen van Ternate en Bantam. Te Leyden: by Pieter
+vander Aa , Aa, Pieter van der I, Leiden, 1706. BINNEN
 
 ———. Scheeps-togten en manhafte krygs-bedryven te water en te land gedaan door
-Lopo Soares 
-
-d’Albegeria; uit last des Konings Don Manuel van Portugaal, als Kapitein
-Generaal en 
-
-Gouverneur der Oost-Indien, met een vloot van XIII schepen derwaards gezonden in
-“t 
-
-jaar 1515 : verhaalende d”uitrusting van scheepen na de Roode Zee, Arabie, de
-Maldives, 
-
-Bengale, Siam en elders, onder veel gelede rampen, gevegten, verlies van
-schepen, storm 
-
-en onweders: beneffens een beschryving veeler landschappen, eilanden, volken, en
-veele 
-
-byzonderheden van der zelver zeden en gewoontens. Te Leyden: by Pieter van der
-Aa , Aa, 
-
-Pieter van der I, Leiden, 1706.
+Lopo Soares d’Albegeria; uit last des Konings Don Manuel van Portugaal, als Kapitein
+Generaal en Gouverneur der Oost-Indien, met een vloot van XIII schepen derwaards gezonden in
+“t jaar 1515 : verhaalende d”uitrusting van scheepen na de Roode Zee, Arabie, de
+Maldives, Bengale, Siam en elders, onder veel gelede rampen, gevegten, verlies van
+schepen, storm en onweders: beneffens een beschryving veeler landschappen, eilanden, volken, en
+veele byzonderheden van der zelver zeden en gewoontens. Te Leyden: by Pieter van der
+Aa , Aa, Pieter van der I, Leiden, 1706.
 
 ———. Staat-zugtige scheeps-togten en krygs-bedryven ter handhaving van der
 Portugyzen 
@@ -797,34 +662,16 @@ Meurs, Jacob
 van Amsterdam, 1676.
 
 ———. Naukeurige beschryving der eilanden, in de Archipel der Middelantsche Zee,
-en 
-
-ontrent dezelve, gelegen : waer onder de voornaemste Cyprus, Rhodus, Kandien,
-Samos, 
-
-Scio, Negroponte, Lemnos, Paros, Delos, Patmos, en andere, in groten getale,
-behelzende 
-
-der zelver benamingen, gelegentheden, steden, kastelen, gedenkwaerdige aeloude
-en 
-
-hedendaeghse geschiedenissen, bestieringen, veroveringen, gewassen, dieren,
-&c. ; verrĳkt 
-
-met zee-en eilant-kaerten, en afbeeldingen van steden, dieren, gewassen &c. t’
-Amsterdam: 
-
-Voor Wolfgangh, Waesbergen, Boom, Someren en Goethals, Wolfgang, Abraham 
-
+en ontrent dezelve, gelegen : waer onder de voornaemste Cyprus, Rhodus, Kandien,
+Samos, Scio, Negroponte, Lemnos, Paros, Delos, Patmos, en andere, in groten getale,
+behelzende der zelver benamingen, gelegentheden, steden, kastelen, gedenkwaerdige aeloude
+en hedendaeghse geschiedenissen, bestieringen, veroveringen, gewassen, dieren,
+&c. ; verrĳkt met zee-en eilant-kaerten, en afbeeldingen van steden, dieren, gewassen &c. t’
+Amsterdam: Voor Wolfgangh, Waesbergen, Boom, Someren en Goethals, Wolfgang, Abraham 
 Amsterdam, Janssonius van Waesberge, Johannes II, Amsterdam, Janssonius van
-Waesberge, 
-
-Gilles Amsterdam, Boom, Dirk I, wed, Amsterdam, Boom, Hendrick Amsterdam,
-Someren, 
-
-Joannes van wed, Amsterdam, Someren, Abraham van Amsterdam, Goethals, Rembertus 
-
-Amsterdam, 1688.
+Waesberge, Gilles Amsterdam, Boom, Dirk I, wed, Amsterdam, Boom, Hendrick Amsterdam,
+Someren, Joannes van wed, Amsterdam, Someren, Abraham van Amsterdam, Goethals, Rembertus 
+Amsterdam, 1688. BINNEN
 
 ———. Naukeurige beschryving van Asië: behelsende de gewesten van Mesopotamië,
 Babylonië, 
@@ -3236,43 +3083,19 @@ Iacob van
 Meurs , Meurs, Jacob van Amsterdam, Lier, Steeven van Amsterdam, 1661.
 
 ———. Afbeeldinge van’t nieu Romen. Waer in vertoont zĳn de kerken, H. lichamen,
-reliquien ... 
-
-architecturen ... bibliotheken ... en andere seer aenmerkelĳke dingen. : Den
-schilderen, 
-
-beeldhouweren, bouwmeesteren, en andere liefhebberen ten dienste, verrijkt met
-82 kopere 
-
-platen. t’Amsterdam: by Jacob van Meurs, #plaetsnĳder en boeckhandelaer, op de
-Zingel, 
-
-over de Appelmerkt, in de Stadt Meurs#, Meurs, Jacob van Amsterdam, 1661.
-
-Valentyn, François. Oud en nieuw Oost-Indiën, vervattende een naaukeurige en
-uitvoerige 
-
+reliquien ...  architecturen ... bibliotheken ... en andere seer aenmerkelĳke dingen. : Den
+schilderen, beeldhouweren, bouwmeesteren, en andere liefhebberen ten dienste, verrijkt met
+82 kopere platen. t’Amsterdam: by Jacob van Meurs, #plaetsnĳder en boeckhandelaer, op de
+Zingel, over de Appelmerkt, in de Stadt Meurs#, Meurs, Jacob van Amsterdam, 1661.
+Valentyn, François. Oud en nieuw Oost-Indiën, vervattende een naaukeurige en uitvoerige 
 verhandelinge van Nederlands mogentheyd in die gewesten, benevens eene
-wydlustige 
-
-beschryvinge der Moluccos, Amboina, Banda, Timor, en Solor, Java en alle de
-eylanden 
-
-onder dezelve landbestieringen behoorende : het Nederlands comptoir op Suratte,
-en de 
-
-levens der groote Mogols; als ook een keurlyke verhandeling van ’t wezentlykste,
-dat men 
-
-behoort te weten van Choromandel, Pegu, Arracan, Bengale, Mocha, Persien,
-Malacca, 
-
-Sumatra, Ceylon, Malabar, Celebes of Macassar, China, Japan, Tayouan of Formosa, 
-
+wydlustige beschryvinge der Moluccos, Amboina, Banda, Timor, en Solor, Java en alle de
+eylanden onder dezelve landbestieringen behoorende : het Nederlands comptoir op Suratte,
+en de levens der groote Mogols; als ook een keurlyke verhandeling van ’t wezentlykste,
+dat men behoort te weten van Choromandel, Pegu, Arracan, Bengale, Mocha, Persien,
+Malacca, Sumatra, Ceylon, Malabar, Celebes of Macassar, China, Japan, Tayouan of Formosa, 
 Tonkin, Cambodia, Siam, Borneo, Bali, Kaap der Goede Hoop en van Mauritius ...
-Te 
-
-Dordrecht: by Joannes van Braam ; Te Amsterdam, 1724.
+Te Dordrecht: by Joannes van Braam ; Te Amsterdam, 1724.
 
 Vitruvius Pollio, Marcus 1e eeuw v Chr. M. Vitrvvii Pollionis De architectura
 libri decem. 
