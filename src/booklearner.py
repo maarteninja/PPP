@@ -14,13 +14,13 @@ from sklearn import svm
 
 class BookLearner:
 
-	def __init__(self, input_folder, pixels_per_cell=(62,50)):
+	def __init__(self, input_folder, number_of_cells=(5,5)):
 		""" The input folder is the folder containing all the books. The
-		pixels_per_cell are used for the hog features. This tuple is (62,50) by
+		number_of_cells are used for the hog features. This tuple is (62,50) by
 		default, which will result in 10x10 hog features per page
 		"""
 		self.input_folder = input_folder
-		self.pixels_per_cell = pixels_per_cell
+		self.number_of_cells = number_of_cells
 		self.classifier = svm.SVC(probability=1)
 		books = os.listdir(self.input_folder)
 		# Take 80 percent as train set:
@@ -55,8 +55,8 @@ class BookLearner:
 			print len(descriptor)
 
 		# print self.all_descriptors
-		# print np.shape(self.all_descriptors)
-		# print np.shape(self.all_labels)
+		print np.shape(self.all_descriptors)
+		print np.shape(self.all_labels)
 		# # Fit the classifier:
 		self.classifier.fit(self.all_descriptors, self.all_labels)
 
@@ -77,11 +77,13 @@ class BookLearner:
 			else:
 				print 'no data for book %s' % (book)
 		# print test_descriptors
+		for descriptor in test_descriptors:
+			print len(descriptor)
 		print np.shape(test_descriptors)
 		print np.shape(test_real_labels)
 		test_predicted_labels = self.classifier.predict(test_descriptors)
-		print test_real_labels
-		print test_predicted_labels
+		# print test_real_labels
+		# print test_predicted_labels
 		correct = wrong = 0
 		for i in range(1, len(test_real_labels)):
 			if(test_real_labels[i] == test_predicted_labels[i]):
@@ -93,9 +95,10 @@ class BookLearner:
 
 	def calculate_and_show_hog(self, image):
 		image = color.rgb2gray(image)
-
-		fd, hog_image = hog(image, orientations=8, pixels_per_cell=self.pixels_per_cell,
-							cells_per_block=(1, 1), visualise=True)
+		pixels_per_cell = self.calculate_pixels_per_cell(image)
+		fd, hog_image = hog(image, orientations=8,
+			pixels_per_cell=pixels_per_cell, cells_per_block=(1, 1),
+			visualise=True)
 
 		fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4))
 
@@ -104,7 +107,8 @@ class BookLearner:
 		ax1.set_title('Input image')
 
 		# Rescale histogram for better display
-		hog_image_rescaled = exposure.rescale_intensity(hog_image, in_range=(0, 0.02))
+		hog_image_rescaled = exposure.rescale_intensity(hog_image, in_range=(0,
+			0.02))
 
 		ax2.axis('off')
 		ax2.imshow(hog_image_rescaled, cmap=plt.cm.gray)
@@ -113,9 +117,16 @@ class BookLearner:
 		return fd
 
 	def calculate_hog(self, image):
+		pixels_per_cell = self.calculate_pixels_per_cell(image)
 		image = color.rgb2gray(image)
-		return hog(image, orientations=8, pixels_per_cell=self.pixels_per_cell,
-							cells_per_block=(1, 1))
+		return hog(image, orientations=8, pixels_per_cell=pixels_per_cell,
+			cells_per_block=(1, 1))
+
+	def calculate_pixels_per_cell(self, image):
+		s = np.shape(image)
+		pixels_vertical = int(s[0]/self.number_of_cells[0])
+		pixels_horizontal = int(s[1]/self.number_of_cells[1])
+		return (pixels_vertical, pixels_horizontal)
 
 	def read_book_data(self, book):
 		""" Read the hog features from the image files, and the class from the
@@ -149,7 +160,7 @@ class BookLearner:
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
 	parser.add_argument("input_folder", metavar='input_folder', type=str,
-					help="""The input folder.""")
+		help="""The input folder.""")
 	
 	args = vars(parser.parse_args())
 
