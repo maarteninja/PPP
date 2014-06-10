@@ -104,48 +104,24 @@ veele byzonderheden van der zelver zeden en gewoontens. Te Leyden: by Pieter van
 Aa , Aa, Pieter van der I, Leiden, 1706.
 
 ———. Staat-zugtige scheeps-togten en krygs-bedryven ter handhaving van der
-Portugyzen 
-
-opper-bestuur in Oost-Indien, door Don Lopo Vaz de Sampayo, gedaan in ’t jaar
-1526 : 
-
-verhaalende (behalven de geschillen over ’t gouvernement aldaar, tusschen
-gemelden 
-
-Lopo Vaz en Pero Mascarenhas op de dood van Don Henrique de Menezee
-voorgevallen,) 
-
-verscheide scheeps-togten en wedervaringen op zee en te land : beneffens een
-beschryving 
-
-van ’t Koninkryk Zunda en ’t eiland Java, met der zelver inwoonderen en zeden;
-... Te 
-
-Leyden: by Pieter vander Aa , Aa, Pieter van der I, Leiden, 1707.
+Portugyzen opper-bestuur in Oost-Indien, door Don Lopo Vaz de Sampayo, gedaan in ’t jaar
+1526 : verhaalende (behalven de geschillen over ’t gouvernement aldaar, tusschen
+gemelden Lopo Vaz en Pero Mascarenhas op de dood van Don Henrique de Menezee
+voorgevallen,) verscheide scheeps-togten en wedervaringen op zee en te land : beneffens een
+beschryving van ’t Koninkryk Zunda en ’t eiland Java, met der zelver inwoonderen en zeden;
+Te Leyden: by Pieter vander Aa , Aa, Pieter van der I, Leiden, 1707. BINNEN
 
 ———. Twee bysondere scheeps-togten na Oost-Indien, van Francisco D’Albuquerque,
-in het 
-
-jaar 1503. en Lopo Soares in het jaar 1504. Leyden: by Pieter vander Aa , Aa,
-Pieter van der 
-
-I, Leiden, 1706.
+in het jaar 1503. en Lopo Soares in het jaar 1504. Leyden: by Pieter vander Aa , Aa,
+Pieter van der I, Leiden, 1706.
 
 ———. Twee bysondere scheeps-togten na Oost-Indien, van Gonsalo de Sequeira in
-het jaar 
-
-1510. en Garcia de Noronha in het jaar 1511. Leyden: by Pieter vander Aa , Aa,
-Pieter van 
-
-der I, Leiden, 1706.
+het jaar 1510. en Garcia de Noronha in het jaar 1511. Leyden: by Pieter vander Aa , Aa,
+Pieter van der I, Leiden, 1706.
 
 ———. Twee ongelukkige scheeps-togten na Oost-Indien, van Jorge de Mello, in het
-jaar 1507. en 
-
-Jorge d’Aguiar, in het jaar 1508. Leyden: by Pieter vander Aa , Aa, Pieter van
-der I, Leiden, 
-
-1706.
+jaar 1507. en Jorge d’Aguiar, in het jaar 1508. Leyden: by Pieter vander Aa , Aa, Pieter van
+der I, Leiden, 1706. BINNEN
 
 ———. Tweede scheeps-togt van Don Vasco da Gamma, zee-voogd van Arabien, Persien,
 Indien 
@@ -190,37 +166,20 @@ Blaeu, Joan I,
 
 Amsterdam, 1642.
 
-Blaeu, Willem Jansz. Theatrum orbis terrarum sive Atlas novus, in quo tabulae et
-descriptiones 
-
+Blaeu, Willem Jansz. Theatrum orbis terrarum sive Atlas novus, in quo tabulae et descriptiones 
 omnium regionum,. Amsterdam: apud Guiljelmum et Ioannem Blaeu, 1649.
 
+
 Blount, Henry. Zee- en land-voyagie van den Ridder Hendrik Blunt, na de Levant.
-gedaan in 
-
-het jaar 1634 : waar in op het naauw-keurigst verhaalt word, ’t geen hem
-onderweegen 
-
-van Venetiën door Dalmatiën, Slavoniën, Bosna, Hungaryen, Macedoniën,
-Thessaliën, 
-
-Thraciën, Rhodes, tot aan Groot-Cairo in Egypten, en van daar wederom te rug met
-veel-
-vuldige gevaren en ongemakken is overgekoomen : als mede veele bysonderheeden
-van 
-
-koningrĳken, landschappen, steeden, paleysen, moskëen, chans, gebouwen,
-kasteelen, 
-
-rivieren, zee havens gebergtens, pyramiden, obelisken &c. : daar en boven der
-Turken gods-
-dienst, zedelĳk gedrag, wapen-rusting, gerigts-oeffening, kleding, manier van
-leven, oorlogen, 
-
-overwinningen en op wat wĳse de christenen, jooden en anderedoor hen overheerde
-volkeren 
-
-handelen. Te Leyden: by Pieter Vander Aa , Aa, Pieter van der I, Leiden, 1707.
+gedaan in het jaar 1634 : waar in op het naauw-keurigst verhaalt word, ’t geen hem
+onderweegen van Venetiën door Dalmatiën, Slavoniën, Bosna, Hungaryen, Macedoniën,
+Thessaliën, Thraciën, Rhodes, tot aan Groot-Cairo in Egypten, en van daar wederom te rug met
+veelvuldige gevaren en ongemakken is overgekoomen : als mede veele bysonderheeden
+van koningrĳken, landschappen, steeden, paleysen, moskëen, chans, gebouwen,
+kasteelen, rivieren, zee havens gebergtens, pyramiden, obelisken &c. : daar en boven der
+Turken godsdienst, zedelĳk gedrag, wapen-rusting, gerigts-oeffening, kleding, manier van
+leven, oorlogen,overwinningen en op wat wĳse de christenen, jooden en anderedoor hen overheerde
+volkeren handelen. Te Leyden: by Pieter Vander Aa , Aa, Pieter van der I, Leiden, 1707.
 
 Bogaert, Abraham. Historische reizen door d’oostersche deelen van Asia : mitsg.
 een omstandig 
@@ -245,21 +204,11 @@ Gr. et Lat. cum
 notis.. Lugduni Batavorum: ex offJMaire, Maire, Joannes Leiden, 1647.
 
 Bourges, Jaques de. Naaukeurig verhaal van de reis des bisschops van Beryte uit
-Frankryk te land 
-
-en ter zee naar China : namelĳk uit Marsilien ... naar Aleppo, en ... deur
-Syrien, Arabien, 
-
-Persiën, en verscheide Indiäansche lantschappen; met een naauwkeurige
-beschrĳving van 
-
-de steden en plaatsen, godsdiensten en zeden der volken; als ook van de kosten,
-tot deze reis 
-
-verëischt, en van de munt, in deze landen dienstig. t’Amsterdam: voor Abraham
-Wolfgang, 
-
-Wolfgang, Abraham Amsterdam, 1669.
+Frankryk te land en ter zee naar China : namelĳk uit Marsilien ... naar Aleppo, en ... deur
+Syrien, Arabien, Persiën, en verscheide Indiäansche lantschappen; met een naauwkeurige
+beschrĳving van de steden en plaatsen, godsdiensten en zeden der volken; als ook van de kosten,
+tot deze reis verëischt, en van de munt, in deze landen dienstig. t’Amsterdam: voor Abraham
+Wolfgang, Wolfgang, Abraham Amsterdam, 1669.
 
 Brugge, Jacob Segersz van der 17e E. Journael, of dagh-register, gehouden by
 seven matroosen, 
@@ -674,16 +623,9 @@ Someren, Joannes van wed, Amsterdam, Someren, Abraham van Amsterdam, Goethals, R
 Amsterdam, 1688. BINNEN
 
 ———. Naukeurige beschryving van Asië: behelsende de gewesten van Mesopotamië,
-Babylonië, 
-
-Assyrië, Anatolië, of Klein Asië: beneffens eene volkome beschrĳving van gantsch
-gelukkigh, 
-
-woest, en petreesch of steenigh Arabië ... doorgaens verrĳkt met lantkaerten en
-afbeelding 
-
-van de voornaemste steden, draghten der inwoonders, dieren en gewassen, &c. ... 
-
+Babylonië, Assyrië, Anatolië, of Klein Asië: beneffens eene volkome beschrĳving van gantsch
+gelukkigh, woest, en petreesch of steenigh Arabië ... doorgaens verrĳkt met lantkaerten en
+afbeelding van de voornaemste steden, draghten der inwoonders, dieren en gewassen, &c. ... 
 t’Amtserdam,: By Jacob van Meurs, Meurs, Jacob van Amsterdam, 1680.
 
 ———. Naukeurige beschryving van gantsch Syrië en Palestyn of Heilige Lant,
@@ -1205,18 +1147,10 @@ auctior. ... Amstelaedami: apud Jacobum Meursium, Meurs, Jacob van Amsterdam,
 1660.
 
 ———. Beschrĳvingh der Neder-Landen; : soo uyt Louis Guicciardyn als andere
-vermaerde 
-
-schrĳvers kortelĳk voor-gestelt, en met nieuwe bysonderheden, t’zedert haren
-tĳdt 
-
-voorgevallen, doorgaans verrĳckt. ; hier benevens zĳn d’aenmerckelĳckste steden
-met hare 
-
-aftekeningen verçiert. T’ Amsterdam: by Jacob van Meurs, Meurs, Jacob van
-Antwerpen, 
-
-1662.
+vermaerde schrĳvers kortelĳk voor-gestelt, en met nieuwe bysonderheden, t’zedert haren
+tĳdt voorgevallen, doorgaans verrĳckt. ; hier benevens zĳn d’aenmerckelĳckste steden
+met hare aftekeningen verçiert. T’ Amsterdam: by Jacob van Meurs, Meurs, Jacob van
+Antwerpen, 1662.
 
 ———. Description de touts les Pays-Bas, autrement appellez la Germanie
 Inferieure, ou basse 
@@ -1225,12 +1159,8 @@ Allemagne. Amsterdam: apud Ioannem Ianβonium, Janssonius, Johannes Amsterdam,
 1625.
 
 ———. Description de tovts les Pais-Bas, autrement appellés la Germanie
-Inférievre, ov Basse 
-
-Allemagne,. Maintenant reveue & augmentée plus que de la moictié par le mesme
-autheur.. A 
-
-Anvers: de l’imprimerie de Christophle Plantin, Plantijn, Christoffel Antwerpen,
+Inférievre, ov Basse Allemagne,. Maintenant reveue & augmentée plus que de la moictié par le mesme
+autheur.. A Anvers: de l’imprimerie de Christophle Plantin, Plantijn, Christoffel Antwerpen,
 1582.
 
 ———. Description de tovts les Pays-Bas, autrement appellez la Germanie
@@ -2147,24 +2077,12 @@ weduwe van
 Jacob van Meurs , Meurs, Jacob van wed, Amsterdam, 1682.
 
 ———. Johan Nieuhofs Gedenkweerdige Brasiliaense zee- en lantreize. : Behelzende
-al hetgeen 
-
-op dezelve is voorgevallen. Beneffens een bondige beschrĳving van gantsch
-Neerlants 
-
-Brasil ... : en inzonderheit een wĳtloopig verhael der merkwaardigste voorvallen
-en 
-
-geschiedenissen, die zich ... sedert het jaer 1640. tot 1649. hebben
-toegedragen. Doorgaens 
-
-verçiert met verscheide afbeeldingen, na’t leven aldaer getekent. t’Amsterdam,:
-voor de 
-
-weduwe van Jacob van Meurs, #op de Keizers-gracht#, Meurs, Jacob van wed,
-Amsterdam, 
-
-1682.
+al hetgeen op dezelve is voorgevallen. Beneffens een bondige beschrĳving van gantsch
+Neerlants Brasil : en inzonderheit een wĳtloopig verhael der merkwaardigste voorvallen
+en geschiedenissen, die zich ... sedert het jaer 1640. tot 1649. hebben
+toegedragen. Doorgaens verçiert met verscheide afbeeldingen, na’t leven aldaer getekent. t’Amsterdam,:
+voor de weduwe van Jacob van Meurs, #op de Keizers-gracht#, Meurs, Jacob van wed,
+Amsterdam, 1682.
 
 ———. Legatio Batavica ad Magnum Tartariae Chamum Sungteium mod. Sinae imperat., 
 
@@ -2174,34 +2092,16 @@ JMeursius,
 Meurs, Jacob van Amsterdam, 1668.
 
 Nieuhof, Johannes, Pieter de Goyer, Jacob de Keizer, Hendrik Nieuhof,
-Nederlandsche Oost-
-Indische Compagnie, and former owner DSI Cooper Union Library. Het gezantschap 
-
+Nederlandsche Oost- Indische Compagnie, and former owner DSI Cooper Union Library. Het gezantschap 
 der Neêrlandtsche Oost-Indische Compagnie, aan den grooten Tartarischen Cham,
-den 
-
-tegenwoordigen keizer van China : waar in de gedenkwaerdighste geschiedenissen,
-die 
-
-onder het reizen door de Sineesche landtschappen, Quantung, Kiangsi, Nanking,
-Xantung en 
-
-Peking, en aan het keizerlijke hof te Peking, sedert den jare 1655 tot 1657 zijn
-voorgevallen, 
-
-op het bondigste verhandelt worden : befeffens een naukeurige Beschryving der
-Sineesche 
-
-steden, dorpen, regeering, wetenschappen, hantwerken, zeden, godsdiensten,
-gebouwen, 
-
-drachten, schepen, bergen, gewassen, dieren, &c. en oorlogen tegen de Tarters :
-verçiert men 
-
-over de 150 afbeeltsels, na’t leven in Sina getekent. t’Amsterdam : By Jacob van
-Meurs ..., 
-
-1665. http://archive.org/details/gezantschapderN00Nieu.
+den tegenwoordigen keizer van China : waar in de gedenkwaerdighste geschiedenissen,
+die onder het reizen door de Sineesche landtschappen, Quantung, Kiangsi, Nanking,
+Xantung en Peking, en aan het keizerlijke hof te Peking, sedert den jare 1655 tot 1657 zijn
+voorgevallen, op het bondigste verhandelt worden : befeffens een naukeurige Beschryving der
+Sineesche steden, dorpen, regeering, wetenschappen, hantwerken, zeden, godsdiensten,
+gebouwen, drachten, schepen, bergen, gewassen, dieren, &c. en oorlogen tegen de Tarters :
+verçiert men over de 150 afbeeltsels, na’t leven in Sina getekent. t’Amsterdam : By Jacob van
+Meurs, 1665. http://archive.org/details/gezantschapderN00Nieu.
 
 Olearius, Adam. Persiaensche reyse uyt Holsteyn, door Lĳflandt, Moscovien,
 Tartarien in Persien, 
