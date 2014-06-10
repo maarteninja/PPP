@@ -194,8 +194,8 @@ The output format is as followed:
         out = os.path.join(self.out_folder, meta_name)
         if VERBOSE > 1:
             print '(text image) saving meta file %s' % out
-        if VERBOSE > 2:
-            print ' ... contains %s' % str(self.annotation)
+            if VERBOSE > 2:
+                print ' ... contains %s' % str(self.annotation)
         with open(out, 'w') as meta_file:
             meta_file.write(str(self.annotation))
 
