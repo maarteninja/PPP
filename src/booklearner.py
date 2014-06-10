@@ -14,7 +14,7 @@ from sklearn import svm
 
 class BookLearner:
 
-	def __init__(self, input_folder, number_of_cells=(5,5)):
+	def __init__(self, input_folder, number_of_cells=(2,2)):
 		""" The input folder is the folder containing all the books. The
 		number_of_cells are used for the hog features. This tuple is (62,50) by
 		default, which will result in 10x10 hog features per page
@@ -29,10 +29,10 @@ class BookLearner:
 		# have a test set
 		if train_end == len(books) - 1:
 			train_end = train_end - 1
-		# self.train_set = books[0:train_end]
-		# self.test_set = books[train_end:len(books)]
-		self.train_set = ['naauwKeurigeAanteekeningen']
-		self.test_set = ['journaelOfDaghRegister']
+		self.train_set = books[0:train_end]
+		self.test_set = books[train_end:len(books)]
+		# self.train_set = ['naauwKeurigeAanteekeningen']
+		# self.test_set = ['journaelOfDaghRegister']
 		self.all_descriptors = []
 		self.all_labels = []
 
@@ -50,14 +50,9 @@ class BookLearner:
 				self.all_labels.extend(labels)
 			else:
 				print 'no data for book %s' % (book)
-		self.all_descriptors = np.array(self.all_descriptors)
-		for descriptor in self.all_descriptors:
-			print len(descriptor)
+		# self.all_descriptors = np.array(self.all_descriptors)
 
-		# print self.all_descriptors
-		print np.shape(self.all_descriptors)
-		print np.shape(self.all_labels)
-		# # Fit the classifier:
+		# Fit the classifier:
 		self.classifier.fit(self.all_descriptors, self.all_labels)
 
 	def test(self):
@@ -77,20 +72,15 @@ class BookLearner:
 			else:
 				print 'no data for book %s' % (book)
 		# print test_descriptors
-		for descriptor in test_descriptors:
-			print len(descriptor)
-		print np.shape(test_descriptors)
-		print np.shape(test_real_labels)
+		#test_descriptors = np.array(test_descriptors)
 		test_predicted_labels = self.classifier.predict(test_descriptors)
-		# print test_real_labels
-		# print test_predicted_labels
 		correct = wrong = 0
 		for i in range(1, len(test_real_labels)):
 			if(test_real_labels[i] == test_predicted_labels[i]):
 				correct += 1
 			else:
 				wrong += 1
-		print "Correct: %d, False: %d" % (correct, false)
+		print "Correct: %d, Wrong: %d" % (correct, wrong)
 
 
 	def calculate_and_show_hog(self, image):
@@ -126,7 +116,7 @@ class BookLearner:
 		s = np.shape(image)
 		pixels_vertical = int(s[0]/self.number_of_cells[0])
 		pixels_horizontal = int(s[1]/self.number_of_cells[1])
-		return (pixels_vertical, pixels_horizontal)
+		return (pixels_horizontal, pixels_vertical)
 
 	def read_book_data(self, book):
 		""" Read the hog features from the image files, and the class from the
@@ -160,7 +150,11 @@ class BookLearner:
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
 	parser.add_argument("input_folder", metavar='input_folder', type=str,
-		help="""The input folder.""")
+		help="""The folder containing (annotated) books.""")
+	# parser.add_argument("number-of-cells", type=str,
+	# 	help="""The number of hogs that are created per page. A vertical and
+	# 	horizontal dimension should be given as follows: VxH, where V is the
+	# 	vertical number of cells, and H the horizontal number of cells"""
 	
 	args = vars(parser.parse_args())
 
