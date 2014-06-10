@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import os, glob
 import numpy as np
+from numpy import array
 import argparse
 
 import Image
@@ -14,15 +15,16 @@ from sklearn import svm
 
 class BookLearner:
 
-	def __init__(self, input_folder, number_of_cells=(2,2)):
+	def __init__(self, input_folder, number_of_blocks, cells_per_block):
 		""" The input folder is the folder containing all the books. The
-		number_of_cells are used for the hog features. This tuple is (62,50) by
+		number_of_blocks are used for the hog features. This tuple is (62,50) by
 		default, which will result in 10x10 hog features per page
 		"""
 		self.input_folder = input_folder
-		self.number_of_cells = number_of_cells
-		self.classifier = svm.SVC(probability=1)
+		self.number_of_blocks = number_of_blocks
+		self.classifier = svm.SVC(probability=1, class_weight='auto')
 		books = os.listdir(self.input_folder)
+		books = self.remove_unannotated_books(books)
 		# Take 80 percent as train set:
 		train_end = int(len(books)*.8)
 		# Check if train_end is not the same as len(books)-1: Then we wouldn't
@@ -31,27 +33,29 @@ class BookLearner:
 			train_end = train_end - 1
 		self.train_set = books[0:train_end]
 		self.test_set = books[train_end:len(books)]
-		# self.train_set = ['naauwKeurigeAanteekeningen']
-		# self.test_set = ['journaelOfDaghRegister']
+		#self.train_set = ['naauwKeurigeAanteekeningen']
+		#self.test_set = ['journaelOfDaghRegister']
 		self.all_descriptors = []
 		self.all_labels = []
 
+	def remove_unannotated_books(self, books):
+		""" Removes the books from the array 'books' that do not have a
+		subfolder called 'annotated' """
+		return_books = []
+		for book in books:
+			path = self.input_folder + os.sep + book + os.sep + 'annotated'
+			if os.path.exists(path) and os.path.isdir(path):
+				return_books.append(book)
+		return return_books
 
 	def train(self):
 		""" Trains the svm. self.train_set is used as the training set """
 		for book in self.train_set:
-			# If the book is annotated, this directory should exist:
-			if(os.path.exists(self.input_folder + os.sep + book + os.sep + 'annotated') and 
-				os.path.isdir(self.input_folder + os.sep + book + os.sep + 'annotated')):
-				# Then read its descriptors and labels
-				print "reading book %s" % (book)
-				descriptors, labels = self.read_book_data(book)
-				self.all_descriptors.extend(descriptors)
-				self.all_labels.extend(labels)
-			else:
-				print 'no data for book %s' % (book)
-		# self.all_descriptors = np.array(self.all_descriptors)
-
+			# read its descriptors and labels
+			print "Calculating data for book %s" % (book)
+			descriptors, labels = self.read_book_data(book)
+			self.all_descriptors.extend(descriptors)
+			self.all_labels.extend(labels)
 		# Fit the classifier:
 		self.classifier.fit(self.all_descriptors, self.all_labels)
 
@@ -62,18 +66,21 @@ class BookLearner:
 		test_descriptors = []
 		test_real_labels = []
 		for book in self.test_set:
-			if(os.path.exists(self.input_folder + os.sep + book + os.sep + 'annotated') and 
-				os.path.isdir(self.input_folder + os.sep + book + os.sep + 'annotated')):
-				# Then read its descriptors and labels
-				print "reading book %s" % (book)
-				descriptors, labels = self.read_book_data(book)
-				test_descriptors.extend(descriptors)
-				test_real_labels.extend(labels)
-			else:
-				print 'no data for book %s' % (book)
-		# print test_descriptors
-		#test_descriptors = np.array(test_descriptors)
+			# read its descriptors and labels
+			print "Calculating data for book %s" % (book)
+			descriptors, labels = self.read_book_data(book)
+			test_descriptors.extend(descriptors)
+			test_real_labels.extend(labels)
 		test_predicted_labels = self.classifier.predict(test_descriptors)
+		# For convenient counting, convert back to list
+		print_labels = list(test_predicted_labels)
+		print """
+			Number of text predictions: %d
+			Number of image predictions: %d
+			Number of bagger predictions: %d
+			""" % (print_labels.count('text'), 
+				print_labels.count('image'),
+				print_labels.count('bagger'))
 		correct = wrong = 0
 		for i in range(1, len(test_real_labels)):
 			if(test_real_labels[i] == test_predicted_labels[i]):
@@ -114,8 +121,8 @@ class BookLearner:
 
 	def calculate_pixels_per_cell(self, image):
 		s = np.shape(image)
-		pixels_vertical = int(s[0]/self.number_of_cells[0])
-		pixels_horizontal = int(s[1]/self.number_of_cells[1])
+		pixels_vertical = int(s[0]/self.number_of_blocks[0])
+		pixels_horizontal = int(s[1]/self.number_of_blocks[1])
 		return (pixels_horizontal, pixels_vertical)
 
 	def read_book_data(self, book):
@@ -133,32 +140,57 @@ class BookLearner:
 		labels = []
 
 		for annotated_image in annotated_images:
-			with open(annotated_image) as f:
+			with open(annotated_image, 'r+') as f:
 				data = eval(f.read())
 				labels.append(data['type']);
-				print 'Reading %s' % (annotated_image)
-				# Find the image file
-				base = os.path.basename(annotated_image)
-				name = os.path.splitext(base)[0]
-				image_name = self.input_folder + os.sep + book + os.sep + \
-					'raw' + os.sep + name + '.png'
-				image = misc.imread(image_name);
-				descriptors.append(self.calculate_hog(image));
-
+				# A two-tuple of blocks and cells will be used for saving and
+				# loading this configuration's data
+				block_and_cells = (self.number_of_blocks, cells_per_block)
+				# Check if the needed hog features are already saved:
+				if data.has_key('hog_features') and \
+					data['hog_features'].has_key(block_and_cells):
+					current_descriptor = data['hog_features'][block_and_cells]
+				else:
+					# Find the image file
+					base = os.path.basename(annotated_image)
+					name = os.path.splitext(base)[0]
+					image_name = self.input_folder + os.sep + book + os.sep + \
+						'raw' + os.sep + name + '.png'
+					image = misc.imread(image_name)
+					current_descriptor = self.calculate_hog(image)
+					# If needed, create the dictionary in 'hog_features'
+					if not(data.has_key('hog_features')) or \
+						type(data['hog_features']) != dict:
+						data['hog_features'] = {}
+					data['hog_features'][block_and_cells] = current_descriptor
+					# write the new data to the original file:
+					f.seek(0)
+					f.write(str(data))
+					# Remove any remaining text from the previous file contents
+					f.truncate()
+				descriptors.append(current_descriptor)
 		return descriptors, labels
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
-	parser.add_argument("input_folder", metavar='input_folder', type=str,
+	parser.add_argument("input_folder", type=str,
 		help="""The folder containing (annotated) books.""")
-	# parser.add_argument("number-of-cells", type=str,
-	# 	help="""The number of hogs that are created per page. A vertical and
-	# 	horizontal dimension should be given as follows: VxH, where V is the
-	# 	vertical number of cells, and H the horizontal number of cells"""
+	parser.add_argument('-n', "--number-of-blocks", type=str, default='5x5', required=False,
+		help="""The number of hogs that are created per page. A vertical and
+		horizontal dimension should be given as follows: VxH, where V is the
+		vertical number of cells, and H the horizontal number of cells.
+		The default is 5x5""")
+	parser.add_argument('-c', "--cells-per-block", type=str, default='2x2', required=False,
+		help="""The number of cells each block is built up from. Format is again
+		VxH
+		The default is 2x2""")
 	
 	args = vars(parser.parse_args())
+	
+	number_of_blocks = tuple([int(a) for a in args['number_of_blocks'].split('x')])
+	cells_per_block = tuple([int(a) for a in args['cells_per_block'].split('x')])
 
-	learner = BookLearner(args['input_folder'])
+	learner = BookLearner(args['input_folder'], number_of_blocks, cells_per_block)
 	learner.train()
 	learner.test()
 
