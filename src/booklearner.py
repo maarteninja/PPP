@@ -109,19 +109,15 @@ class BookLearner:
 			test_predicted_labels)
 		print """
 			Precision:
-				Bagger: %f
 				Image: %f
 				Text: %f
 			Recall:
-				Bagger: %f
 				Image: %f
 				Text: %f
 			Fscore:
-				Bagger: %f
 				Image: %f
 				Text: %f
 			Support:
-				Bagger: %f
 				Image: %f
 				Text: %f
 			""" % tuple(np.ndarray.flatten(np.array(prfs)))
@@ -131,7 +127,7 @@ class BookLearner:
 		"""
 		confusion_matrix = {}
 		# Create confusion matrix
-		for label in ['text', 'containing', 'bagger']:
+		for label in ['text', 'containing']:
 			confusion_matrix[label] = {'correct': 0, 'wrong': 0}
 		# fill confusion matrix
 		for i in range(1, len(true_labels)):
@@ -227,6 +223,11 @@ class BookLearner:
 					# Remove any remaining text from the previous file contents
 					f.truncate()
 				descriptors.append(current_descriptor)
+
+		# Replace 'bagger' tags to 'text':
+		for i in range(len(labels)):
+			if labels[i] == 'bagger':
+				labels[i] = 'text'
 		return descriptors, labels
 
 if __name__ == '__main__':
