@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import os, glob
 import numpy as np
+import random 
 from numpy import array
 import argparse
 
@@ -25,9 +26,11 @@ class BookLearner:
 		self.number_of_blocks = number_of_blocks
 		books = os.listdir(self.input_folder)
 		books = self.remove_unannotated_books(books)
+		# Randomize result!
+		random.shuffle(books)
 		# Take 80 percent as train set:
-		train_end = int(len(books)*.8)
-		validation_end = int(len(books)*.9)
+		train_end = int(len(books)*.7)
+		validation_end = int(len(books)*.8)
 		# Check if train_end is not the same as len(books)-1: Then we wouldn't
 		# have a test set
 		if train_end == len(books) - 1:
@@ -101,27 +104,27 @@ class BookLearner:
 			test_descriptors.extend(descriptors)
 			test_real_labels.extend(labels)
 		test_predicted_labels = self.classifier.predict(test_descriptors)
-		print test_predicted_labels
-		# For convenient counting, convert back to list
-		print_labels = list(test_predicted_labels)
-		print """
-			Number of text predictions: %d
-			Number of image predictions: %d
-			Number of bagger predictions: %d
-			""" % (print_labels.count('text'), 
-				print_labels.count('containing'),
-				print_labels.count('bagger'))
-		# correct = wrong = 0
-		# for i in range(1, len(test_real_labels)):
-		# 	if(test_real_labels[i] == test_predicted_labels[i]):
-		# 		correct += 1
-		# 	else:
-		# 		wrong += 1
-		# print "Correct: %d, Wrong: %d" % (correct, wrong)
 		print confusion_matrix(test_real_labels, test_predicted_labels)
-		print precision_recall_fscore_support(test_real_labels, \
+		prfs = precision_recall_fscore_support(test_real_labels, \
 			test_predicted_labels)
-
+		print """
+			Precision:
+				Bagger: %f
+				Image: %f
+				Text: %f
+			Recall:
+				Bagger: %f
+				Image: %f
+				Text: %f
+			Fscore:
+				Bagger: %f
+				Image: %f
+				Text: %f
+			Support:
+				Bagger: %f
+				Image: %f
+				Text: %f
+			""" % tuple(np.ndarray.flatten(np.array(prfs)))
 
 	def mcp(self, predicted_labels, true_labels):
 		""" Creates a confusion matrix and the mean class precision per class
