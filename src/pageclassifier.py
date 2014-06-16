@@ -5,6 +5,8 @@ import random
 from numpy import array
 import argparse
 
+import bookfunctions
+
 import Image
 
 from scipy import misc
@@ -19,13 +21,12 @@ class PageClassifier:
 
 	def __init__(self, input_folder, number_of_blocks, cells_per_block):
 		""" The input folder is the folder containing all the books. The
-		number_of_blocks are used for the hog features. This tuple is (62,50) by
-		default, which will result in 10x10 hog features per page
-		"""
+		number_of_blocks are used for the hog features. cells_per_block denotes
+		how many cells are in a hog """
 		self.input_folder = input_folder
 		self.number_of_blocks = number_of_blocks
 		books = os.listdir(self.input_folder)
-		books = self.remove_unannotated_books(books)
+		books = bookfunctions.remove_unannotated_books(input_folder, books)
 		# Randomize result!
 		random.shuffle(books)
 		# Take 80 percent as train set:
@@ -45,16 +46,6 @@ class PageClassifier:
 		#self.test_set = ['journaelOfDaghRegister']
 		self.all_descriptors = []
 		self.all_labels = []
-
-	def remove_unannotated_books(self, books):
-		""" Removes the books from the array 'books' that do not have a
-		subfolder called 'annotated' """
-		return_books = []
-		for book in books:
-			path = self.input_folder + os.sep + book + os.sep + 'annotated'
-			if os.path.exists(path) and os.path.isdir(path):
-				return_books.append(book)
-		return return_books
 
 	def train(self):
 		""" Trains the svm. self.train_set is used as the training set """
@@ -253,4 +244,3 @@ if __name__ == '__main__':
 	learner.train()
 	learner.validate()
 	learner.test()
-
