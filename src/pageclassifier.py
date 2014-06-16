@@ -15,7 +15,7 @@ from skimage import data, color, exposure
 from sklearn import svm
 from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 
-class BookLearner:
+class PageClassifier:
 
 	def __init__(self, input_folder, number_of_blocks, cells_per_block):
 		""" The input folder is the folder containing all the books. The
@@ -249,7 +249,7 @@ if __name__ == '__main__':
 	number_of_blocks = tuple([int(a) for a in args['number_of_blocks'].split('x')])
 	cells_per_block = tuple([int(a) for a in args['cells_per_block'].split('x')])
 
-	learner = BookLearner(args['input_folder'], number_of_blocks, cells_per_block)
+	learner = PageClassifier(args['input_folder'], number_of_blocks, cells_per_block)
 	learner.train()
 	learner.validate()
 	learner.test()
