@@ -63,17 +63,17 @@ class PageClassifier:
 		best_mcp = 0
 		validation_descriptors = []
 		validation_real_labels = []
+		for book in self.validation_set:
+			# read its descriptors and labels
+			print "Calculating data for book %s" % (book)
+			descriptors, labels = self.read_book_data(book)
+			validation_descriptors.extend(descriptors)
+			validation_real_labels.extend(labels)
 		for c in range(-1, 6):
 			print "validating with c = " + str(10**c)
 			temp_classifier = svm.SVC(C=10**c, probability=1, class_weight='auto')
 			# Fit the classifier:
 			temp_classifier.fit(self.all_descriptors, self.all_labels)
-			for book in self.validation_set:
-				# read its descriptors and labels
-				print "Calculating data for book %s" % (book)
-				descriptors, labels = self.read_book_data(book)
-				validation_descriptors.extend(descriptors)
-				validation_real_labels.extend(labels)
 			validation_predicted_labels = temp_classifier.predict(validation_descriptors)
 			confusion_matrix, cp, mcp = self.mcp(validation_predicted_labels, \
 				validation_real_labels)

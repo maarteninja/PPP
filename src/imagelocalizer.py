@@ -15,7 +15,9 @@ from skimage import data, color, exposure
 from sklearn.metrics import confusion_matrix
 
 from pystruct.models import GridCRF
+from pystruct.utils import SaveLogger
 import pystruct.learners as ssvm
+from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 
 
 np.set_printoptions(threshold=np.nan)
@@ -51,6 +53,7 @@ class ImageLocalizer:
 		#self.test_set = ['journaelOfDaghRegister']
 		self.all_descriptors = []
 		self.all_labels = []
+		self.logger = SaveLogger('../logs/log%d.py', save_every=1)
 
 
 	def train(self):
@@ -62,15 +65,72 @@ class ImageLocalizer:
 			#print 'descriptors',  descriptors
 			self.all_descriptors.extend(descriptors)
 			self.all_labels.extend(labels)
-		self.crf = GridCRF(neighborhood=4)
-		self.clf = ssvm.OneSlackSSVM(model=self.crf, C=100, n_jobs=-1, inference_cache=100,
-								tol=.1)
-		self.clf.fit(self.all_descriptors, self.all_labels)
-		#predicted_labels = np.array(clf.predict(self.all_descriptors))
-		#print 'overal accuracy', clf.score(self.all_descriptors, self.all_labels)
 
 	def validate(self):
-		pass
+		""" Tweaks C for the svc. self.validation_set is used for validating """
+		best_mcp = 0
+		validation_descriptors = []
+		validation_real_labels = []
+		self.crf = GridCRF(neighborhood=4)
+		for book in self.validation_set:
+			# read its descriptors and labels
+			print "Calculating data for book %s" % (book)
+			descriptors, labels = self.read_book_data(book)
+			validation_descriptors.extend(descriptors)
+			validation_real_labels.extend(labels)
+
+		for c in range(0, 1):
+			self.logger = SaveLogger('logc%d.py' % c, save_every=1)
+			print "validating with c = " + str(10**c)
+			temp_classifier = ssvm.OneSlackSSVM(model=self.crf, C=c, n_jobs=-1, 
+				inference_cache=0, verbose=10, logger=self.logger)
+			# temp_classifier.fit(self.all_descriptors, self.all_labels)
+			# Fit the classifier:
+			temp_classifier.fit(self.all_descriptors, self.all_labels)
+			# Write the svm parameters!
+			with open("paramsc%d.py" % c, 'w') as f:
+				f.write(str(temp_classifier.get_params()))
+			validation_predicted_labels = temp_classifier.predict(validation_descriptors)
+			confusion_matrix, cp, mcp = self.mcp(validation_predicted_labels, \
+				validation_real_labels)
+			if mcp > best_mcp:
+				best_mcp = mcp
+				best_c = c
+				self.classifier = temp_classifier
+		print "Mean class presision for best c: %s" % str(best_mcp)
+		return best_c
+
+	def mcp(self, predicted_labels, true_labels):
+		""" Creates a confusion matrix and the mean class precision per class
+		"""
+		confusion_matrix = {}
+		# Create confusion matrix
+		for label in ['text', 'containing']:
+			confusion_matrix[label] = {'correct': 0, 'wrong': 0}
+		# Specify an order, in order to be sure we loop through both arrays in
+		# the same order (otherwise the memory order is used)
+		true_labels = np.array(true_labels)
+		predicted_labels = np.array(predicted_labels)
+		for labels in zip(np.nditer(true_labels, order='C'), \
+			 np.nditer(predicted_labels, order='C')):
+			if(labels[0] == labels[1]):
+				label = 'text' if labels[0] == 1 else 'containing'
+				confusion_matrix[label]['correct'] += 1
+			else:
+				confusion_matrix[label]['wrong'] += 1
+		# Create dictionary that will contain the mcp per class label
+		print confusion_matrix
+		cp = {}
+		for label in confusion_matrix.keys():
+			correct = confusion_matrix[label]['correct']
+			wrong = confusion_matrix[label]['wrong']
+			# Some times, this label is not predicted at all
+			if correct+wrong != 0:
+				cp[label] = float(correct)/(float(correct+wrong))
+			else:
+				cp[label] = 0
+		mcp = sum(cp.values())/float(len(confusion_matrix.keys()))
+		return confusion_matrix, cp, mcp
 
 	def test(self):
 		""" Tests the trained svm on the test set in self.test_set. train (or
@@ -88,28 +148,25 @@ class ImageLocalizer:
 			test_descriptors.extend(descriptors)
 			test_real_labels.extend(labels)
 			complete_page_paths.extend(page_paths)
+		test_real_labels = np.array(test_real_labels)
+		test_predicted_labels = np.array(self.classifier.predict(test_descriptors))
 
-		test_predicted_labels = np.array(self.clf.predict(test_descriptors))
-		#print 'test accuracy', self.clf.score(test_descriptors, test_real_labels)
-
-		#test_predicted_labels = self.classifier.predict(test_descriptors)
-		#print confusion_matrix(test_real_labels, test_predicted_labels)
-		#prfs = precision_recall_fscore_support(test_real_labels, \
-		#	test_predicted_labels)
-		#print """
-		#	Precision:
-		#		Image: %f
-		#		Text: %f
-		#	Recall:
-		#		Image: %f
-		#		Text: %f
-		#	Fscore:
-		#		Image: %f
-		#		Text: %f
-		#	Support:
-		#		Image: %f
-		#		Text: %f
-		#	""" % tuple(np.ndarray.flatten(np.array(prfs)))
+		prfs = precision_recall_fscore_support(test_real_labels.flatten(), \
+			test_predicted_labels.flatten())
+		print """
+			Precision:
+				Image: %f
+				Text: %f
+			Recall:
+				Image: %f
+				Text: %f
+			Fscore:
+				Image: %f
+				Text: %f
+			Support:
+				Image: %f
+				Text: %f
+			""" % tuple(np.ndarray.flatten(np.array(prfs)))
 		bookfunctions.get_bounding_boxes_from_labels(test_predicted_labels, \
 			page_paths)
 
@@ -206,15 +263,11 @@ class ImageLocalizer:
 									coordinate[1] > x and \
 									coordinate[1] < x + w:
 								# Set the label to 'image' in stead of 'text'
-								current_label.itemset(j, -1)
-
+								current_label.itemset(j, 0)
 				descriptors.append(current_descriptor)
 				labels.append(current_label)
 				page_paths.append(complete_page_paths[i])
 		return descriptors, labels, []
-
-
-
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
