@@ -78,7 +78,7 @@ def get_bounding_boxes_from_page(page_path, model, number_of_blocks):
 	hog = calculate_hog(image, number_of_blocks)
 
 	# reshape: have the 0'th index horizontal and the 1'th index vertical
-	#hog.shape = number_of_blocks[1], number_of_blocks[0], 8)
+	hog.shape = number_of_blocks[1], number_of_blocks[0], 8
 	# transpose: fromg x-y to y-x coordinates
 	hog = hog.transpose((1, 0, 2))
 
@@ -93,8 +93,9 @@ def get_bounding_boxes_from_labels(labels, image, number_of_blocks):
 
 
 if __name__ == '__main__':
-	#logger = SaveLogger('TODO:modelNAME:D')
-	#model = logger.load()
-	pass
+	logger = SaveLogger('../models/logc1.py')
+	model = logger.load()
+	get_bounding_boxes_from_page('../data/aanzienlykeScheepsTogt/raw/500_0001.png',
+		model, [20, 10])
 
 
