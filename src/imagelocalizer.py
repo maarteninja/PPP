@@ -12,6 +12,7 @@ from scipy import misc
 
 from skimage.feature import hog
 from skimage import data, color, exposure
+from sklearn.metrics import confusion_matrix
 
 from pystruct.models import GridCRF
 import pystruct.learners as ssvm
@@ -57,7 +58,7 @@ class ImageLocalizer:
 		for book in self.train_set:
 			# read its descriptors and labels
 			print "Calculating data for book %s" % (book)
-			descriptors, labels = self.read_book_data(book)
+			descriptors, labels, ignore = self.read_book_data(book)
 			#print 'descriptors',  descriptors
 			self.all_descriptors.extend(descriptors)
 			self.all_labels.extend(labels)
@@ -77,37 +78,40 @@ class ImageLocalizer:
 		"""
 		test_descriptors = []
 		test_real_labels = []
+		complete_page_paths = []
 		for book in self.test_set:
 
 			# read its descriptors and labels
 			print "Calculating data for book %s" % (book)
-			descriptors, labels = self.read_book_data(book)
+			descriptors, labels, page_paths = self.read_book_data(book)
 			#print 'descriptors',  descriptors
 			test_descriptors.extend(descriptors)
 			test_real_labels.extend(labels)
+			complete_page_paths.extend(page_paths)
 
 		test_predicted_labels = np.array(self.clf.predict(test_descriptors))
 		#print 'test accuracy', self.clf.score(test_descriptors, test_real_labels)
 
 		#test_predicted_labels = self.classifier.predict(test_descriptors)
-		print confusion_matrix(test_real_labels, test_predicted_labels)
-		prfs = precision_recall_fscore_support(test_real_labels, \
-			test_predicted_labels)
-		print """
-			Precision:
-				Image: %f
-				Text: %f
-			Recall:
-				Image: %f
-				Text: %f
-			Fscore:
-				Image: %f
-				Text: %f
-			Support:
-				Image: %f
-				Text: %f
-			""" % tuple(np.ndarray.flatten(np.array(prfs)))
-
+		#print confusion_matrix(test_real_labels, test_predicted_labels)
+		#prfs = precision_recall_fscore_support(test_real_labels, \
+		#	test_predicted_labels)
+		#print """
+		#	Precision:
+		#		Image: %f
+		#		Text: %f
+		#	Recall:
+		#		Image: %f
+		#		Text: %f
+		#	Fscore:
+		#		Image: %f
+		#		Text: %f
+		#	Support:
+		#		Image: %f
+		#		Text: %f
+		#	""" % tuple(np.ndarray.flatten(np.array(prfs)))
+		bookfunctions.get_bounding_boxes_from_labels(test_predicted_labels, \
+			page_paths)
 
 	def read_book_data(self, book):
 		""" Read the hog features from the image files, and the class from the
@@ -116,8 +120,9 @@ class ImageLocalizer:
 		annotated data for the image raw/500_<page>.png 
 		""" 
 		annotated_images = glob.glob(self.input_folder + os.sep + book + os.sep + 'annotated' + os.sep + '*.py')
-		#annotated_images = glob.glob(os.path.join(self.input_folder, book,
-		#	'annotated', '*.py'))
+		complete_page_paths = glob.glob(os.path.join(self.input_folder, book,
+			'raw', '*.png'))
+		page_paths = []
 
 		# This array will hold the HOG feature descriptors for each class
 		descriptors = []
@@ -125,9 +130,9 @@ class ImageLocalizer:
 		# corresponds to the same index in descriptors. The two of them together
 		# form the input for a classifier
 		labels = []
-		for annotated_image in annotated_images:
-			with open(annotated_image, 'r+') as f:
 
+		for i, annotated_image in enumerate(annotated_images):
+			with open(annotated_image, 'r+') as f:
 				data = eval(f.read())
 
 				# A two-tuple of blocks and cells will be used for saving and
@@ -140,9 +145,10 @@ class ImageLocalizer:
 				else:
 					# Get the image nparray
 					image = \
-						self.read_image_from_annotation_file(annotated_image, \
-						book)
-					current_descriptor = self.calculate_hog(image)
+						self.read_image_from_annotation_file(self.input_folder, \
+							annotated_image, book)
+					current_descriptor = bookfunctions.calculate_hog(image, \
+						self.number_of_blocks)
 					# If needed, create the dictionary in 'hog_features'
 					if not(data.has_key('hog_features')) or \
 						type(data['hog_features']) != dict:
@@ -173,10 +179,11 @@ class ImageLocalizer:
 							data['hog_locations'][self.number_of_blocks]
 					else:
 						image = \
-							self.read_image_from_annotation_file(annotated_image,
-							book)
+							self.read_image_from_annotation_file(\
+								self.input_folder, annotated_image, book)
 						current_hog_locations = \
-							self.calculate_hog_locations(image)
+							bookfunctions.calculate_hog_locations(image, \
+								self.number_of_blocks)
 						# If needed, create the dictionary in 'hog_features'
 						if not(data.has_key('hog_locations')) or \
 							type(data['hog_locations']) != dict:
@@ -188,74 +195,25 @@ class ImageLocalizer:
 						f.write(str(data))
 						# Remove any remaining text from the previous file contents
 						f.truncate()
-					for i, coordinate in enumerate(current_hog_locations):
+					for j, coordinate in enumerate(current_hog_locations):
 						for pos, size in data['rectangles']:
 							# Bounding boxes are x, y, w, h coordinates are y, x.
 							# Let's go:
 							x,y = pos
 							w, h = size
-							if (coordinate[0] > y and \
+							if coordinate[0] > y and \
 									coordinate[0] < y + h and \
 									coordinate[1] > x and \
-									coordinate[1] < x + w):
+									coordinate[1] < x + w:
 								# Set the label to 'image' in stead of 'text'
-								current_label.itemset(i, -1)
-				# Loop through all hog features and save them 
+								current_label.itemset(j, -1)
+
 				descriptors.append(current_descriptor)
 				labels.append(current_label)
-		return descriptors, labels
+				page_paths.append(complete_page_paths[i])
+		return descriptors, labels, []
 
-	def calculate_hog_locations(self, image):
-		""" Calculates the center of all hogs, given the image (used for the
-		size) Returns a list of tuples of size np.prod(self.number_of_blocks) """
-		pixels_per_cell = self.calculate_pixels_per_cell(image)
-		y_half = pixels_per_cell[0]/2
-		# All Y coordinates are starting from half window size, each of them
-		# pixels_per_cell[0] apart
-		y_coordinates = range(int(round(y_half)), \
-			int(round(np.shape(image)[0]-y_half)), \
-			pixels_per_cell[0])
-		# Do the same for X coordinates
-		x_half = pixels_per_cell[1]/2
-		x_coordinates = range(int(round(x_half)), \
-			int(round(np.shape(image)[1]-x_half)), \
-			pixels_per_cell[0])
-		# Concatenate both coordinate sets in a list containing all coordinates
-		coordinates = []
-		for y in y_coordinates:
-			for x in x_coordinates:
-				# Vertical direction goes first in numpy 
-				coordinates.append((y, x))
-		return coordinates
 
-	def read_image_from_annotation_file(self, annotated_image, book):
-		""" Given the path of an annotation .py file, finds the corresponding
-		image and returns it as returned by misc.imread """
-		base = os.path.basename(annotated_image)
-		name = os.path.splitext(base)[0]
-		image_name = self.input_folder + os.sep + book + os.sep + \
-			'raw' + os.sep + name + '.png'
-		return misc.imread(image_name)
-
-	def calculate_hog(self, image):
-		pixels_per_cell = self.calculate_pixels_per_cell(image)
-		image = color.rgb2gray(image)
-		# The number of orientations should be kept fixed as long as we don't
-		# save them to the metafiles
-		return hog(image, orientations=8, pixels_per_cell=pixels_per_cell,
-			cells_per_block=(1, 1))
-
-		# Replace 'bagger' tags to 'text':
-		for i in range(len(labels)):
-			if labels[i] == 'bagger':
-				labels[i] = 'text'
-		return descriptors, labels
-
-	def calculate_pixels_per_cell(self, image):
-		s = np.shape(image)
-		pixels_vertical = int(s[0]/self.number_of_blocks[0])
-		pixels_horizontal = int(s[1]/self.number_of_blocks[1])
-		return (pixels_horizontal, pixels_vertical)
 
 
 if __name__ == '__main__':
