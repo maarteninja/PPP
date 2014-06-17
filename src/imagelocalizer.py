@@ -55,7 +55,6 @@ class ImageLocalizer:
 		self.all_labels = []
 		self.logger = SaveLogger('../logs/log%d.py', save_every=1)
 
-
 	def train(self):
 		""" Trains the svm. self.train_set is used as the training set """
 		for book in self.train_set:
@@ -79,11 +78,11 @@ class ImageLocalizer:
 			validation_descriptors.extend(descriptors)
 			validation_real_labels.extend(labels)
 
-		for c in range(0, 1):
+		for c in range(1, 3):
 			self.logger = SaveLogger('logc%d.py' % c, save_every=1)
 			print "validating with c = " + str(10**c)
 			temp_classifier = ssvm.OneSlackSSVM(model=self.crf, C=c, n_jobs=-1, 
-				inference_cache=0, verbose=10, logger=self.logger)
+				inference_cache=0, verbose=10, logger=self.logger, tol=.1)
 			# temp_classifier.fit(self.all_descriptors, self.all_labels)
 			# Fit the classifier:
 			temp_classifier.fit(self.all_descriptors, self.all_labels)
