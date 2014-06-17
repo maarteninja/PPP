@@ -78,11 +78,12 @@ class ImageLocalizer:
 			validation_descriptors.extend(descriptors)
 			validation_real_labels.extend(labels)
 
-		for c in range(1, 3):
+		for i in range(2, 3):
+			c = 10**i
 			self.logger = SaveLogger('logc%d.py' % c, save_every=1)
-			print "validating with c = " + str(10**c)
+			print "validating with c = " + str(c)
 			temp_classifier = ssvm.OneSlackSSVM(model=self.crf, C=c, n_jobs=-1, 
-				inference_cache=0, verbose=10, logger=self.logger, tol=.1)
+				inference_cache=0, verbose=4, logger=self.logger, tol=.1)
 			# temp_classifier.fit(self.all_descriptors, self.all_labels)
 			# Fit the classifier:
 			temp_classifier.fit(self.all_descriptors, self.all_labels)
@@ -277,6 +278,7 @@ if __name__ == '__main__':
 		horizontal dimension should be given as follows: VxH, where V is the
 		vertical number of cells, and H the horizontal number of cells.
 		The default is 20x10""")
+	# FIXME: Is never used:
 	parser.add_argument('-b', "--cells-per-block", type=str, default='2x2', required=False,
 		help="""The number of cells each block is built up from. Format is again
 		VxH

@@ -232,6 +232,7 @@ if __name__ == '__main__':
 		horizontal dimension should be given as follows: VxH, where V is the
 		vertical number of cells, and H the horizontal number of cells.
 		The default is 5x5""")
+	# FIXME: Is never used!
 	parser.add_argument('-b', "--cells-per-block", type=str, default='2x2', required=False,
 		help="""The number of cells each block is built up from. Format is again
 		VxH
