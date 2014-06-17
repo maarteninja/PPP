@@ -51,6 +51,7 @@ class ImageLocalizer:
 		self.all_descriptors = []
 		self.all_labels = []
 
+
 	def train(self):
 		""" Trains the svm. self.train_set is used as the training set """
 		for book in self.train_set:
@@ -60,14 +61,53 @@ class ImageLocalizer:
 			#print 'descriptors',  descriptors
 			self.all_descriptors.extend(descriptors)
 			self.all_labels.extend(labels)
-		crf = GridCRF(neighborhood=4)
-		clf = ssvm.OneSlackSSVM(model=crf, C=100, n_jobs=-1, inference_cache=100,
+		self.crf = GridCRF(neighborhood=4)
+		self.clf = ssvm.OneSlackSSVM(model=self.crf, C=100, n_jobs=-1, inference_cache=100,
 								tol=.1)
-		print np.shape(self.all_descriptors)
-		print np.shape(self.all_labels)
-		clf.fit(self.all_descriptors, self.all_labels)
-		predicted_labels = np.array(clf.predict(self.all_descriptors))
-		print 'overal accuracy', clf.score(self.all_descriptors, self.all_labels)
+		self.clf.fit(self.all_descriptors, self.all_labels)
+		#predicted_labels = np.array(clf.predict(self.all_descriptors))
+		#print 'overal accuracy', clf.score(self.all_descriptors, self.all_labels)
+
+	def validate(self):
+		pass
+
+	def test(self):
+		""" Tests the trained svm on the test set in self.test_set. train (or
+		some kind of "load" function  in later versions) has to be run first!
+		"""
+		test_descriptors = []
+		test_real_labels = []
+		for book in self.test_set:
+
+			# read its descriptors and labels
+			print "Calculating data for book %s" % (book)
+			descriptors, labels = self.read_book_data(book)
+			#print 'descriptors',  descriptors
+			test_descriptors.extend(descriptors)
+			test_real_labels.extend(labels)
+
+		test_predicted_labels = np.array(self.clf.predict(test_descriptors))
+		#print 'test accuracy', self.clf.score(test_descriptors, test_real_labels)
+
+		#test_predicted_labels = self.classifier.predict(test_descriptors)
+		print confusion_matrix(test_real_labels, test_predicted_labels)
+		prfs = precision_recall_fscore_support(test_real_labels, \
+			test_predicted_labels)
+		print """
+			Precision:
+				Image: %f
+				Text: %f
+			Recall:
+				Image: %f
+				Text: %f
+			Fscore:
+				Image: %f
+				Text: %f
+			Support:
+				Image: %f
+				Text: %f
+			""" % tuple(np.ndarray.flatten(np.array(prfs)))
+
 
 	def read_book_data(self, book):
 		""" Read the hog features from the image files, and the class from the
@@ -239,5 +279,5 @@ if __name__ == '__main__':
 
 	learner = ImageLocalizer(args['input_folder'], number_of_blocks, cells_per_block)
 	learner.train()
-	# learner.validate()
-	# learner.test()
+	learner.validate()
+	learner.test()
