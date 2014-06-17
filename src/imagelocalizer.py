@@ -13,6 +13,11 @@ from scipy import misc
 from skimage.feature import hog
 from skimage import data, color, exposure
 
+from pystruct.models import GridCRF
+import pystruct.learners as ssvm
+
+
+np.set_printoptions(threshold=np.nan)
 
 class ImageLocalizer:
 	""" Localizes images in books, given some training data """
@@ -52,9 +57,17 @@ class ImageLocalizer:
 			# read its descriptors and labels
 			print "Calculating data for book %s" % (book)
 			descriptors, labels = self.read_book_data(book)
-			print descriptors
-			#self.all_descriptors.extend(descriptors)
-			#self.all_labels.extend(labels)
+			#print 'descriptors',  descriptors
+			self.all_descriptors.extend(descriptors)
+			self.all_labels.extend(labels)
+		crf = GridCRF(neighborhood=4)
+		clf = ssvm.OneSlackSSVM(model=crf, C=100, n_jobs=-1, inference_cache=100,
+								tol=.1)
+		print np.shape(self.all_descriptors)
+		print np.shape(self.all_labels)
+		clf.fit(self.all_descriptors, self.all_labels)
+		predicted_labels = np.array(clf.predict(self.all_descriptors))
+		print 'overal accuracy', clf.score(self.all_descriptors, self.all_labels)
 
 	def read_book_data(self, book):
 		""" Read the hog features from the image files, and the class from the
@@ -63,6 +76,9 @@ class ImageLocalizer:
 		annotated data for the image raw/500_<page>.png 
 		""" 
 		annotated_images = glob.glob(self.input_folder + os.sep + book + os.sep + 'annotated' + os.sep + '*.py')
+		#annotated_images = glob.glob(os.path.join(self.input_folder, book,
+		#	'annotated', '*.py'))
+
 		# This array will hold the HOG feature descriptors for each class
 		descriptors = []
 		# This array will hold the labels of the images. Each index in this array
@@ -71,6 +87,9 @@ class ImageLocalizer:
 		labels = []
 		for annotated_image in annotated_images:
 			with open(annotated_image, 'r+') as f:
+
+				data = eval(f.read())
+
 				# A two-tuple of blocks and cells will be used for saving and
 				# loading this configuration's data
 				block_and_cells = (self.number_of_blocks, cells_per_block)
@@ -97,7 +116,7 @@ class ImageLocalizer:
 				# First, label everything as text.
 				# 8 = number of orientations
 				current_label = np.ones((self.number_of_blocks[0], \
-					self.number_of_blocks[1]))
+					self.number_of_blocks[1]), dtype=np.int8)
 				# Reshape the descriptors to the pystruct desired shape
 				# We now have the 0'th index horizontal and the 1'th index
 				# vertical
@@ -105,12 +124,13 @@ class ImageLocalizer:
 					self.number_of_blocks[0], 8)
 				# Transpose the first two axes, in order to get from x-y
 				# coordinates to y-x coordinates
-				current_descriptor.transpose((1, 0, 2))
+				current_descriptor = current_descriptor.transpose((1, 0, 2))
 				# If there are images in this page, get their location:
 				if data['type'] == 'containing':
 					if data.has_key('hog_locations') and \
 						data['hog_locations'].has_key(self.number_of_blocks):
-						current_hog_locations = data['hog_locations']
+						current_hog_locations = \
+							data['hog_locations'][self.number_of_blocks]
 					else:
 						image = \
 							self.read_image_from_annotation_file(annotated_image,
@@ -129,13 +149,15 @@ class ImageLocalizer:
 						# Remove any remaining text from the previous file contents
 						f.truncate()
 					for i, coordinate in enumerate(current_hog_locations):
-						for bounding_box in data['rectangles']:
-							# Bounding boxes are x, y, coordinates are y, x.
+						for pos, size in data['rectangles']:
+							# Bounding boxes are x, y, w, h coordinates are y, x.
 							# Let's go:
-							if coordinate[0] > bounding_box[0][1] and \
-									coordinate[0] < bounding_box[1][1] and \
-									coordinate[1] > bounding_box[0][0] and \
-									coordinate[1] > bounding_box[1][0]:
+							x,y = pos
+							w, h = size
+							if (coordinate[0] > y and \
+									coordinate[0] < y + h and \
+									coordinate[1] > x and \
+									coordinate[1] < x + w):
 								# Set the label to 'image' in stead of 'text'
 								current_label.itemset(i, -1)
 				# Loop through all hog features and save them 
@@ -211,7 +233,7 @@ if __name__ == '__main__':
 		The default is 2x2""")
 
 	args = vars(parser.parse_args())
-	
+
 	number_of_blocks = tuple([int(a) for a in args['number_of_blocks'].split('x')])
 	cells_per_block = tuple([int(a) for a in args['cells_per_block'].split('x')])
 

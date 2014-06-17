@@ -17,6 +17,8 @@ from skimage import data, color, exposure
 from sklearn import svm
 from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 
+np.set_printoptions(threshold=np.nan)
+
 class PageClassifier:
 
 	def __init__(self, input_folder, number_of_blocks, cells_per_block):
