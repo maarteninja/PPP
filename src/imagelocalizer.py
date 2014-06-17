@@ -74,7 +74,7 @@ class ImageLocalizer:
 		for book in self.validation_set:
 			# read its descriptors and labels
 			print "Calculating data for book %s" % (book)
-			descriptors, labels = self.read_book_data(book)
+			descriptors, labels, paths = self.read_book_data(book)
 			validation_descriptors.extend(descriptors)
 			validation_real_labels.extend(labels)
 
