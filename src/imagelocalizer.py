@@ -7,6 +7,7 @@ from numpy import array
 import argparse
 
 import bookfunctions
+from weightedgridcrf import WeightedGridCRF
 
 from scipy import misc
 
@@ -64,13 +65,20 @@ class ImageLocalizer:
 			#print 'descriptors',  descriptors
 			self.all_descriptors.extend(descriptors)
 			self.all_labels.extend(labels)
+		self.all_descriptors = np.array(self.all_descriptors)
+		self.all_labels = np.array(self.all_labels)
 
 	def validate(self):
 		""" Tweaks C for the svc. self.validation_set is used for validating """
 		best_mcp = 0
 		validation_descriptors = []
 		validation_real_labels = []
-		self.crf = GridCRF(neighborhood=4)
+		# Count the number of class labels in order to set the class weights
+		class_weights = 1. / np.bincount(self.all_labels.flatten())
+		# * n_states / sum, like in pystruct's image segmentation example
+		class_weights *= 8. / np.sum(class_weights)
+		# print(class_weights)
+		self.crf = WeightedGridCRF(neighborhood=4, class_weight=class_weights)
 		for book in self.validation_set:
 			# read its descriptors and labels
 			print "Calculating data for book %s" % (book)
@@ -82,8 +90,8 @@ class ImageLocalizer:
 			c = 10**i
 			self.logger = SaveLogger('logc%d.py' % c, save_every=1)
 			print "validating with c = " + str(c)
-			temp_classifier = ssvm.OneSlackSSVM(model=self.crf, C=c, n_jobs=-1, 
-				inference_cache=0, verbose=4, logger=self.logger, tol=.1)
+			temp_classifier = ssvm.OneSlackSSVM(model=self.crf, C=c, n_jobs=-1,
+				verbose=4, logger=self.logger, tol=.1)
 			# temp_classifier.fit(self.all_descriptors, self.all_labels)
 			# Fit the classifier:
 			temp_classifier.fit(self.all_descriptors, self.all_labels)
@@ -151,8 +159,10 @@ class ImageLocalizer:
 		test_real_labels = np.array(test_real_labels)
 		test_predicted_labels = np.array(self.classifier.predict(test_descriptors))
 
-		prfs = precision_recall_fscore_support(test_real_labels.flatten(), \
+		print confusion_matrix(test_real_labels.flatten(),
 			test_predicted_labels.flatten())
+		prfs = precision_recall_fscore_support(test_real_labels.flatten(), \
+			test_predicted_labels.flatten(), average='weighted')
 		print """
 			Precision:
 				Image: %f
