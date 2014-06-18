@@ -2,7 +2,7 @@ import bookfunctions
 import argparse
 import os, glob
 import numpy as np
-import random 
+import random
 from numpy import array
 import argparse
 
@@ -25,10 +25,10 @@ np.set_printoptions(threshold=np.nan)
 class ImageLocalizer:
 	""" Localizes images in books, given some training data """
 
-	def __init__(self, input_folder, number_of_blocks, cells_per_block):
+	def __init__(self, input_folder, number_of_blocks):
 		""" The input folder is the folder containing all the books. The
 		number_of_blocks are used for the hog features. cells_per_block denotes
-		how many cells are in a hog
+		how many cells are in a hog (cells_per_block is removed as parameter now)
 		"""
 		self.input_folder = input_folder
 		self.number_of_blocks = number_of_blocks
@@ -176,98 +176,44 @@ class ImageLocalizer:
 		folder named 'annotated' needs to be present, with 500_<page>.py as
 		annotated data for the image raw/500_<page>.png 
 		""" 
-		annotated_images = glob.glob(self.input_folder + os.sep + book + os.sep + 'annotated' + os.sep + '*.py')
+
+		# get all the paths to the annotated files
+		annotated_images = glob.glob(os.path.join(self.input_folder, book,
+			'annotated', '*.py'))
+		# get all the paths to the images
 		complete_page_paths = glob.glob(os.path.join(self.input_folder, book,
 			'raw', '*.png'))
-		page_paths = []
 
 		# This array will hold the HOG feature descriptors for each class
 		descriptors = []
+
 		# This array will hold the labels of the images. Each index in this array
 		# corresponds to the same index in descriptors. The two of them together
 		# form the input for a classifier
 		labels = []
 
+		# this array will hold all the paths to the pages
+		page_paths = []
+
 		for i, annotated_image in enumerate(annotated_images):
 			with open(annotated_image, 'r+') as f:
-				data = eval(f.read())
+				data = bookfunctions.get_data(f)
 
-				# A two-tuple of blocks and cells will be used for saving and
-				# loading this configuration's data
-				block_and_cells = (self.number_of_blocks, cells_per_block)
-				# Check if the needed hog features are already saved:
-				if data.has_key('hog_features') and \
-					data['hog_features'].has_key(block_and_cells):
-					current_descriptor = data['hog_features'][block_and_cells]
-				else:
-					# Get the image nparray
-					image = \
-						self.read_image_from_annotation_file(self.input_folder, \
-							annotated_image, book)
-					current_descriptor = bookfunctions.calculate_hog(image, \
-						self.number_of_blocks)
-					# If needed, create the dictionary in 'hog_features'
-					if not(data.has_key('hog_features')) or \
-						type(data['hog_features']) != dict:
-						data['hog_features'] = {}
-					data['hog_features'][block_and_cells] = current_descriptor
-					# write the new data to the original file:
-					f.seek(0)
-					f.write(str(data))
-					# Remove any remaining text from the previous file contents
-					f.truncate()
-				# First, label everything as text.
-				# 8 = number of orientations
-				current_label = np.ones((self.number_of_blocks[0], \
-					self.number_of_blocks[1]), dtype=np.int8)
-				# Reshape the descriptors to the pystruct desired shape
-				# We now have the 0'th index horizontal and the 1'th index
-				# vertical
-				current_descriptor.shape = (self.number_of_blocks[1], \
-					self.number_of_blocks[0], 8)
-				# Transpose the first two axes, in order to get from x-y
-				# coordinates to y-x coordinates
-				current_descriptor = current_descriptor.transpose((1, 0, 2))
-				# If there are images in this page, get their location:
-				if data['type'] == 'containing':
-					if data.has_key('hog_locations') and \
-						data['hog_locations'].has_key(self.number_of_blocks):
-						current_hog_locations = \
-							data['hog_locations'][self.number_of_blocks]
-					else:
-						image = \
-							self.read_image_from_annotation_file(\
-								self.input_folder, annotated_image, book)
-						current_hog_locations = \
-							bookfunctions.calculate_hog_locations(image, \
-								self.number_of_blocks)
-						# If needed, create the dictionary in 'hog_features'
-						if not(data.has_key('hog_locations')) or \
-							type(data['hog_locations']) != dict:
-							data['hog_locations'] = {}
-						data['hog_locations'][self.number_of_blocks] = \
-							current_hog_locations
-						# write the new data to the original file:
-						f.seek(0)
-						f.write(str(data))
-						# Remove any remaining text from the previous file contents
-						f.truncate()
-					for j, coordinate in enumerate(current_hog_locations):
-						for pos, size in data['rectangles']:
-							# Bounding boxes are x, y, w, h coordinates are y, x.
-							# Let's go:
-							x,y = pos
-							w, h = size
-							if coordinate[0] > y and \
-									coordinate[0] < y + h and \
-									coordinate[1] > x and \
-									coordinate[1] < x + w:
-								# Set the label to 'image' in stead of 'text'
-								current_label.itemset(j, 0)
-				descriptors.append(current_descriptor)
-				labels.append(current_label)
+				# get descriptors
+				current_descriptors = bookfunctions.get_hog_features(f, data,
+					annotated_image, self.input_folder, book,
+					self.number_of_blocks)
+
+				# get labels
+				current_labels = bookfunctions.get_label(f, data, annotated_image,
+					self.input_folder, book, self.number_of_blocks)
+
+				# store descriptors, labels and the page path
+				descriptors.append(current_descriptors)
+				labels.append(current_labels)
 				page_paths.append(complete_page_paths[i])
-		return descriptors, labels, []
+
+		return descriptors, labels, page_paths
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
@@ -278,18 +224,19 @@ if __name__ == '__main__':
 		horizontal dimension should be given as follows: VxH, where V is the
 		vertical number of cells, and H the horizontal number of cells.
 		The default is 20x10""")
-	# FIXME: Is never used:
-	parser.add_argument('-b', "--cells-per-block", type=str, default='2x2', required=False,
-		help="""The number of cells each block is built up from. Format is again
-		VxH
-		The default is 2x2""")
+
+	# TODO: fix cells per block as argument, EVERYWHERE
+	#parser.add_argument('-b', "--cells-per-block", type=str, default='2x2', required=False,
+	#	help="""The number of cells each block is built up from. Format is again
+	#	VxH
+	#	The default is 2x2""")
 
 	args = vars(parser.parse_args())
 
 	number_of_blocks = tuple([int(a) for a in args['number_of_blocks'].split('x')])
-	cells_per_block = tuple([int(a) for a in args['cells_per_block'].split('x')])
+	#cells_per_block = tuple([int(a) for a in args['cells_per_block'].split('x')])
 
-	learner = ImageLocalizer(args['input_folder'], number_of_blocks, cells_per_block)
+	learner = ImageLocalizer(args['input_folder'], number_of_blocks)
 	learner.train()
 	learner.validate()
 	learner.test()
