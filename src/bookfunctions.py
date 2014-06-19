@@ -7,7 +7,7 @@ image localizer """
 from skimage import color
 from skimage.feature import hog
 from scipy import misc
-import os
+import os, glob
 import numpy as np
 from pystruct.utils import SaveLogger
 from numpy import array
@@ -24,6 +24,8 @@ def remove_unannotated_books(input_folder, books):
 
 
 def calculate_hog(image, number_of_blocks):
+	""" calculates the hog features from an image (np array image) given
+	the number of bocks"""
 	pixels_per_cell = calculate_pixels_per_cell(image, number_of_blocks)
 	image = color.rgb2gray(image)
 	# The number of orientations should be kept fixed as long as we don't
@@ -33,6 +35,8 @@ def calculate_hog(image, number_of_blocks):
 
 
 def calculate_pixels_per_cell(image, number_of_blocks):
+	""" calculates the amount of pixels in a hog feature cell given a number
+	of blocks and an image"""
 	s = np.shape(image)
 	pixels_vertical = int(s[0]/number_of_blocks[0])
 	pixels_horizontal = int(s[1]/number_of_blocks[1])
@@ -65,7 +69,9 @@ def calculate_hog_locations(image, number_of_blocks):
 
 def read_image_from_annotation_file(input_folder, annotated_image, book):
 	""" Given the path of an annotation .py file, finds the corresponding
-	image and returns it as returned by misc.imread """
+	image and returns it as returned by misc.imread
+
+	OBSOLETE: could be done with imp = get_page_path(...), misc.imread(imp) """
 	base = os.path.basename(annotated_image)
 	name = os.path.splitext(base)[0]
 	image_name = input_folder + os.sep + book + os.sep + \
@@ -105,25 +111,21 @@ def get_data(f):
 		return
 	return data
 
-def get_hog_features(f, data, annotated_image, input_folder, book,
-		number_of_blocks):
-	""" gets the hog features from the annotated image, or calculates them, and
-		them to file, if that is not possible """
+def get_hog_features_page(f, data, page_path, number_of_blocks):
+	""" reads a vector of descriptors for an image. f is the file handle of the
+	annotated data file, data is the data from that file, page_path the path
+	to the image"""
 
-	# cells per block is always (1, 1)
 	block_and_cells = (number_of_blocks, (1, 1))
-
 	descriptor = None
 
-	# Check if the needed hog features are already saved:
 	if data.has_key('hog_features') and \
 		data['hog_features'].has_key(block_and_cells):
 		descriptor = data['hog_features'][block_and_cells]
 	else:
-		print 'calculting hog features'
+		print 'calculating hog features for %s' % str(f.name)
 		# Get the image nparray
-		image = read_image_from_annotation_file(input_folder, \
-				annotated_image, book)
+		image = misc.imread(page_path)
 		descriptor = calculate_hog(image, number_of_blocks)
 
 		# If needed, create the dictionary in 'hog_features'
@@ -152,8 +154,31 @@ def get_hog_features(f, data, annotated_image, input_folder, book,
 
 	return descriptor
 
-def get_hog_locations(f, data, annotated_image, input_folder, book, \
+def get_data_path(annotated_image, input_folder, book):
+	""" construct the path to an annotated data file from annotated image, input
+	folder and a book """
+	base = os.path.basename(annotated_image)
+	name = os.path.splitext(base)[0]
+	return os.path.join(input_folder, book, 'annotated', name, '.py')
+
+def get_page_path(annotated_image, input_folder, book):
+	""" construct the path to an image page from annotated image, input
+	folder and a book """
+	base = os.path.basename(annotated_image)
+	name = os.path.splitext(base)[0]
+	return os.path.join(input_folder, book, 'raw', name, '.png')
+
+def get_hog_features(f, data, annotated_image, input_folder, book,
 		number_of_blocks):
+	""" gets the hog features from the annotated image, or calculates them, and
+		them to file, if that is not possible """
+
+	page_path = get_page_path(annotated_image, input_folder, book)
+	descriptor = get_hog_features_page(f, data, page_path, number_of_blocks)
+
+	return descriptor
+
+def get_hog_locations_path(f, data, page_path, number_of_blocks):
 	""" gets the hog locations from the annotated image, or calculates them, and
 		them to file, if that is not possible
 
@@ -165,11 +190,12 @@ def get_hog_locations(f, data, annotated_image, input_folder, book, \
 		return data['hog_locations'][number_of_blocks]
 
 	print 'calculating hog locations'
+
 	# otherwise, calculate em, and save em
-	image = read_image_from_annotation_file(\
-			input_folder, annotated_image, book)
-	hog_locations = calculate_hog_locations(image, \
-			number_of_blocks)
+	image = misc.imread(page_path)
+
+	hog_locations = calculate_hog_locations(image, number_of_blocks)
+
 	# If needed, create the dictionary in 'hog_features'
 	if not(data.has_key('hog_locations')) or \
 		type(data['hog_locations']) != dict:
@@ -184,19 +210,25 @@ def get_hog_locations(f, data, annotated_image, input_folder, book, \
 
 	return hog_locations
 
+def get_hog_locations(f, data, annotated_image, input_folder, book, \
+		number_of_blocks):
+	""" constructs the path from annotated_image, input_folder and book and
+	calls get_hog_locations_path """
 
-def get_label(f, data, annotated_image, input_folder, book, number_of_blocks):
-	# First, label everything as text.
-	# 8 = number of orientations
+	page_path = get_page_path(annotated, input_folder, book)
+	return get_hog_locations_path(f, data, page_path, number_of_blocks)
+
+def get_labels_path(f, data, data_path, page_path, number_of_blocks):
+	""" calculates labels for the features of one page """
+
 	label = np.ones((number_of_blocks[0], number_of_blocks[1]), dtype=np.int8)
-
 	# if the type is text or bagger, all ones (as above) is okay, and we can stop
+
 	if data['type'] != 'containing':
 		return label
 
 	# otherwise we need the hog locations to calculate which features are a 0 (image)
-	hog_locations = get_hog_locations(f, data, annotated_image, book,
-		input_folder, number_of_blocks)
+	hog_locations = get_hog_locations_path(f, data, page_path, number_of_blocks)
 
 	# so we loop over the locations of the feature
 	for j, coordinate in enumerate(hog_locations):
@@ -215,11 +247,81 @@ def get_label(f, data, annotated_image, input_folder, book, number_of_blocks):
 
 	return label
 
+def get_labels(f, data, annotated_image, input_folder, book, number_of_blocks):
+	""" constructs the path from annotated_image, input_folder and book and
+	calls get_labels_path"""
+	page_path = get_page_path(annotated_image, input_folder, book)
+	data_path = get_data_path(annotated_image, input_folder, book)
+	return get_labels_path(f, data, data_path, page_path, number_of_blocks)
 
-if __name__ == '__main__':
-	logger = SaveLogger('../models/logc1.py')
-	model = logger.load()
-	get_bounding_boxes_from_page('../data/aanzienlykeScheepsTogt/raw/500_0001.png',
-		model, [20, 10])
+def get_all_labels(pages_data, number_of_blocks):
+	""" returns all labels for the pages stored in pages_data. pages_data is
+	a tuple with a list of all the paths to all the image pages, and a list of
+	all the paths to the annotated data files"""
+	labels = [] #np.array([])
+	for page_path, data_path in pages_data:
+		with open(data_path) as f:
+			data = get_data(f)
+			#labels = np.append(labels,\
+			#	get_labels_path(f, data, data_path, page_path, number_of_blocks))
+			labels.append(get_labels_path(f, data, data_path, page_path, number_of_blocks))
+	return np.array(labels)
 
+def get_all_features(pages_data, number_of_blocks):
+	""" returns all features for the pages stored in page_data. pages_date is
+	a tuple with a list of all the paths to all the images pages, and a list of
+	all the paths to the annotated data files"""
+	features = []#np.array([])
+	for page, data_path in pages_data:
+		with open(data_path, 'r+') as f:
+			data = get_data(f)
+			new_features = get_hog_features_page(f, data, page, number_of_blocks)
+			#features = np.append(features, new_features)
+			features.append(new_features)
+
+	features = np.array(features)
+	return features
+
+def get_pages_and_data_from_folder(folder):
+	"""finds all paths to the pages, and all the paths to the annotated data
+	files in the folder. It searches to the folder for book folders."""
+	books = os.listdir(folder)
+	books = remove_unannotated_books(folder, books)
+
+	pages_data = []
+
+	for book_path in books:
+		#pages += glob.glob(os.path.join(folder, book_path, 'raw', '*.png'))
+		#data += glob.glob(os.path.join(folder, book_path, 'annotated', '*.py'))
+		pages_data += zip(glob.glob(os.path.join(folder, book_path, 'raw',\
+			'*.png')),glob.glob(os.path.join(folder, book_path, 'annotated', '*.py')))
+
+	#return pages, data
+	return pages_data
+
+
+
+def mcp(predicted_labels, true_labels):
+	""" Creates a confusion matrix and the mean class precision per class
+	"""
+	confusion_matrix = {}
+	# Create confusion matrix
+	for label in ['text', 'containing']:
+		confusion_matrix[label] = {'correct': 0, 'wrong': 0}
+
+	# fill confusion matrix
+	for i in range(1, len(true_labels)):
+		if true_labels[i] == predicted_labels[i]:
+			confusion_matrix[true_labels[i]]['correct'] += 1
+		else:
+			confusion_matrix[true_labels[i]]['wrong'] += 1
+
+	# Create dictionary that will contain the mcp per class label
+	cp = {}
+	for label in confusion_matrix.keys():
+		correct = confusion_matrix[label]['correct']
+		wrong = confusion_matrix[label]['wrong']
+		cp[label] = float(correct)/(float(correct+wrong))
+	mcp = sum(cp.values())/float(len(confusion_matrix.keys()))
+	return confusion_matrix, cp, mcp
 

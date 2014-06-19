@@ -215,7 +215,7 @@ class ImageLocalizer:
 					self.number_of_blocks)
 
 				# get labels
-				current_labels = bookfunctions.get_label(f, data, annotated_image,
+				current_labels = bookfunctions.get_labels(f, data, annotated_image,
 					self.input_folder, book, self.number_of_blocks)
 
 				# store descriptors, labels and the page path
