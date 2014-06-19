@@ -162,7 +162,7 @@ class ImageLocalizer:
 		print confusion_matrix(test_real_labels.flatten(),
 			test_predicted_labels.flatten())
 		prfs = precision_recall_fscore_support(test_real_labels.flatten(), \
-			test_predicted_labels.flatten(), average='weighted')
+			test_predicted_labels.flatten())
 		print """
 			Precision:
 				Image: %f

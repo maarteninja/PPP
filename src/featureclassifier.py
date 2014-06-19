@@ -7,13 +7,14 @@ import numpy as np
 
 from sklearn import svm
 
+from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 
 
 
 def main(folder, number_of_blocks):
 	# get all the page info from all books
 	pages_data = bookfunctions.get_pages_and_data_from_folder(folder)
-	pages_data = pages_data[:50]
+	# pages_data = pages_data[:50]
 	random.shuffle(pages_data)
 
 	# get the features and the labels
@@ -34,16 +35,39 @@ def main(folder, number_of_blocks):
 	print 'labels shape:', validate_labels.shape
 
 	# try out some values for c
-	for c in range(-1, 6):
+	for c in range(1, 6):
 		# I know this runs, but I do not know exactly how well .. 
 		# (training took too long)
 		classifier = svm.SVC(C=10**c, probability=1, class_weight='auto')
 		classifier.fit(train_features, train_labels)
 		predicted_labels = classifier.predict(validate_features)
-		confusion_matrix, cp, mcp = bookfunctions.mcp(predicted_labels, \
-			validate_labels)
-		print "For c = %d, %s, %s, %s" % (10**c, str(confusion_matrix), str(cp), \
-			str(mcp))
+		#confusion_matrix, cp, mcp = bookfunctions.mcp(predicted_labels, \
+		#	validate_labels)
+		cm = confusion_matrix(validate_labels.flatten(),
+			predicted_labels.flatten())
+		#print "For c = %d, %s, %s, %s" % (10**c, str(confusion_matrix), str(cp), \
+		#	str(mcp))
+		print "For c = %d, %s" % (10**c, str(cm))
+		prfs = precision_recall_fscore_support(validate_labels.flatten(), \
+			predicted_labels.flatten())
+		print """
+			Precision:
+				Image: %f
+				Text: %f
+			Recall:
+				Image: %f
+				Text: %f
+			Fscore:
+				Image: %f
+				Text: %f
+			Support:
+				Image: %f
+				Text: %f
+			""" % tuple(np.ndarray.flatten(np.array(prfs)))
+		mcp = (prfs[0][0] + prfs[0][1]) / 2
+		print "MCP = %f" % mcp
+		print "Params: "
+		print classifier.get_params(deep=True)
 
 		# TODO: store the best SVC so we can read and use it later!
 
