@@ -19,7 +19,6 @@ from pystruct.models import GridCRF
 from pystruct.utils import SaveLogger
 import pystruct.learners as ssvm
 from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
-import copy
 
 
 np.set_printoptions(threshold=np.nan)
@@ -37,7 +36,7 @@ class ImageLocalizer:
 		books = os.listdir(self.input_folder)
 		books = bookfunctions.remove_unannotated_books(input_folder, books)
 		# Randomize result!
-		# random.shuffle(books)
+		random.shuffle(books)
 		# Take 80 percent as train set:
 		train_end = int(len(books)*.7)
 		validation_end = int(len(books)*.8)
@@ -68,19 +67,6 @@ class ImageLocalizer:
 			self.all_labels.extend(labels)
 		self.all_descriptors = np.array(self.all_descriptors)
 		self.all_labels = np.array(self.all_labels)
-		# Temporary test:
-		self.all_descriptors = copy.deepcopy(self.all_labels)
-		self.all_descriptors.shape = np.shape(self.all_labels) + (1,)
-		self.all_descriptors = self.add_noise(self.all_descriptors)
-
-	def add_noise(self, descriptors):
-		for i in range(np.shape(descriptors)[0]):
-			for j in range(np.shape(descriptors)[1]):
-				for k in range(np.shape(descriptors)[2]):
-					if random.random() < .3:
-						descriptors[i][j][k][0] += 1
-						descriptors[i][j][k][0] %= 2
-		return descriptors
 
 	def validate(self):
 		""" Tweaks C for the svc. self.validation_set is used for validating """
@@ -91,7 +77,6 @@ class ImageLocalizer:
 		class_weights = 1. / np.bincount(self.all_labels.flatten())
 		# * n_states / sum, like in pystruct's image segmentation example
 		class_weights *= 8. / np.sum(class_weights)
-		#class_weights = [1., 1.]
 		# print(class_weights)
 		self.crf = WeightedGridCRF(neighborhood=4, class_weight=class_weights)
 		for book in self.validation_set:
@@ -100,10 +85,6 @@ class ImageLocalizer:
 			descriptors, labels, paths = self.read_book_data(book)
 			validation_descriptors.extend(descriptors)
 			validation_real_labels.extend(labels)
-		validation_descriptors = \
-			np.array(copy.deepcopy(validation_real_labels))
-		validation_descriptors.shape = np.shape(validation_real_labels) + (1,)
-		validation_descriptors = self.add_noise(validation_descriptors)
 
 		for i in range(2, 3):
 			c = 10**i
@@ -176,17 +157,12 @@ class ImageLocalizer:
 			test_real_labels.extend(labels)
 			complete_page_paths.extend(page_paths)
 		test_real_labels = np.array(test_real_labels)
-		test_descriptors = copy.deepcopy(test_real_labels)
-		test_descriptors.shape = np.shape(test_descriptors) + (1,)
-		test_descriptors = self.add_noise(test_descriptors)
-		test_predicted_labels = \
-			np.array(self.classifier.predict(test_descriptors))
-		score = self.classifier.score(test_descriptors, test_real_labels)
-		print score
+		test_predicted_labels = np.array(self.classifier.predict(test_descriptors))
+
 		print confusion_matrix(test_real_labels.flatten(),
 			test_predicted_labels.flatten())
 		prfs = precision_recall_fscore_support(test_real_labels.flatten(), \
-			test_predicted_labels.flatten())
+			test_predicted_labels.flatten(), average='weighted')
 		print """
 			Precision:
 				Image: %f
@@ -201,8 +177,8 @@ class ImageLocalizer:
 				Image: %f
 				Text: %f
 			""" % tuple(np.ndarray.flatten(np.array(prfs)))
-		# bookfunctions.get_bounding_boxes_from_labels(test_predicted_labels, \
-		# 	page_paths)
+		bookfunctions.get_bounding_boxes_from_labels(test_predicted_labels, \
+			page_paths)
 
 	def read_book_data(self, book):
 		""" Read the hog features from the image files, and the class from the

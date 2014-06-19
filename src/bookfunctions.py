@@ -120,7 +120,7 @@ def get_hog_features(f, data, annotated_image, input_folder, book,
 		data['hog_features'].has_key(block_and_cells):
 		descriptor = data['hog_features'][block_and_cells]
 	else:
-		print 'calculating hog features for %s' % str(block_and_cells)
+		print 'calculting hog features'
 		# Get the image nparray
 		image = read_image_from_annotation_file(input_folder, \
 				annotated_image, book)
