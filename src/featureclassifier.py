@@ -9,51 +9,44 @@ from sklearn import svm
 
 
 
-def get_features_pages_data(pages_data, number_of_blocks):
-	features = []#np.array([])
-	for page, data_path in pages_data:
-		with open(data_path, 'r+') as f:
-			data = bookfunctions.get_data(f)
-			new_features = bookfunctions.get_hog_features_page(f, data, page,\
-				number_of_blocks)
-			#features = np.append(features, new_features)
-			features.append(new_features)
-
-	features = np.array(features)
-	return features
 
 def main(folder, number_of_blocks):
+	# get all the page info from all books
 	pages_data = bookfunctions.get_pages_and_data_from_folder(folder)
-	pages_data = pages_data[:300]
-
+	pages_data = pages_data[:50]
 	random.shuffle(pages_data)
 
-	features = get_features_pages_data(pages_data, number_of_blocks)
+	# get the features and the labels
+	features = bookfunctions.get_all_features(pages_data, number_of_blocks)
 	labels = bookfunctions.get_all_labels(pages_data, number_of_blocks)
 
+	# reshape for the SCV
 	features = np.reshape(features, (labels.shape[0] * labels.shape[1] * labels.shape[2], 8))
 	labels = np.reshape(labels, labels.shape[0] * labels.shape[1] * labels.shape[2])
 
+	# split up in train-validate sets
 	cut_off = len(features) * 0.8
-
 	train_features = features[:cut_off]
 	train_labels = labels[:cut_off]
 	validate_features = features[cut_off:]
 	validate_labels = labels[cut_off:]
 	print 'features shape:', validate_features.shape
 	print 'labels shape:', validate_labels.shape
-	#print len(train_features), len(train_labels), len(validate_features), \
-	#	len(validate_labels)
 
-	
-
+	# try out some values for c
 	for c in range(-1, 6):
+		# I know this runs, but I do not know exactly how well .. 
+		# (training took too long)
 		classifier = svm.SVC(C=10**c, probability=1, class_weight='auto')
 		classifier.fit(train_features, train_labels)
 		predicted_labels = classifier.predict(validate_features)
-		confusion_matrix, cp, mcp = self.mcp(predicted_labels, validate_labels)
-		print "For c = %d, %s, %s, %s" % (c, str(confusion_matrix), str(cp), \
+		confusion_matrix, cp, mcp = bookfunctions.mcp(predicted_labels, \
+			validate_labels)
+		print "For c = %d, %s, %s, %s" % (10**c, str(confusion_matrix), str(cp), \
 			str(mcp))
+
+		# TODO: store the best SVC so we can read and use it later!
+
 
 
 if __name__ == '__main__':

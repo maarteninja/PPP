@@ -24,6 +24,8 @@ def remove_unannotated_books(input_folder, books):
 
 
 def calculate_hog(image, number_of_blocks):
+	""" calculates the hog features from an image (np array image) given
+	the number of bocks"""
 	pixels_per_cell = calculate_pixels_per_cell(image, number_of_blocks)
 	image = color.rgb2gray(image)
 	# The number of orientations should be kept fixed as long as we don't
@@ -33,6 +35,8 @@ def calculate_hog(image, number_of_blocks):
 
 
 def calculate_pixels_per_cell(image, number_of_blocks):
+	""" calculates the amount of pixels in a hog feature cell given a number
+	of blocks and an image"""
 	s = np.shape(image)
 	pixels_vertical = int(s[0]/number_of_blocks[0])
 	pixels_horizontal = int(s[1]/number_of_blocks[1])
@@ -65,7 +69,9 @@ def calculate_hog_locations(image, number_of_blocks):
 
 def read_image_from_annotation_file(input_folder, annotated_image, book):
 	""" Given the path of an annotation .py file, finds the corresponding
-	image and returns it as returned by misc.imread """
+	image and returns it as returned by misc.imread
+
+	OBSOLETE: could be done with imp = get_page_path(...), misc.imread(imp) """
 	base = os.path.basename(annotated_image)
 	name = os.path.splitext(base)[0]
 	image_name = input_folder + os.sep + book + os.sep + \
@@ -261,6 +267,21 @@ def get_all_labels(pages_data, number_of_blocks):
 			labels.append(get_labels_path(f, data, data_path, page_path, number_of_blocks))
 	return np.array(labels)
 
+def get_all_features(pages_data, number_of_blocks):
+	""" returns all features for the pages stored in page_data. pages_date is
+	a tuple with a list of all the paths to all the images pages, and a list of
+	all the paths to the annotated data files"""
+	features = []#np.array([])
+	for page, data_path in pages_data:
+		with open(data_path, 'r+') as f:
+			data = get_data(f)
+			new_features = get_hog_features_page(f, data, page, number_of_blocks)
+			#features = np.append(features, new_features)
+			features.append(new_features)
+
+	features = np.array(features)
+	return features
+
 def get_pages_and_data_from_folder(folder):
 	"""finds all paths to the pages, and all the paths to the annotated data
 	files in the folder. It searches to the folder for book folders."""
@@ -280,10 +301,27 @@ def get_pages_and_data_from_folder(folder):
 
 
 
-if __name__ == '__main__':
-	logger = SaveLogger('../models/logc1.py')
-	model = logger.load()
-	get_bounding_boxes_from_page('../data/aanzienlykeScheepsTogt/raw/500_0001.png',
-		model, [20, 10])
+def mcp(predicted_labels, true_labels):
+	""" Creates a confusion matrix and the mean class precision per class
+	"""
+	confusion_matrix = {}
+	# Create confusion matrix
+	for label in ['text', 'containing']:
+		confusion_matrix[label] = {'correct': 0, 'wrong': 0}
 
+	# fill confusion matrix
+	for i in range(1, len(true_labels)):
+		if true_labels[i] == predicted_labels[i]:
+			confusion_matrix[true_labels[i]]['correct'] += 1
+		else:
+			confusion_matrix[true_labels[i]]['wrong'] += 1
+
+	# Create dictionary that will contain the mcp per class label
+	cp = {}
+	for label in confusion_matrix.keys():
+		correct = confusion_matrix[label]['correct']
+		wrong = confusion_matrix[label]['wrong']
+		cp[label] = float(correct)/(float(correct+wrong))
+	mcp = sum(cp.values())/float(len(confusion_matrix.keys()))
+	return confusion_matrix, cp, mcp
 
