@@ -11,10 +11,10 @@ from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 
 
 
-def main(folder, number_of_blocks):
+def main(folder, pages_data, number_of_blocks):
 	# get all the page info from all books
-	pages_data = bookfunctions.get_pages_and_data_from_folder(folder)
-	pages_data = pages_data[:1000]
+	#pages_data = bookfunctions.get_pages_and_data_from_folder(folder)
+	#pages_data = pages_data[:1000]
 	random.shuffle(pages_data)
 
 	# get the features and the labels

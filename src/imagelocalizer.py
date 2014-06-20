@@ -26,119 +26,82 @@ np.set_printoptions(threshold=np.nan)
 class ImageLocalizer:
 	""" Localizes images in books, given some training data """
 
-	def __init__(self, input_folder, number_of_blocks):
+	def __init__(self, input_folder, number_of_blocks, overlap=False, use_svm=False):
 		""" The input folder is the folder containing all the books. The
 		number_of_blocks are used for the hog features. cells_per_block denotes
 		how many cells are in a hog (cells_per_block is removed as parameter now)
 		"""
 		self.input_folder = input_folder
 		self.number_of_blocks = number_of_blocks
-		books = os.listdir(self.input_folder)
-		books = bookfunctions.remove_unannotated_books(input_folder, books)
-		# Randomize result!
-		random.shuffle(books)
-		# Take 80 percent as train set:
-		train_end = int(len(books)*.7)
-		validation_end = int(len(books)*.8)
-		# Check if train_end is not the same as len(books)-1: Then we wouldn't
-		# have a test set
-		if train_end == len(books) - 1:
-			train_end = train_end - 2
-		if validation_end == len(books) - 1:
-			train_end = train_end - 1
-		self.train_set = books[0:train_end]
-		# For now, validate with 1 book. Yolo.
-		self.validation_set = books[train_end:validation_end]
-		self.test_set = books[validation_end:len(books)]
-		#self.train_set = ['naauwKeurigeAanteekeningen']
-		#self.test_set = ['journaelOfDaghRegister']
-		self.all_descriptors = []
-		self.all_labels = []
 
-	def train(self):
-		""" Trains the svm. self.train_set is used as the training set """
-		for book in self.train_set:
-			# read its descriptors and labels
-			print "Calculating data for book %s" % (book)
-			descriptors, labels, ignore = self.read_book_data(book)
-			#print 'descriptors',  descriptors
-			self.all_descriptors.extend(descriptors)
-			self.all_labels.extend(labels)
-		self.all_descriptors = np.array(self.all_descriptors)
-		self.all_labels = np.array(self.all_labels)
+		self.overlap = overlap
+		self.use_svm = use_svm
+
+		self.train_set, self.validation_set = prepare_data(self.input_folder)
+
+		self.train_features = bookfunctions.get_all_features(self.train_set, \
+			self.number_of_blocks)
+
+		if overlap:
+			self.train_features = bookfunctions.concatenate_features(self.train_features)
+
+		self.train_labels = bookfunctions.get_all_labels(self.train_set, \
+			self.number_of_blocks, overlap=overlap)
+
+		if use_svm:
+			# TODO
+			pass
+
 
 	def validate(self):
 		""" Tweaks C for the svc. self.validation_set is used for validating """
+
+		validation_features = \
+			bookfunctions.get_all_features(self.validation_set, \
+			self.number_of_blocks)
+
+		validation_labels = bookfunctions.get_all_labels(self.validation_set, \
+			self.number_of_blocks, overlap=self.overlap)
+
 		best_mcp = 0
-		validation_descriptors = []
-		validation_real_labels = []
+
 		# Count the number of class labels in order to set the class weights
-		class_weights = 1. / np.bincount(self.all_labels.flatten())
-		# * n_states / sum, like in pystruct's image segmentation example
-		class_weights *= 8. / np.sum(class_weights)
-		# print(class_weights)
+		class_weights = 1. / np.bincount(self.train_labels.flatten())
 		self.crf = WeightedGridCRF(neighborhood=4, class_weight=class_weights)
-		for book in self.validation_set:
-			# read its descriptors and labels
-			print "Calculating data for book %s" % (book)
-			descriptors, labels, paths = self.read_book_data(book)
-			validation_descriptors.extend(descriptors)
-			validation_real_labels.extend(labels)
 
 		for i in range(3, 5):
 			c = 10**i
-			self.logger = SaveLogger(os.path.join('..', 'models', 'logc%d.py' % \
-				c), save_every=1)
+			self.logger = SaveLogger(get_log_path('model', c, self.use_svm, \
+				self.overlap), save_every=1)
+
 			print "validating with c = " + str(c)
 			temp_classifier = ssvm.OneSlackSSVM(model=self.crf, C=c, n_jobs=-1,
 				verbose=4, logger=self.logger, tol=.1)
-			# temp_classifier.fit(self.all_descriptors, self.all_labels)
+
 			# Fit the classifier:
-			temp_classifier.fit(self.all_descriptors, self.all_labels)
+			temp_classifier.fit(self.train_features, self.train_labels)
+
 			# Write the svm parameters!
-			with open("paramsc%d.py" % c, 'w') as f:
+			with open(get_log_path('param', c, self.use_svm, self.overlap), 'w')\
+					as f:
 				f.write(str(temp_classifier.get_params()))
-			validation_predicted_labels = temp_classifier.predict(validation_descriptors)
-			confusion_matrix, cp, mcp = self.mcp(validation_predicted_labels, \
-				validation_real_labels)
+
+			validation_predicted_labels = np.array(\
+				temp_classifier.predict(validation_features))
+
+			prfs = precision_recall_fscore_support(validation_labels.flatten(), \
+				validation_predicted_labels.flatten())
+
+			mcp = (prfs[0][0] + prfs[0][1]) / 2
+
 			if mcp > best_mcp:
 				best_mcp = mcp
 				best_c = c
 				self.classifier = temp_classifier
+
 		print "Mean class presision for best c: %s" % str(best_mcp)
 		return best_c
 
-	def mcp(self, predicted_labels, true_labels):
-		""" Creates a confusion matrix and the mean class precision per class
-		"""
-		confusion_matrix = {}
-		# Create confusion matrix
-		for label in ['text', 'containing']:
-			confusion_matrix[label] = {'correct': 0, 'wrong': 0}
-		# Specify an order, in order to be sure we loop through both arrays in
-		# the same order (otherwise the memory order is used)
-		true_labels = np.array(true_labels)
-		predicted_labels = np.array(predicted_labels)
-		for labels in zip(np.nditer(true_labels, order='C'), \
-			 np.nditer(predicted_labels, order='C')):
-			if(labels[0] == labels[1]):
-				label = 'text' if labels[0] == 1 else 'containing'
-				confusion_matrix[label]['correct'] += 1
-			else:
-				confusion_matrix[label]['wrong'] += 1
-		# Create dictionary that will contain the mcp per class label
-		print confusion_matrix
-		cp = {}
-		for label in confusion_matrix.keys():
-			correct = confusion_matrix[label]['correct']
-			wrong = confusion_matrix[label]['wrong']
-			# Some times, this label is not predicted at all
-			if correct+wrong != 0:
-				cp[label] = float(correct)/(float(correct+wrong))
-			else:
-				cp[label] = 0
-		mcp = sum(cp.values())/float(len(confusion_matrix.keys()))
-		return confusion_matrix, cp, mcp
 
 	def test(self):
 		""" Tests the trained svm on the test set in self.test_set. train (or
@@ -180,50 +143,30 @@ class ImageLocalizer:
 		# bookfunctions.get_bounding_boxes_from_labels(test_predicted_labels, \
 		# 	page_paths)
 
-	def read_book_data(self, book):
-		""" Read the hog features from the image files, and the class from the
-		python files corresponding to the book pages in the directory 'book'. A
-		folder named 'annotated' needs to be present, with 500_<page>.py as
-		annotated data for the image raw/500_<page>.png 
-		""" 
 
-		# get all the paths to the annotated files
-		annotated_images = glob.glob(os.path.join(self.input_folder, book,
-			'annotated', '*.py'))
-		# get all the paths to the images
-		complete_page_paths = glob.glob(os.path.join(self.input_folder, book,
-			'raw', '*.png'))
+def prepare_data(input_folder):
+	pages_data = bookfunctions.get_pages_and_data_from_folder(input_folder)
+	pages_data = pages_data[:10]
+	print pages_data
 
-		# This array will hold the HOG feature descriptors for each class
-		descriptors = []
+	# TODO throwaway x % of the pages containing only text
 
-		# This array will hold the labels of the images. Each index in this array
-		# corresponds to the same index in descriptors. The two of them together
-		# form the input for a classifier
-		labels = []
+	train_pages_data = []
+	validate_pages_data = []
 
-		# this array will hold all the paths to the pages
-		page_paths = []
+	# take 20% for validate set
+	for i, p_d in enumerate(pages_data):
+		if i % 5 == 0:
+			validate_pages_data.append(p_d)
+		else:
+			train_pages_data.append(p_d)
 
-		for i, annotated_image in enumerate(annotated_images):
-			with open(annotated_image, 'r+') as f:
-				data = bookfunctions.get_data(f)
+	return train_pages_data, validate_pages_data
 
-				# get descriptors
-				current_descriptors = bookfunctions.get_hog_features(f, data,
-					annotated_image, self.input_folder, book,
-					self.number_of_blocks)
+def get_log_path(name, c, use_svm, overlap):
+	return os.path.join('..', 'models', '%s_c_%d_svm_%d_overlap_%d.py' % \
+		(name, c, int(use_svm), int(overlap)))
 
-				# get labels
-				current_labels = bookfunctions.get_labels(f, data, annotated_image,
-					self.input_folder, book, self.number_of_blocks)
-
-				# store descriptors, labels and the page path
-				descriptors.append(current_descriptors)
-				labels.append(current_labels)
-				page_paths.append(complete_page_paths[i])
-
-		return descriptors, labels, page_paths
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
@@ -247,6 +190,4 @@ if __name__ == '__main__':
 	#cells_per_block = tuple([int(a) for a in args['cells_per_block'].split('x')])
 
 	learner = ImageLocalizer(args['input_folder'], number_of_blocks)
-	learner.train()
 	learner.validate()
-	learner.test()
