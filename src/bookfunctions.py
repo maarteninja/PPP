@@ -12,6 +12,8 @@ import numpy as np
 from pystruct.utils import SaveLogger
 from numpy import array
 
+np.set_printoptions(threshold=np.nan)
+
 def remove_unannotated_books(input_folder, books):
 	""" Removes the books from the array 'books' that do not have a
 	subfolder called 'annotated' """
@@ -40,24 +42,24 @@ def calculate_pixels_per_cell(image, number_of_blocks):
 	s = np.shape(image)
 	pixels_vertical = int(s[0]/number_of_blocks[0])
 	pixels_horizontal = int(s[1]/number_of_blocks[1])
-	return (pixels_horizontal, pixels_vertical)
+	return (pixels_vertical, pixels_horizontal)
 
 def calculate_hog_locations(image, number_of_blocks):
 	""" Calculates the center of all hogs, given the image (used for the
 	size) Returns a list of tuples of size np.prod(number_of_blocks)
-	 """
-	pixels_per_cell = calculate_pixels_per_cell(image, number_of_blocks)
-	y_half = pixels_per_cell[0]/2
+	"""
+	height, width = calculate_pixels_per_cell(image, number_of_blocks)
+	y_half = height/2.
 	# All Y coordinates are starting from half window size, each of them
 	# pixels_per_cell[0] apart
 	y_coordinates = range(int(round(y_half)), \
-		int(round(np.shape(image)[0]-y_half)), \
-		pixels_per_cell[0])
+		int(round(np.shape(image)[0])), \
+		height)
 	# Do the same for X coordinates
-	x_half = pixels_per_cell[1]/2
+	x_half = width/2.
 	x_coordinates = range(int(round(x_half)), \
-		int(round(np.shape(image)[1]-x_half)), \
-		pixels_per_cell[0])
+		int(round(np.shape(image)[1])), \
+		width)
 	# Concatenate both coordinate sets in a list containing all coordinates
 	coordinates = []
 	for y in y_coordinates:
@@ -103,12 +105,12 @@ def get_bounding_boxes_from_labels(labels, image, number_of_blocks):
 
 def get_data(f):
 	""" returns the data dict as string, or None in case there is an error"""
-	try:
-		data = eval(f.read())
-	except Exception, e:
-		print "WARNING!!! Error in reading data from %s: error: %s" % \
-			(f.name, e.message)
-		return
+	#try:
+	data = eval(f.read())
+	#except Exception, e:
+	#	print "WARNING!!! Error in reading data from %s: error: %s" % \
+	#		(f.name, e.message)
+	#	return
 	return data
 
 def get_hog_features_page(f, data, page_path, number_of_blocks):
@@ -166,7 +168,7 @@ def get_page_path(annotated_image, input_folder, book):
 	folder and a book """
 	base = os.path.basename(annotated_image)
 	name = os.path.splitext(base)[0]
-	return os.path.join(input_folder, book, 'raw', name, '.png')
+	return os.path.join(input_folder, book, 'raw', name + '.png')
 
 def get_hog_features(f, data, annotated_image, input_folder, book,
 		number_of_blocks):
@@ -185,11 +187,11 @@ def get_hog_locations_path(f, data, page_path, number_of_blocks):
 	Note: this is only necessary when some hog features are classified as image """
 
 	# If there are images in this page, get their location:
-	if data.has_key('hog_locations') and \
-		data['hog_locations'].has_key(number_of_blocks):
-		return data['hog_locations'][number_of_blocks]
+	# if data.has_key('hog_locations') and \
+	# 	data['hog_locations'].has_key(number_of_blocks):
+	# 	return data['hog_locations'][number_of_blocks]
 
-	print 'calculating hog locations'
+	print 'calculating hog locations for %s in mode %s' % (f.name, f.mode)
 
 	# otherwise, calculate em, and save em
 	image = misc.imread(page_path)
@@ -197,10 +199,9 @@ def get_hog_locations_path(f, data, page_path, number_of_blocks):
 	hog_locations = calculate_hog_locations(image, number_of_blocks)
 
 	# If needed, create the dictionary in 'hog_features'
-	if not(data.has_key('hog_locations')) or \
-		type(data['hog_locations']) != dict:
+	if not(data.has_key('hog_locations')):
 		data['hog_locations'] = {}
-	data['hog_locations'][number_of_blocks] = hog_locations
+		data['hog_locations'][number_of_blocks] = hog_locations
 
 	# write the new data to the original file:
 	f.seek(0)
@@ -214,14 +215,17 @@ def get_hog_locations(f, data, annotated_image, input_folder, book, \
 		number_of_blocks):
 	""" constructs the path from annotated_image, input_folder and book and
 	calls get_hog_locations_path """
-
 	page_path = get_page_path(annotated, input_folder, book)
 	return get_hog_locations_path(f, data, page_path, number_of_blocks)
 
-def get_labels_path(f, data, data_path, page_path, number_of_blocks):
+def get_labels_path(f, data, data_path, page_path, number_of_blocks, \
+		overlap=False):
 	""" calculates labels for the features of one page """
 
-	label = np.ones((number_of_blocks[0], number_of_blocks[1]), dtype=np.int8)
+	if overlap:
+		label = np.ones((number_of_blocks[0]-1, number_of_blocks[1]-1), dtype=np.int8)
+	else:
+		label = np.ones((number_of_blocks[0], number_of_blocks[1]), dtype=np.int8)
 	# if the type is text or bagger, all ones (as above) is okay, and we can stop
 
 	if data['type'] != 'containing':
@@ -230,22 +234,37 @@ def get_labels_path(f, data, data_path, page_path, number_of_blocks):
 	# otherwise we need the hog locations to calculate which features are a 0 (image)
 	hog_locations = get_hog_locations_path(f, data, page_path, number_of_blocks)
 
+	if overlap:
+		hog_locations = concatenate_hog_locations(hog_locations, \
+			number_of_blocks)
+
+
 	# so we loop over the locations of the feature
 	for j, coordinate in enumerate(hog_locations):
 		# and check if they are in an annotated rectangle (bounding box)
-		for pos, size in data['rectangles']:
+		for ((x, y), (w, h)) in data['rectangles']:
 			# Bounding boxes are x, y, w, h coordinates are y, x.
 			# Let's go:
-			x,y = pos
-			w, h = size
 			if coordinate[0] > y and \
 					coordinate[0] < y + h and \
 					coordinate[1] > x and \
 					coordinate[1] < x + w:
 				# Set the label to 'image' in stead of 'text'
 				label.itemset(j, 0)
-
 	return label
+
+def concatenate_hog_locations(locations, number_of_blocks):
+	locations = np.array(locations).reshape(number_of_blocks + (2,))
+	new_locations = np.zeros((locations.shape[0]-1, locations.shape[1]-1,
+		locations.shape[2]))
+	for i in range(locations.shape[0]-1):
+		for j in range(locations.shape[1]-1):
+			new_locations[i][j] = np.array([np.mean([locations[i][j][0], \
+				locations[i+1][j][0]]), \
+				np.mean([locations[i][j][1], \
+				locations[i][j+1][1]])])
+	new_locations.shape = ((number_of_blocks[0]-1) * (number_of_blocks[1]-1), 2)
+	return new_locations
 
 def get_labels(f, data, annotated_image, input_folder, book, number_of_blocks):
 	""" constructs the path from annotated_image, input_folder and book and
@@ -254,24 +273,25 @@ def get_labels(f, data, annotated_image, input_folder, book, number_of_blocks):
 	data_path = get_data_path(annotated_image, input_folder, book)
 	return get_labels_path(f, data, data_path, page_path, number_of_blocks)
 
-def get_all_labels(pages_data, number_of_blocks):
+def get_all_labels(pages_data, number_of_blocks, overlap=False):
 	""" returns all labels for the pages stored in pages_data. pages_data is
 	a tuple with a list of all the paths to all the image pages, and a list of
 	all the paths to the annotated data files"""
 	labels = [] #np.array([])
 	for page_path, data_path in pages_data:
-		with open(data_path) as f:
+		with open(data_path, 'r+') as f:
 			data = get_data(f)
 			#labels = np.append(labels,\
 			#	get_labels_path(f, data, data_path, page_path, number_of_blocks))
-			labels.append(get_labels_path(f, data, data_path, page_path, number_of_blocks))
+			labels.append(get_labels_path(f, data, data_path, page_path,
+				number_of_blocks, overlap=overlap))
 	return np.array(labels)
 
 def get_all_features(pages_data, number_of_blocks):
 	""" returns all features for the pages stored in page_data. pages_date is
 	a tuple with a list of all the paths to all the images pages, and a list of
 	all the paths to the annotated data files"""
-	features = []#np.array([])
+	features = [] #np.array([])
 	for page, data_path in pages_data:
 		with open(data_path, 'r+') as f:
 			data = get_data(f)
@@ -293,12 +313,34 @@ def get_pages_and_data_from_folder(folder):
 	for book_path in books:
 		#pages += glob.glob(os.path.join(folder, book_path, 'raw', '*.png'))
 		#data += glob.glob(os.path.join(folder, book_path, 'annotated', '*.py'))
-		pages_data += zip(glob.glob(os.path.join(folder, book_path, 'raw',\
-			'*.png')),glob.glob(os.path.join(folder, book_path, 'annotated', '*.py')))
-
+		raw = glob.glob(os.path.join(folder, book_path, 'raw', '*.png'))
+		annotated = glob.glob(os.path.join(folder, book_path, 'annotated', '*.py'))
+		pages_data += zip(sorted(raw),sorted(annotated))
+	# print str(pages_data)
 	#return pages, data
 	return pages_data
 
+def concatenate_features(features):
+	new_features = np.zeros((features.shape[0], features.shape[1]-1,
+		features.shape[2]-1, features.shape[3] * 4))
+	for i in range(features.shape[0]-1):
+		for j in range(features.shape[1]-1):
+			for k in range(features.shape[2]-1):
+				new_feature = np.append(features[i][j][k], \
+					[features[i][j+1][k], \
+					features[i][j][k+1], \
+					features[i][j+1][k+1]])
+				new_features[i][j][k] = new_feature
+	return new_features
+
+# def even_labels(labels, features)
+# 	""" Removes features and labels of the bigger set, until the number of
+# 	features of label n is as big as the number of features for label /n """
+# 	# Count the number of features. The n'th index of number_of_features is the
+# 	# number of times n occurs in labels
+# 	number_of_features = np.bincount(labels.flatten())
+# 	
+# 	
 
 
 def mcp(predicted_labels, true_labels):

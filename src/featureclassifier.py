@@ -19,14 +19,15 @@ def main(folder, number_of_blocks):
 
 	# get the features and the labels
 	features = bookfunctions.get_all_features(pages_data, number_of_blocks)
-	labels = bookfunctions.get_all_labels(pages_data, number_of_blocks)
+	features = bookfunctions.concatenate_features(features)
+	labels = bookfunctions.get_all_labels(pages_data, number_of_blocks, \
+		overlap=True)
 
 	# reshape for the SCV
-	features = np.reshape(features, (labels.shape[0] * labels.shape[1] * labels.shape[2], 8))
+	# size of hog features = 4*8
+	features = np.reshape(features, (features.shape[0] * features.shape[1] *
+		features.shape[2], 32))
 	labels = np.reshape(labels, labels.shape[0] * labels.shape[1] * labels.shape[2])
-
-	# Remove excess text examples from training set, in order to speed up
-	labels, features = even_labels(labels, features)
 
 	# split up in train-validate sets
 	cut_off = len(features) * 0.8
@@ -43,7 +44,7 @@ def main(folder, number_of_blocks):
 		# (training took too long)
 		print "Learning classifier for C = %d" % c**10
 		classifier = svm.SVC(C=10**c, probability=1, class_weight='auto',
-			kernel='linear')
+			kernel='linear', verbose=True)
 		classifier.fit(train_features, train_labels)
 		predicted_labels = classifier.predict(validate_features)
 		#confusion_matrix, cp, mcp = bookfunctions.mcp(predicted_labels, \
