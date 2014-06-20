@@ -177,8 +177,8 @@ class ImageLocalizer:
 				Image: %f
 				Text: %f
 			""" % tuple(np.ndarray.flatten(np.array(prfs)))
-		bookfunctions.get_bounding_boxes_from_labels(test_predicted_labels, \
-			page_paths)
+		# bookfunctions.get_bounding_boxes_from_labels(test_predicted_labels, \
+		# 	page_paths)
 
 	def read_book_data(self, book):
 		""" Read the hog features from the image files, and the class from the

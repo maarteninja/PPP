@@ -46,6 +46,7 @@ def main(folder, number_of_blocks):
 		classifier = svm.SVC(C=10**c, probability=1, class_weight='auto',
 			kernel='linear', verbose=True)
 		classifier.fit(train_features, train_labels)
+		print "Predicting validation set"
 		predicted_labels = classifier.predict(validate_features)
 		#confusion_matrix, cp, mcp = bookfunctions.mcp(predicted_labels, \
 		#	validate_labels)
