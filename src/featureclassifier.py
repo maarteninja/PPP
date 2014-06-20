@@ -43,8 +43,8 @@ def main(folder, number_of_blocks):
 		# I know this runs, but I do not know exactly how well .. 
 		# (training took too long)
 		print "Learning classifier for C = %d" % c**10
-		classifier = svm.SVC(C=10**c, probability=1, class_weight='auto',
-			kernel='linear', verbose=True)
+		classifier = svm.LinearSVC(C=10**c, class_weight='auto',
+			verbose=10)
 		classifier.fit(train_features, train_labels)
 		print "Predicting validation set"
 		predicted_labels = classifier.predict(validate_features)
