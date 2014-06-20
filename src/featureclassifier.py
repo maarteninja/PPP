@@ -14,7 +14,7 @@ from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 def main(folder, number_of_blocks):
 	# get all the page info from all books
 	pages_data = bookfunctions.get_pages_and_data_from_folder(folder)
-	# pages_data = pages_data[:50]
+	pages_data = pages_data[:1000]
 	random.shuffle(pages_data)
 
 	# get the features and the labels
@@ -24,6 +24,9 @@ def main(folder, number_of_blocks):
 	# reshape for the SCV
 	features = np.reshape(features, (labels.shape[0] * labels.shape[1] * labels.shape[2], 8))
 	labels = np.reshape(labels, labels.shape[0] * labels.shape[1] * labels.shape[2])
+
+	# Remove excess text examples from training set, in order to speed up
+	labels, features = even_labels(labels, features)
 
 	# split up in train-validate sets
 	cut_off = len(features) * 0.8
@@ -38,7 +41,9 @@ def main(folder, number_of_blocks):
 	for c in range(1, 6):
 		# I know this runs, but I do not know exactly how well .. 
 		# (training took too long)
-		classifier = svm.SVC(C=10**c, probability=1, class_weight='auto')
+		print "Learning classifier for C = %d" % c**10
+		classifier = svm.SVC(C=10**c, probability=1, class_weight='auto',
+			kernel='linear')
 		classifier.fit(train_features, train_labels)
 		predicted_labels = classifier.predict(validate_features)
 		#confusion_matrix, cp, mcp = bookfunctions.mcp(predicted_labels, \
