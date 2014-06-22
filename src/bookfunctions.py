@@ -187,6 +187,8 @@ def get_hog_locations_path(f, data, page_path, number_of_blocks):
 	Note: this is only necessary when some hog features are classified as image """
 
 	# If there are images in this page, get their location:
+	# TODO: Uncommenting this can cause problems due to faulty saved hog
+	# locations. This should be fixed sometime.
 	# if data.has_key('hog_locations') and \
 	# 	data['hog_locations'].has_key(number_of_blocks):
 	# 	return data['hog_locations'][number_of_blocks]
@@ -233,11 +235,10 @@ def get_labels_path(f, data, data_path, page_path, number_of_blocks, \
 
 	# otherwise we need the hog locations to calculate which features are a 0 (image)
 	hog_locations = get_hog_locations_path(f, data, page_path, number_of_blocks)
-
+	print "Shape hog locations: %s" % (str(np.array(hog_locations).shape))
 	if overlap:
 		hog_locations = concatenate_hog_locations(hog_locations, \
 			number_of_blocks)
-
 
 	# so we loop over the locations of the feature
 	for j, coordinate in enumerate(hog_locations):
@@ -254,6 +255,7 @@ def get_labels_path(f, data, data_path, page_path, number_of_blocks, \
 	return label
 
 def concatenate_hog_locations(locations, number_of_blocks):
+	print number_of_blocks
 	locations = np.array(locations).reshape(number_of_blocks + (2,))
 	new_locations = np.zeros((locations.shape[0]-1, locations.shape[1]-1,
 		locations.shape[2]))
@@ -342,6 +344,24 @@ def concatenate_features(features):
 # 	
 # 	
 
+def prepare_data(input_folder):
+	pages_data = get_pages_and_data_from_folder(input_folder)
+	pages_data = pages_data
+	#print pages_data
+
+	# TODO throwaway x % of the pages containing only text
+
+	train_pages_data = []
+	validate_pages_data = []
+
+	# take 20% for validate set
+	for i, p_d in enumerate(pages_data):
+		if i % 5 == 0:
+			validate_pages_data.append(p_d)
+		else:
+			train_pages_data.append(p_d)
+
+	return train_pages_data, validate_pages_data
 
 def mcp(predicted_labels, true_labels):
 	""" Creates a confusion matrix and the mean class precision per class
@@ -367,3 +387,13 @@ def mcp(predicted_labels, true_labels):
 	mcp = sum(cp.values())/float(len(confusion_matrix.keys()))
 	return confusion_matrix, cp, mcp
 
+def read_svm_data(path):
+	with open(path, 'r') as f:
+		n_folded_features = eval(f.read())
+		features = np.array([])
+		for n_fold in n_folded_features:
+			features = np.append(features, n_fold)
+		print features.shape, 'fdjakfajlf'
+		return features
+	print 'Something went terribly wrong in read svm data'
+	exit()
