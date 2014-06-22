@@ -26,7 +26,7 @@ np.set_printoptions(threshold=np.nan)
 class ImageLocalizer:
 	""" Localizes images in books, given some training data """
 
-	def __init__(self, input_folder, number_of_blocks, overlap=False, use_svm=True):
+	def __init__(self, input_folder, number_of_blocks, overlap=False, use_svm=False):
 		""" The input folder is the folder containing all the books. The
 		number_of_blocks are used for the hog features. cells_per_block denotes
 		how many cells are in a hog (cells_per_block is removed as parameter now)

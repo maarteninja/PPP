@@ -235,7 +235,6 @@ def get_labels_path(f, data, data_path, page_path, number_of_blocks, \
 
 	# otherwise we need the hog locations to calculate which features are a 0 (image)
 	hog_locations = get_hog_locations_path(f, data, page_path, number_of_blocks)
-	print "Shape hog locations: %s" % (str(np.array(hog_locations).shape))
 	if overlap:
 		hog_locations = concatenate_hog_locations(hog_locations, \
 			number_of_blocks)
@@ -255,7 +254,6 @@ def get_labels_path(f, data, data_path, page_path, number_of_blocks, \
 	return label
 
 def concatenate_hog_locations(locations, number_of_blocks):
-	print number_of_blocks
 	locations = np.array(locations).reshape(number_of_blocks + (2,))
 	new_locations = np.zeros((locations.shape[0]-1, locations.shape[1]-1,
 		locations.shape[2]))
