@@ -1,6 +1,7 @@
 import bookfunctions
 from sklearn.externals import joblib
 from pystruct.utils import SaveLogger
+import argparse
 
 def process_prediction(page_labels, hog_locations, output_folder):
 	for label, locations in zip(page_labels, hog_locations):
