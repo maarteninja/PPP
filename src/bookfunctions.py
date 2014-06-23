@@ -225,8 +225,8 @@ def get_hog_locations_pages_data(pages_data, number_of_blocks):
 	hog_locations = []
 	for page_path, data_path in pages_data:
 		with open(data_path) as f:
-			data = bookfunctions.get_data(f)
-			hog_locations.append(bookfunctions.get_hog_locations_path(f, data, \
+			data = get_data(f)
+			hog_locations.append(get_hog_locations_path(f, data, \
 				page_path, number_of_blocks))
 	return hog_locations
 
@@ -432,15 +432,14 @@ def get_features_from_pages_data(pages_data, number_of_blocks, overlap, svm_path
 	if overlap:
 		features = concatenate_features(features)
 
-	original_shape = features.shape
-	original_shape = original_shape[0:3] + (1, )
-	features = np.reshape(features, (features.shape[0] * features.shape[1] * \
-		features.shape[2], features.shape[3]))
-
 	# if we use an svm we load it and get the features from its decision_function
 	if svm_path:
+		original_shape = features.shape
+		original_shape = original_shape[0:3] + (1, )
+		features = np.reshape(features, (features.shape[0] * features.shape[1] * \
+			features.shape[2], features.shape[3]))
 		svm = joblib.load(svm_path)
-		features = svm.decision_function(features)
-
-	features.shape = original_shape + (1,)
+		features = np.array(svm.decision_function(features))
+		features.shape = original_shape
+		print str(features)
 	return features
