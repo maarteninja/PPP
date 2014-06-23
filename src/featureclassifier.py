@@ -38,7 +38,7 @@ def main(pages_data, number_of_blocks, overlap=True):
 		train_labels, validate_labels = train_validation_split(labels, i)
 		original_shape_validate = validate_labels.shape
 		# Save the validation labels order for the SSVM to train on
-		np.append(original_labels, validate_labels)
+		original_labels = np.append(original_labels, validate_labels)
 
 		# Reshape the features for the SVC
 		train_features = np.reshape(train_features, (train_features.shape[0] * train_features.shape[1] * \
@@ -65,7 +65,7 @@ def main(pages_data, number_of_blocks, overlap=True):
 		# Reshape predictions to the shape of labels (TODO: Check if this
 		# works!)
 		predictions.shape = original_shape_validate + (1,)
-		np.append(ssvm_features, predictions)
+		ssvm_features = np.append(ssvm_features, predictions)
 	with open(os.path.join('..', 'models', 'svm_output_overlap_%d.py' % \
 			int(overlap)), 'w') as f:
 		f.write(str(ssvm_features))
@@ -79,9 +79,8 @@ def main(pages_data, number_of_blocks, overlap=True):
 			validate_labels)
 		classifiers.append((f, classifier))
 	best_classifier = sorted(classifiers, key=lambda x: x[0], reverse=True)[0][1]
-	with open(os.path.join('..', 'models', 'svm_params_overlap_%d.py' % \
-			int(overlap)), 'w') as f:
-		f.write(str(best_classifier.get_params(deep=True)))
+	joblib.dump(best_classifier, os.path.join('..', 'models', 'svm_params_overlap_%d.py' % \
+		int(overlap)), 'w')
 	return ssvm_features
 
 def validate(c, train_features, train_labels, validate_features, validate_labels):
