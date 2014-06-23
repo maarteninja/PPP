@@ -213,12 +213,28 @@ def get_hog_locations_path(f, data, page_path, number_of_blocks):
 
 	return hog_locations
 
+def get_hog_locations_pages_data(pages_data, number_of_blocks):
+	"""returns a list of all hog location extracted  from pages_data. pages_data
+	is a tuple with a list of all the paths to all the image pages, and a list of
+	all the paths to the annotated data files
+
+	calls get_hog_locations_path"""
+
+	hog_locations = []
+	for page_path, data_path in pages_data:
+		with open(data_path) as f:
+			data = bookfunctions.get_data(f)
+			hog_locations.append(bookfunctions.get_hog_locations_path(f, data, \
+				page_path, number_of_blocks))
+	return hog_locations
+
 def get_hog_locations(f, data, annotated_image, input_folder, book, \
 		number_of_blocks):
 	""" constructs the path from annotated_image, input_folder and book and
 	calls get_hog_locations_path """
 	page_path = get_page_path(annotated, input_folder, book)
 	return get_hog_locations_path(f, data, page_path, number_of_blocks)
+
 
 def get_labels_path(f, data, data_path, page_path, number_of_blocks, \
 		overlap=False):
