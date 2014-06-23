@@ -31,16 +31,16 @@ def main(pages_data, number_of_blocks, overlap=True):
 	#labels = np.reshape(labels, labels.shape[0] * labels.shape[1] * labels.shape[2])
 
 	# This will contain the ssvm features in image-order
-	ssvm_features = np.array([])
+	ssvm_features = []
 	# This will contain the corresponding labels to the ssvm features
-	original_labels = np.array([])
+	original_labels = []
 
 	for i in range(4):
 		train_features, validate_features = train_validation_split(features, i)
 		train_labels, validate_labels = train_validation_split(labels, i)
 		original_shape_validate = validate_labels.shape
 		# Save the validation labels order for the SSVM to train on
-		original_labels = np.append(original_labels, validate_labels)
+		original_labels.extend(validate_labels)
 
 		# Reshape the features for the SVC
 		train_features = np.reshape(train_features, (train_features.shape[0] * train_features.shape[1] * \
@@ -64,10 +64,11 @@ def main(pages_data, number_of_blocks, overlap=True):
 		print "data for best classifier in iteration %d:" % (i)
 		print classifier.get_params(deep=True)
 		predictions = best_classifier.decision_function(validate_features)
-		# Reshape predictions to the shape of labels (TODO: Check if this
-		# works!)
 		predictions.shape = original_shape_validate + (1,)
-		ssvm_features = np.append(ssvm_features, predictions)
+		print "predictions shape: %s" % (str(predictions.shape))
+		ssvm_features.extend(predictions)
+	original_labels = np.array(original_labels)
+	ssvm_features = np.array(ssvm_features)
 	with open(os.path.join('..', 'models', 'svm_output_overlap_%d.py' % \
 			int(overlap)), 'w') as f:
 		#f.write(str(ssvm_features))
@@ -78,13 +79,13 @@ def main(pages_data, number_of_blocks, overlap=True):
 		pickle.dump(original_labels, f)
 
 	# Now evaluate one last time on the entire set:
-	for c in range(1, 6):
+	for c in range(-1, 3):
 		f, classifier = validate(c, train_features, train_labels, validate_features,
 			validate_labels)
 		classifiers.append((f, classifier))
 	best_classifier = sorted(classifiers, key=lambda x: x[0], reverse=True)[0][1]
 	joblib.dump(best_classifier, os.path.join('..', 'models', 'svm_params_overlap_%d.py' % \
-		int(overlap)), 'w')
+		int(overlap)))
 	return ssvm_features
 
 def validate(c, train_features, train_labels, validate_features, validate_labels):

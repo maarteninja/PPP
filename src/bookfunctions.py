@@ -9,6 +9,7 @@ from skimage.feature import hog
 from scipy import misc
 import os, glob
 import numpy as np
+import pickle
 from pystruct.utils import SaveLogger
 from numpy import array
 
@@ -403,11 +404,12 @@ def mcp(predicted_labels, true_labels):
 
 def read_svm_data(path):
 	with open(path, 'r') as f:
-		n_folded_features = eval(f.read())
-		features = np.array([])
-		for n_fold in n_folded_features:
-			features = np.append(features, n_fold)
-		print features.shape, 'fdjakfajlf'
-		return features
-	print 'Something went terribly wrong in read svm data'
-	exit()
+		return pickle.load(f)
+	# 	n_folded_features = eval(f.read())
+	# 	features = np.array([])
+	# 	for n_fold in n_folded_features:
+	# 		features = np.append(features, n_fold)
+	# 	print features.shape, 'fdjakfajlf'
+	# 	return features
+	# print 'Something went terribly wrong in read svm data'
+	# exit()

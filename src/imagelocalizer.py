@@ -57,10 +57,8 @@ class ImageLocalizer:
 			print "train set features size after concatenate %s" % \
 				(str(np.shape(self.train_features)))
 
-
-
-		self.train_labels = bookfunctions.get_all_labels(self.train_set, \
-			self.number_of_blocks, overlap=overlap)
+			self.train_labels = bookfunctions.get_all_labels(self.train_set, \
+				self.number_of_blocks, overlap=overlap)
 
 
 
@@ -209,5 +207,5 @@ if __name__ == '__main__':
 	#cells_per_block = tuple([int(a) for a in args['cells_per_block'].split('x')])
 
 	learner = ImageLocalizer(args['input_folder'], number_of_blocks,
-		overlap=True)
+		overlap=True, use_svm=True)
 	learner.validate()
