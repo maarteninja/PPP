@@ -5,6 +5,8 @@ import random
 import argparse
 import numpy as np
 import os
+import pickle
+from sklearn.externals import joblib
 
 from sklearn import svm
 
@@ -68,10 +70,12 @@ def main(pages_data, number_of_blocks, overlap=True):
 		ssvm_features = np.append(ssvm_features, predictions)
 	with open(os.path.join('..', 'models', 'svm_output_overlap_%d.py' % \
 			int(overlap)), 'w') as f:
-		f.write(str(ssvm_features))
+		#f.write(str(ssvm_features))
+		pickle.dump(ssvm_features, f)
 	with open(os.path.join('..', 'models', 'svm_output_overlap_%d_labels.py' % \
 			int(overlap)), 'w') as f:
-		f.write(str(original_labels))
+		# f.write(str(original_labels))
+		pickle.dump(original_labels, f)
 
 	# Now evaluate one last time on the entire set:
 	for c in range(1, 6):
@@ -147,4 +151,4 @@ if __name__ == '__main__':
 	input_folder = args['input_folder']
 	number_of_blocks = tuple([int(a) for a in args['number_of_blocks'].split('x')])
 	train_pages, validation_pages = bookfunctions.prepare_data(input_folder)
-	main(train_pages, number_of_blocks, overlap=False)
+	main(train_pages, number_of_blocks, overlap=True)
