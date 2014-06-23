@@ -5,9 +5,10 @@ import argparse
 
 def process_prediction(page_labels, hog_locations, output_folder):
 	for label, locations in zip(page_labels, hog_locations):
-		print label
-		print '-----'
-		print locations
+		#print label
+		#print '-----'
+		#print locations
+		
 
 if __name__ == '__main__':
 
@@ -50,6 +51,6 @@ if __name__ == '__main__':
 	hog_locations = bookfunctions.get_hog_locations_pages_data(pages_data, \
 		number_of_blocks)
 
-	process_predictions(predicted_labels, hog_locations, output_folder)
+	process_prediction(predicted_labels, hog_locations, output_folder)
 
 

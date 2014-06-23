@@ -224,7 +224,7 @@ def get_hog_locations_pages_data(pages_data, number_of_blocks):
 
 	hog_locations = []
 	for page_path, data_path in pages_data:
-		with open(data_path) as f:
+		with open(data_path, 'r+') as f:
 			data = get_data(f)
 			hog_locations.append(get_hog_locations_path(f, data, \
 				page_path, number_of_blocks))
