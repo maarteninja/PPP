@@ -37,7 +37,9 @@ class ImageLocalizer:
 		self.use_svm = use_svm
 		if use_svm:
 			self.svm_path = os.path.join('..', 'models', 
-				'svm_output_overlap_%d.py' % int(overlap))
+				'svm_params_overlap_%d.py' % int(overlap))
+		else:
+			self.svm_path = False
 
 		self.train_set, self.validation_set = bookfunctions.prepare_data(self.input_folder)
 		print "train set size %s, validation set size %s" % \
@@ -67,14 +69,6 @@ class ImageLocalizer:
 
 	def validate(self):
 		""" Tweaks C for the svc. self.validation_set is used for validating """
-
-		# validation_features = \
-		# 	bookfunctions.get_all_features(self.validation_set, \
-		# 	self.number_of_blocks)
-
-		# if self.overlap:
-		# 	validation_features = \
-		# 		bookfunctions.concatenate_features(validation_features)
 		validation_features = \
 			bookfunctions.get_features_from_pages_data(self.validation_set,
 			self.number_of_blocks, self.overlap, self.svm_path)
@@ -85,7 +79,7 @@ class ImageLocalizer:
 		print """validation set features size after concatenate %s. validation
 		labels size: %s""" % (str(np.shape(validation_features)), \
 			str(np.shape(validation_labels)))
-		best_mcp = 0
+		best_f = 0
 
 		# Count the number of class labels in order to set the class weights
 		class_weights = 1. / np.bincount(self.train_labels.flatten())
@@ -95,14 +89,14 @@ class ImageLocalizer:
 		print "class weights: %s" % str(class_weights)
 		self.crf = WeightedGridCRF(neighborhood=4, class_weight=class_weights)
 
-		for i in range(1, 6):
+		for i in range(1, 2):
 			c = 10**i
 			self.logger = SaveLogger(get_log_path('model', c, self.use_svm, \
-				self.overlap), save_every=1)
+				self.overlap), save_every=15)
 
 			print "validating with c = " + str(c)
 			temp_classifier = ssvm.OneSlackSSVM(model=self.crf, C=c, n_jobs=-1,
-				verbose=4, logger=self.logger, tol=.01)
+				verbose=3, logger=self.logger, tol=.1)
 
 			# Fit the classifier:
 			temp_classifier.fit(self.train_features, self.train_labels)
@@ -135,14 +129,14 @@ class ImageLocalizer:
 					Text: %f
 				""" % tuple(np.ndarray.flatten(np.array(prfs)))
 
-			mcp = (prfs[0][0] + prfs[0][1]) / 2.
+			f = prfs[2][0]
 
-			if mcp > best_mcp:
-				best_mcp = mcp
+			if f > best_f:
+				best_f = f
 				best_c = c
 				self.classifier = temp_classifier
 
-		print "Mean class precision for best c: %s" % str(best_mcp)
+		print "F-score for best c: %s" % str(best_f)
 		return best_c
 
 
@@ -213,5 +207,5 @@ if __name__ == '__main__':
 	#cells_per_block = tuple([int(a) for a in args['cells_per_block'].split('x')])
 
 	learner = ImageLocalizer(args['input_folder'], number_of_blocks,
-		overlap=True)
+		overlap=True, use_svm=True)
 	learner.validate()

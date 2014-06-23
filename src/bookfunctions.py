@@ -441,5 +441,4 @@ def get_features_from_pages_data(pages_data, number_of_blocks, overlap, svm_path
 		svm = joblib.load(svm_path)
 		features = np.array(svm.decision_function(features))
 		features.shape = original_shape
-		print str(features)
 	return features
