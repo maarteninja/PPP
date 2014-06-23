@@ -35,6 +35,9 @@ class ImageLocalizer:
 		self.number_of_blocks = number_of_blocks
 		self.overlap = overlap
 		self.use_svm = use_svm
+		if use_svm:
+			self.svm_path = os.path.join('..', 'models', 
+				'svm_output_overlap_%d.py' % int(overlap))
 
 		self.train_set, self.validation_set = bookfunctions.prepare_data(self.input_folder)
 		print "train set size %s, validation set size %s" % \
@@ -65,13 +68,16 @@ class ImageLocalizer:
 	def validate(self):
 		""" Tweaks C for the svc. self.validation_set is used for validating """
 
-		validation_features = \
-			bookfunctions.get_all_features(self.validation_set, \
-			self.number_of_blocks)
+		# validation_features = \
+		# 	bookfunctions.get_all_features(self.validation_set, \
+		# 	self.number_of_blocks)
 
-		if self.overlap:
-			validation_features = \
-				bookfunctions.concatenate_features(validation_features)
+		# if self.overlap:
+		# 	validation_features = \
+		# 		bookfunctions.concatenate_features(validation_features)
+		validation_features = \
+			bookfunctions.get_features_from_pages_data(self.validation_set,
+			self.number_of_blocks, self.overlap, self.svm_path)
 
 		validation_labels = bookfunctions.get_all_labels(self.validation_set, \
 			self.number_of_blocks, overlap=self.overlap)
