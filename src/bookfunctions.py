@@ -5,6 +5,7 @@ image localizer """
 
 
 from skimage import color
+from sklearn.externals import joblib
 from skimage.feature import hog
 from scipy import misc
 import os, glob
@@ -319,6 +320,11 @@ def get_all_features(pages_data, number_of_blocks):
 	features = np.array(features)
 	return features
 
+def get_pages_and_data_from_book(book_path):
+	raw = glob.glob(os.path.join(book_path, 'raw', '*.png'))
+	annotated = glob.glob(os.path.join(book_path, 'annotated', '*.py'))
+	return zip(sorted(raw),sorted(annotated))
+
 def get_pages_and_data_from_folder(folder):
 	"""finds all paths to the pages, and all the paths to the annotated data
 	files in the folder. It searches to the folder for book folders."""
@@ -426,8 +432,12 @@ def get_features_from_pages_data(pages_data, number_of_blocks, overlap, svm_path
 	if overlap:
 		features = concatenate_features(features)
 
+	features = np.reshape(features, (features.shape[0] * features.shape[1] * \
+		features.shape[2], features.shape[3]))
+
 	# if we use an svm we load it and get the features from its decision_function
 	if svm_path:
+
 		svm = joblib.load(svm_path)
 		features = svm.decision_function(features)
 	return features
