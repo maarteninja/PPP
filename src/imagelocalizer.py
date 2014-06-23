@@ -26,7 +26,7 @@ np.set_printoptions(threshold=np.nan)
 class ImageLocalizer:
 	""" Localizes images in books, given some training data """
 
-	def __init__(self, input_folder, number_of_blocks, overlap=False, use_svm=False):
+	def __init__(self, input_folder, number_of_blocks, overlap=True, use_svm=False):
 		""" The input folder is the folder containing all the books. The
 		number_of_blocks are used for the hog features. cells_per_block denotes
 		how many cells are in a hog (cells_per_block is removed as parameter now)
@@ -41,6 +41,9 @@ class ImageLocalizer:
 			(str(np.shape(self.train_set)), str(np.shape(self.validation_set)))
 
 		if use_svm:
+			self.train_labels = \
+				bookfunctions.read_svm_data('../models/svm_output_overlap_%d_labels.py'\
+					% int(overlap))
 			self.train_features = \
 				bookfunctions.read_svm_data('../models/svm_output_overlap_%d.py'\
 					% int(overlap))
@@ -206,5 +209,5 @@ if __name__ == '__main__':
 	#cells_per_block = tuple([int(a) for a in args['cells_per_block'].split('x')])
 
 	learner = ImageLocalizer(args['input_folder'], number_of_blocks,
-		overlap=False)
+		overlap=True)
 	learner.validate()

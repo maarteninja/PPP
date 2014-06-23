@@ -24,23 +24,37 @@ def main(pages_data, number_of_blocks, overlap=True):
 		overlap=overlap)
 
 	# reshape for the SCV
-	# size of hog features = 4*8
-	features = np.reshape(features, (features.shape[0] * features.shape[1] * \
-		features.shape[2], features.shape[3])) # <- changed from 32 to f.shape[3]
-	labels = np.reshape(labels, labels.shape[0] * labels.shape[1] * labels.shape[2])
+	#features = np.reshape(features, (features.shape[0] * features.shape[1] * \
+	#	features.shape[2], features.shape[3])) # <- changed from 32 to f.shape[3]
+	#labels = np.reshape(labels, labels.shape[0] * labels.shape[1] * labels.shape[2])
 
-	ssvm_features = []
+	# This will contain the ssvm features in image-order
+	ssvm_features = np.array([])
+	# This will contain the corresponding labels to the ssvm features
+	original_labels = np.array([])
 
 	for i in range(4):
 		train_features, validate_features = train_validation_split(features, i)
 		train_labels, validate_labels = train_validation_split(labels, i)
+		original_shape_validate = validate_labels.shape
+		# Save the validation labels order for the SSVM to train on
+		np.append(original_labels, validate_labels)
+
+		# Reshape the features for the SVC
+		train_features = np.reshape(train_features, (train_features.shape[0] * train_features.shape[1] * \
+			train_features.shape[2], train_features.shape[3])) # <- changed from 32 to f.shape[3]
+		validate_features = np.reshape(validate_features, (validate_features.shape[0] * validate_features.shape[1] * \
+			validate_features.shape[2], validate_features.shape[3])) # <- changed from 32 to f.shape[3]
+		train_labels = np.reshape(train_labels, train_labels.shape[0] * train_labels.shape[1] * train_labels.shape[2])
+		validate_labels = np.reshape(validate_labels, validate_labels.shape[0] * validate_labels.shape[1] * validate_labels.shape[2])
+
 		print 'features shape:', validate_features.shape
 		print 'labels shape:', validate_labels.shape
 
 		classifiers = []
 
 		# try out some values for c
-		for c in range(1, 6):
+		for c in range(-1, 3):
 			f, classifier = validate(c, train_features, train_labels, validate_features,
 				validate_labels)
 			classifiers.append((f, classifier))
@@ -48,14 +62,16 @@ def main(pages_data, number_of_blocks, overlap=True):
 		print "data for best classifier in iteration %d:" % (i)
 		print classifier.get_params(deep=True)
 		predictions = best_classifier.decision_function(validate_features)
-		# Reshape predictions to the shape of labels (FIXME: This doesn't work
-		# as expected. The goal of this was to reshape to the ssvm-feature
-		# labels.
-		predictions.shape = validate_labels.shape + (1,)
-		ssvm_features.append(predictions)
+		# Reshape predictions to the shape of labels (TODO: Check if this
+		# works!)
+		predictions.shape = original_shape_validate + (1,)
+		np.append(ssvm_features, predictions)
 	with open(os.path.join('..', 'models', 'svm_output_overlap_%d.py' % \
 			int(overlap)), 'w') as f:
 		f.write(str(ssvm_features))
+	with open(os.path.join('..', 'models', 'svm_output_overlap_%d_labels.py' % \
+			int(overlap)), 'w') as f:
+		f.write(str(original_labels))
 
 	# Now evaluate one last time on the entire set:
 	for c in range(1, 6):
