@@ -26,7 +26,7 @@ if __name__ == '__main__':
 	input_folder = args['input_folder']
 	number_of_blocks = tuple([int(a) for a in args['number_of_blocks'].split('x')])
 	svm_path = '../models/svm_params_overlap_1.py' # if None or '', then nu svm is used
-	ssvm_path = ''
+	ssvm_path = '../models/model_c_10_svm_0_overlap_1.py'
 	overlap = True
 	output_folder = '../output'
 
@@ -40,6 +40,7 @@ if __name__ == '__main__':
 	logger = SaveLogger(ssvm_path)
 	ssvm = logger.load()
 	predicted_labels = ssvm.predict(features)
+	exit()
 
 	### now actually obtain the image from the classified features
 

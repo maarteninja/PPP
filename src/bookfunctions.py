@@ -432,12 +432,15 @@ def get_features_from_pages_data(pages_data, number_of_blocks, overlap, svm_path
 	if overlap:
 		features = concatenate_features(features)
 
+	original_shape = features.shape
+	original_shape = original_shape[0:3] + (1, )
 	features = np.reshape(features, (features.shape[0] * features.shape[1] * \
 		features.shape[2], features.shape[3]))
 
 	# if we use an svm we load it and get the features from its decision_function
 	if svm_path:
-
 		svm = joblib.load(svm_path)
 		features = svm.decision_function(features)
+
+	features.shape = original_shape + (1,)
 	return features
