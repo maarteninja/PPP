@@ -10,9 +10,20 @@ def process_prediction(page_labels, hog_locations, output_folder):
 
 if __name__ == '__main__':
 
+	parser = argparse.ArgumentParser()
+	parser.add_argument("input_folder", type=str,
+		help="""The folder containing (annotated) books.""")
+	parser.add_argument('-n', "--number-of-blocks", type=str, default='20x10', required=False,
+		help="""The number of hogs that are created per page. A vertical and
+		horizontal dimension should be given as follows: VxH, where V is the
+		vertical number of cells, and H the horizontal number of cells.
+		The default is 20x10""")
+	args = vars(parser.parse_args())
+
+
 	# input parameters
-	input_folder = '../test_data2/lesSixVoyagesDeJeanBaptisteTaverni'
-	number_of_blocks = [20, 10]
+	input_folder = args['input_folder']
+	number_of_blocks = tuple([int(a) for a in args['number_of_blocks'].split('x')])
 	svm_path = '../models/svm_params_overlap_1.py' # if None or '', then nu svm is used
 	overlap = True
 	output_folder = '../output'
