@@ -207,5 +207,5 @@ if __name__ == '__main__':
 	#cells_per_block = tuple([int(a) for a in args['cells_per_block'].split('x')])
 
 	learner = ImageLocalizer(args['input_folder'], number_of_blocks,
-		overlap=True, use_svm=True)
+		overlap=True)
 	learner.validate()
