@@ -13,23 +13,15 @@ if __name__ == '__main__':
 	# input parameters
 	input_folder = '../test_data2/lesSixVoyagesDeJeanBaptisteTaverni'
 	number_of_blocks = [20, 10]
-	svm_path = '../models/svm.pickle' # if None or '', then nu svm is used
-	overlap = False
+	svm_path = '../models/svm_params_overlap_1.py' # if None or '', then nu svm is used
+	overlap = True
 	output_folder = '../output'
 
 	# read all images from input folder
 	pages_data = bookfunctions.get_pages_and_data_from_folder(input_folder)
 
-	# get (or read from cache) all hog features
-	features = bookfunctions.get_all_features(pages_data, number_of_blocks)
-	# and depending on overlap, concatenate 'em or not
-	if overlap:
-		features = bookfunctions.concatenate_features(features)
-
-	# if we use an svm we load it and get the features from its decision_function
-	if svm_path:
-		svm = joblib.load(svm_path)
-		features =- svm.decision_function(features)
+	features = bookfunctions.get_features_from_pages_data(pages_data, \
+		number_of_blocks, overlap, svm_path)
 
 	# put features in ssvm
 	logger = SaveLogger(get_log_path(ssvm_path))

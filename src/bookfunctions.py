@@ -413,3 +413,21 @@ def read_svm_data(path):
 	# 	return features
 	# print 'Something went terribly wrong in read svm data'
 	# exit()
+
+def get_features_from_pages_data(pages_data, number_of_blocks, overlap, svm_path):
+	""" calculates (or reads from cache) all the hog features with the selected
+	parameters. The svm_path should be None if no svm should be used as
+	preliminary step for the ssvm is used. Otherwise it is the path to the
+	joblib stored file.
+	"""
+	# get (or read from cache) all hog features
+	features = get_all_features(pages_data, number_of_blocks)
+	# and depending on overlap, concatenate 'em or not
+	if overlap:
+		features = concatenate_features(features)
+
+	# if we use an svm we load it and get the features from its decision_function
+	if svm_path:
+		svm = joblib.load(svm_path)
+		features = svm.decision_function(features)
+	return features
