@@ -16,6 +16,7 @@ from skimage import data, color, exposure
 
 from sklearn import svm
 from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
+from sklearn.externals import joblib
 
 np.set_printoptions(threshold=np.nan)
 
@@ -27,61 +28,62 @@ class PageClassifier:
 		how many cells are in a hog """
 		self.input_folder = input_folder
 		self.number_of_blocks = number_of_blocks
-		books = os.listdir(self.input_folder)
-		books = bookfunctions.remove_unannotated_books(input_folder, books)
-		# Randomize result!
-		random.shuffle(books)
-		# Take 80 percent as train set:
-		train_end = int(len(books)*.7)
-		validation_end = int(len(books)*.8)
-		# Check if train_end is not the same as len(books)-1: Then we wouldn't
-		# have a test set
-		if train_end == len(books) - 1:
-			train_end = train_end - 2
-		if validation_end == len(books) - 1:
-			train_end = train_end - 1
-		self.train_set = books[0:train_end]
-		# For now, validate with 1 book. Yolo.
-		self.validation_set = books[train_end:validation_end]
-		self.test_set = books[validation_end:len(books)]
-		#self.train_set = ['naauwKeurigeAanteekeningen']
-		#self.test_set = ['journaelOfDaghRegister']
-		self.all_descriptors = []
-		self.all_labels = []
+		self.train_set, self.validation_set = bookfunctions.prepare_data(self.input_folder)
+		print "train set size %s, validation set size %s" % \
+			(str(np.shape(self.train_set)), str(np.shape(self.validation_set)))
 
-	def train(self):
-		""" Trains the svm. self.train_set is used as the training set """
-		for book in self.train_set:
-			# read its descriptors and labels
-			print "Calculating data for book %s" % (book)
-			descriptors, labels = self.read_book_data(book)
-			self.all_descriptors.extend(descriptors)
-			self.all_labels.extend(labels)
+		self.train_features = bookfunctions.get_all_features(self.train_set, \
+			self.number_of_blocks)
+		s = self.train_features.shape
+		# Reshape all features to 1 feature vector
+		self.train_features.shape = (s[0], s[1] * s[2] * s[3])
+		self.train_labels = bookfunctions.get_all_page_labels(self.train_set, \
+			self.number_of_blocks, overlap=False)
+		self.validation_features = bookfunctions.get_all_features(self.validation_set, \
+			self.number_of_blocks)
+		s = self.validation_features.shape
+		# Reshape all features to 1 feature vector
+		self.validation_features.shape = (s[0], s[1] * s[2] * s[3])
+		self.validation_labels = bookfunctions.get_all_page_labels(self.validation_set, \
+			self.number_of_blocks, overlap=False)
 
 	def validate(self):
 		""" Tweaks C for the svc. self.validation_set is used for validating """
-		best_mcp = 0
-		validation_descriptors = []
-		validation_real_labels = []
-		for book in self.validation_set:
-			# read its descriptors and labels
-			print "Calculating data for book %s" % (book)
-			descriptors, labels = self.read_book_data(book)
-			validation_descriptors.extend(descriptors)
-			validation_real_labels.extend(labels)
-		for c in range(-1, 6):
+		best_f2 = 0
+		for c in range(1, 6):
 			print "validating with c = " + str(10**c)
 			temp_classifier = svm.SVC(C=10**c, probability=1, class_weight='auto')
 			# Fit the classifier:
-			temp_classifier.fit(self.all_descriptors, self.all_labels)
-			validation_predicted_labels = temp_classifier.predict(validation_descriptors)
-			confusion_matrix, cp, mcp = self.mcp(validation_predicted_labels, \
-				validation_real_labels)
-			if mcp > best_mcp:
-				best_mcp = mcp
-				best_c = c
+			temp_classifier.fit(self.train_features, self.train_labels)
+			validation_predicted_labels = temp_classifier.predict(self.validation_features)
+			prfs = precision_recall_fscore_support(self.validation_labels, \
+				validation_predicted_labels, beta=2)
+			print """
+				Precision:
+					Image: %f
+					Text: %f
+					Bagger: %f
+				Recall:
+					Image: %f
+					Text: %f
+					Bagger: %f
+				F2-score:
+					Image: %f
+					Text: %f
+					Bagger: %f
+				Support:
+					Image: %f
+					Text: %f
+					Bagger: %f
+				""" % tuple(np.ndarray.flatten(np.array(prfs)))
+			f2 = prfs[2][0]
+			if f2 > best_f2:
+				best_f2 = f2
+				best_c = 10**c
 				self.classifier = temp_classifier
-		print "Mean class presision for best c: %s" % str(best_mcp)
+		print "F score for best c %d: %f2" % (best_c, best_f2)
+		joblib.dump(self.classifier, 
+			os.path.join('..', 'models', 'classifier_svm_params.py'))
 		return best_c
 
 	def test(self):
@@ -115,114 +117,6 @@ class PageClassifier:
 				Text: %f
 			""" % tuple(np.ndarray.flatten(np.array(prfs)))
 
-	def mcp(self, predicted_labels, true_labels):
-		""" Creates a confusion matrix and the mean class precision per class
-		"""
-		confusion_matrix = {}
-		# Create confusion matrix
-		for label in ['text', 'containing']:
-			confusion_matrix[label] = {'correct': 0, 'wrong': 0}
-		# fill confusion matrix
-		for i in range(1, len(true_labels)):
-			if(true_labels[i] == predicted_labels[i]):
-				confusion_matrix[true_labels[i]]['correct'] += 1
-			else:
-				confusion_matrix[true_labels[i]]['wrong'] += 1
-		# Create dictionary that will contain the mcp per class label
-		cp = {}
-		for label in confusion_matrix.keys():
-			correct = confusion_matrix[label]['correct']
-			wrong = confusion_matrix[label]['wrong']
-			cp[label] = float(correct)/(float(correct+wrong))
-		mcp = sum(cp.values())/float(len(confusion_matrix.keys()))
-		return confusion_matrix, cp, mcp
-
-	def calculate_and_show_hog(self, image):
-		image = color.rgb2gray(image)
-		pixels_per_cell = self.calculate_pixels_per_cell(image)
-		fd, hog_image = hog(image, orientations=8,
-			pixels_per_cell=pixels_per_cell, (1, 1),
-			visualise=True)
-
-		fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4))
-
-		ax1.axis('off')
-		ax1.imshow(image, cmap=plt.cm.gray)
-		ax1.set_title('Input image')
-
-		# Rescale histogram for better display
-		hog_image_rescaled = exposure.rescale_intensity(hog_image, in_range=(0,
-			0.02))
-
-		ax2.axis('off')
-		ax2.imshow(hog_image_rescaled, cmap=plt.cm.gray)
-		ax2.set_title('Histogram of Oriented Gradients')
-		plt.show()
-		return fd
-
-	def calculate_hog(self, image):
-		pixels_per_cell = self.calculate_pixels_per_cell(image)
-		image = color.rgb2gray(image)
-		return hog(image, orientations=8, pixels_per_cell=pixels_per_cell,
-			(1, 1))
-
-	def calculate_pixels_per_cell(self, image):
-		s = np.shape(image)
-		pixels_vertical = int(s[0]/self.number_of_blocks[0])
-		pixels_horizontal = int(s[1]/self.number_of_blocks[1])
-		return (pixels_horizontal, pixels_vertical)
-
-	def read_book_data(self, book):
-		""" Read the hog features from the image files, and the class from the
-		python files corresponding to the book pages in the directory 'book'. A
-		folder named 'annotated' needs to be present, with 500_<page>.py as
-		annotated data for the image raw/500_<page>.png 
-		""" 
-		annotated_images = glob.glob(self.input_folder + os.sep + book + os.sep + 'annotated' + os.sep + '*.py')
-		# This array will hold the HOG feature descriptors for each class
-		descriptors= []
-		# This array will hold the labels of the images. Each index in this array
-		# corresponds to the same index in descriptors. The two of them together
-		# form the input for a classifier
-		labels = []
-
-		for annotated_image in annotated_images:
-			with open(annotated_image, 'r+') as f:
-				data = eval(f.read())
-				labels.append(data['type']);
-				# A two-tuple of blocks and cells will be used for saving and
-				# loading this configuration's data
-				block_and_cells = (self.number_of_blocks, (1, 1))
-				# Check if the needed hog features are already saved:
-				if data.has_key('hog_features') and \
-					data['hog_features'].has_key(block_and_cells):
-					current_descriptor = data['hog_features'][block_and_cells]
-				else:
-					# Find the image file
-					base = os.path.basename(annotated_image)
-					name = os.path.splitext(base)[0]
-					image_name = self.input_folder + os.sep + book + os.sep + \
-						'raw' + os.sep + name + '.png'
-					image = misc.imread(image_name)
-					current_descriptor = self.calculate_hog(image)
-					# If needed, create the dictionary in 'hog_features'
-					if not(data.has_key('hog_features')) or \
-						type(data['hog_features']) != dict:
-						data['hog_features'] = {}
-					data['hog_features'][block_and_cells] = current_descriptor
-					# write the new data to the original file:
-					f.seek(0)
-					f.write(str(data))
-					# Remove any remaining text from the previous file contents
-					f.truncate()
-				descriptors.append(current_descriptor)
-
-		# Replace 'bagger' tags to 'text':
-		for i in range(len(labels)):
-			if labels[i] == 'bagger':
-				labels[i] = 'text'
-		return descriptors, labels
-
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
 	parser.add_argument("input_folder", type=str,
@@ -238,6 +132,4 @@ if __name__ == '__main__':
 	number_of_blocks = tuple([int(a) for a in args['number_of_blocks'].split('x')])
 
 	learner = PageClassifier(args['input_folder'], number_of_blocks)
-	learner.train()
 	learner.validate()
-	learner.test()

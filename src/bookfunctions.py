@@ -308,6 +308,23 @@ def get_all_labels(pages_data, number_of_blocks, overlap=False):
 				number_of_blocks, overlap=overlap))
 	return np.array(labels)
 
+def get_all_page_labels(pages_data, number_of_blocks, overlap=False):
+	""" returns all labels for the pages stored in pages_data. pages_data is
+	a tuple with a list of all the paths to all the image pages, and a list of
+	all the paths to the annotated data files"""
+	labels = []
+	for page_path, data_path in pages_data:
+		with open(data_path, 'r+') as f:
+			data = get_data(f)
+			#labels.append(0 if data['type'] == 'containing' else 1)
+			if data['type'] == 'containing':
+				labels.append(0)
+			elif data['type'] == 'text':
+				labels.append(1)
+			else:
+				labels.append(2)
+	return np.array(labels)
+
 def get_all_features(pages_data, number_of_blocks):
 	""" returns all features for the pages stored in page_data. pages_date is
 	a tuple with a list of all the paths to all the images pages, and a list of
@@ -483,3 +500,6 @@ def add_labels_to_boxes(boxes, labels):
 				boxes[n][i][j].append(labels[n][i][j])
 	print np.shape(boxes)
 	return boxes
+
+def load_page_classifier(svm_path):
+	return joblib.load(svm_path)

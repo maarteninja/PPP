@@ -26,7 +26,8 @@ np.set_printoptions(threshold=np.nan)
 class ImageLocalizer:
 	""" Localizes images in books, given some training data """
 
-	def __init__(self, input_folder, number_of_blocks, overlap=True, use_svm=False):
+	def __init__(self, input_folder, number_of_blocks, overlap=True,
+		use_svm=False, use_page_classifier=False):
 		""" The input folder is the folder containing all the books. The
 		number_of_blocks are used for the hog features. cells_per_block denotes
 		how many cells are in a hog (cells_per_block is removed as parameter now)
@@ -35,6 +36,7 @@ class ImageLocalizer:
 		self.number_of_blocks = number_of_blocks
 		self.overlap = overlap
 		self.use_svm = use_svm
+		self.use_page_classifier = use_page_classifier
 		if use_svm:
 			self.svm_path = os.path.join('..', 'models', 
 				'svm_params_overlap_%d.py' % int(overlap))
@@ -64,14 +66,24 @@ class ImageLocalizer:
 
 			self.train_labels = bookfunctions.get_all_labels(self.train_set, \
 				self.number_of_blocks, overlap=overlap)
-
-
+		if use_page_classifier:
+			# If on, use a page classifier in order to toss out the text pages
+			self.page_classifier = \
+				bookfunctions.load_page_classifier(os.path.join('..', 'models',
+					'classifier_svm_params.py'))
 
 	def validate(self):
 		""" Tweaks C for the svc. self.validation_set is used for validating """
 		validation_features = \
 			bookfunctions.get_features_from_pages_data(self.validation_set,
 			self.number_of_blocks, self.overlap, self.svm_path)
+
+		if self.use_page_classifier:
+			flat_validation_features = validation_features
+			s = validation_features.shape
+			# Reshape all features to 1 feature vector
+			flat_validation_features.shape = (s[0], s[1] * s[2] * s[3])
+
 
 		validation_labels = bookfunctions.get_all_labels(self.validation_set, \
 			self.number_of_blocks, overlap=self.overlap)
@@ -92,7 +104,7 @@ class ImageLocalizer:
 		for i in range(1, 5):
 			c = 10**i
 			self.logger = SaveLogger(get_log_path('model', c, self.use_svm, \
-				self.overlap), save_every=15)
+				self.overlap, self.use_page_classifier), save_every=15)
 
 			print "validating with c = " + str(c)
 			temp_classifier = ssvm.OneSlackSSVM(model=self.crf, C=c, n_jobs=-1,
@@ -101,7 +113,7 @@ class ImageLocalizer:
 			# Fit the classifier:
 			temp_classifier.fit(self.train_features, self.train_labels)
 
-			# Write the svm parameters!
+			# Write the ssvm parameters!
 			with open(get_log_path('param', c, self.use_svm, self.overlap), 'w')\
 					as f:
 				f.write(str(temp_classifier.get_params()))
@@ -110,6 +122,19 @@ class ImageLocalizer:
 
 			validation_predicted_labels = temp_classifier.predict(validation_features)
 			validation_predicted_labels = np.array(validation_predicted_labels)
+			
+			if self.use_page_classifier:
+				# Get the page predictions, which have pretttyy high accuracy
+				validation_predicted_pages = self.page_classifier.predict( \
+					flat_validation_features)
+				for i, page in enumerate(validation_predicted_labels):
+					if page != 0:
+						# Replace any page that has no images according to the
+						# page classifier, with a page that is fully classified
+						# as 1.
+						validation_predicted_labels[i] = \
+							np.ones((validation_predicted_labels.shape[1],
+								validation_predicted_labels.shape[2]))
 
 			print "C = %d" % (c)
 			prfs = precision_recall_fscore_support(validation_labels.flatten(), \
@@ -180,9 +205,9 @@ class ImageLocalizer:
 		# bookfunctions.get_bounding_boxes_from_labels(test_predicted_labels, \
 		# 	page_paths)
 
-def get_log_path(name, c, use_svm, overlap):
-	return os.path.join('..', 'models', '%s_c_%d_svm_%d_overlap_%d.py' % \
-		(name, c, int(use_svm), int(overlap)))
+def get_log_path(name, c, use_svm, overlap, page_classifier):
+	return os.path.join('..', 'models', '%s_c_%d_svm_%d_overlap_%d_page_%d.py' % \
+		(name, c, int(use_svm), int(overlap), int(page_classifier)))
 
 
 if __name__ == '__main__':
@@ -195,17 +220,11 @@ if __name__ == '__main__':
 		vertical number of cells, and H the horizontal number of cells.
 		The default is 20x10""")
 
-	# TODO: fix cells per block as argument, EVERYWHERE
-	#parser.add_argument('-b', "--cells-per-block", type=str, default='2x2', required=False,
-	#	help="""The number of cells each block is built up from. Format is again
-	#	VxH
-	#	The default is 2x2""")
-
 	args = vars(parser.parse_args())
 
 	number_of_blocks = tuple([int(a) for a in args['number_of_blocks'].split('x')])
 	#cells_per_block = tuple([int(a) for a in args['cells_per_block'].split('x')])
 
 	learner = ImageLocalizer(args['input_folder'], number_of_blocks,
-		overlap=True, use_svm=True)
+		overlap=True, use_svm=True, use_page_classifier=True)
 	learner.validate()
