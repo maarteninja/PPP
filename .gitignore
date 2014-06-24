@@ -11,4 +11,5 @@ report/*.pdf
 *.out
 *.snm
 *.toc
-
+*.bbl
+*.blg
