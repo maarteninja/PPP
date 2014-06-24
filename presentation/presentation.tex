@@ -63,8 +63,10 @@
 % Briefly explain HOG features
 \slide{Features}
 {
-	\begin{block}{Hog Features}
-	Steps for computing Hog Features\cite{dalal2005histograms}:
+	\begin{block}{Histogram of Oriented Gradients (HOG)}
+		HOG features contain the amount of gradients in a certain image patch.
+	\end{block}
+	\begin{block}{Steps for computing HOG Features\cite{dalal2005histograms}}
 	\begin{enumerate}
 		\item Global image normalisation
 		\item Compute the gradient images
@@ -74,7 +76,7 @@
 	\end{enumerate}
 	\end{block}
 }
-\begin{frame}[allowframebreaks]{Hog Examples}
+\begin{frame}[allowframebreaks]{HOG Examples}
 	\includegraphics[trim=200px 0px 100px 0px, clip=true, width=.8\paperwidth]{resources/text1}\\
 \framebreak
 	\includegraphics[trim=200px 0px 100px 0px, clip=true, width=.8\paperwidth]{resources/image1}\\
@@ -82,12 +84,27 @@
 	\includegraphics[trim=200px 0px 100px 0px, clip=true, width=.8\paperwidth]{resources/text_and_image1}
 \end{frame}
 
-
 \subsection{Classification}
 % Explain SVM i.c.w. HOG features for pages
-
+\slide{Classification using SVM}
+{
+	\begin{itemize}
+		\item All books are annotated with having either ``text'', ``images'' or
+		``nothing useful'' on it. Images get bounding boxes, which we will later
+		use.
+		\item Calculate 5x5 HOG features per page
+		\item Train a Support Vector Machine (SVM) on these feature vectors and
+		labels
+		\item Predict whether a page contains an image based on this SVM
+	\end{itemize}
+}
 \subsection{Localization}
 % Explain CRF and SSVM
+\slide{Conditional Random Fields}
+{
+	
+	\includegraphics[width=.5\paperwidth]{resources/crf}
+}
 
 \section{Results}
 % Show results for classification
