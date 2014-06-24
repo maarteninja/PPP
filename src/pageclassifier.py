@@ -21,7 +21,7 @@ np.set_printoptions(threshold=np.nan)
 
 class PageClassifier:
 
-	def __init__(self, input_folder, number_of_blocks, cells_per_block):
+	def __init__(self, input_folder, number_of_blocks):
 		""" The input folder is the folder containing all the books. The
 		number_of_blocks are used for the hog features. cells_per_block denotes
 		how many cells are in a hog """
@@ -141,7 +141,7 @@ class PageClassifier:
 		image = color.rgb2gray(image)
 		pixels_per_cell = self.calculate_pixels_per_cell(image)
 		fd, hog_image = hog(image, orientations=8,
-			pixels_per_cell=pixels_per_cell, cells_per_block=(1, 1),
+			pixels_per_cell=pixels_per_cell, (1, 1),
 			visualise=True)
 
 		fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4))
@@ -164,7 +164,7 @@ class PageClassifier:
 		pixels_per_cell = self.calculate_pixels_per_cell(image)
 		image = color.rgb2gray(image)
 		return hog(image, orientations=8, pixels_per_cell=pixels_per_cell,
-			cells_per_block=(1, 1))
+			(1, 1))
 
 	def calculate_pixels_per_cell(self, image):
 		s = np.shape(image)
@@ -192,7 +192,7 @@ class PageClassifier:
 				labels.append(data['type']);
 				# A two-tuple of blocks and cells will be used for saving and
 				# loading this configuration's data
-				block_and_cells = (self.number_of_blocks, cells_per_block)
+				block_and_cells = (self.number_of_blocks, (1, 1))
 				# Check if the needed hog features are already saved:
 				if data.has_key('hog_features') and \
 					data['hog_features'].has_key(block_and_cells):
@@ -232,18 +232,12 @@ if __name__ == '__main__':
 		horizontal dimension should be given as follows: VxH, where V is the
 		vertical number of cells, and H the horizontal number of cells.
 		The default is 5x5""")
-	# FIXME: Is never used!
-	parser.add_argument('-b', "--cells-per-block", type=str, default='2x2', required=False,
-		help="""The number of cells each block is built up from. Format is again
-		VxH
-		The default is 2x2""")
 	
 	args = vars(parser.parse_args())
 	
 	number_of_blocks = tuple([int(a) for a in args['number_of_blocks'].split('x')])
-	cells_per_block = tuple([int(a) for a in args['cells_per_block'].split('x')])
 
-	learner = PageClassifier(args['input_folder'], number_of_blocks, cells_per_block)
+	learner = PageClassifier(args['input_folder'], number_of_blocks)
 	learner.train()
 	learner.validate()
 	learner.test()
