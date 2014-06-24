@@ -63,8 +63,24 @@
 % Briefly explain HOG features
 \slide{Features}
 {
-	
+	\begin{block}{Hog Features}
+	Steps for computing Hog Features\cite{dalal2005histograms}:
+	\begin{enumerate}
+		\item Global image normalisation
+		\item Compute the gradient images
+		\item Compute gradient histograms in 8 directions
+		\item Normalise across blocks
+		\item Flatten into a feature vector
+	\end{enumerate}
+	\end{block}
 }
+\begin{frame}[allowframebreaks]{Hog Examples}
+	\includegraphics[trim=85px 0cm 0cm 0cm, clip=true, width=.8\paperwidth]{resources/text1}\\
+\framebreak
+	\includegraphics[width=.8\paperwidth]{resources/image1}\\
+\framebreak
+	\includegraphics[width=.8\paperwidth]{resources/text_and_image1}
+\end{frame}
 
 
 \subsection{Classification}
@@ -89,4 +105,9 @@
 
 \slide{Questions and Discussion}
 {}
+\begin{frame}[allowframebreaks]
+        \frametitle{References}
+        \bibliographystyle{amsalpha}
+        \bibliography{references.bib}
+\end{frame}
 \end{document}
