@@ -89,14 +89,14 @@ class ImageLocalizer:
 		print "class weights: %s" % str(class_weights)
 		self.crf = WeightedGridCRF(neighborhood=4, class_weight=class_weights)
 
-		for i in range(1, 2):
+		for i in range(1, 5):
 			c = 10**i
 			self.logger = SaveLogger(get_log_path('model', c, self.use_svm, \
 				self.overlap), save_every=15)
 
 			print "validating with c = " + str(c)
 			temp_classifier = ssvm.OneSlackSSVM(model=self.crf, C=c, n_jobs=-1,
-				verbose=3, logger=self.logger, tol=.1)
+				verbose=3, logger=self.logger, tol=.01)
 
 			# Fit the classifier:
 			temp_classifier.fit(self.train_features, self.train_labels)
