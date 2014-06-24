@@ -85,10 +85,8 @@ class ImageLocalizer:
 			page_validation_features = bookfunctions.get_all_features(self.validation_set, \
 				(5,5))
 			s = page_validation_features.shape
-			print "SHAPE", str(s)
 			# Reshape all features to 1 feature vector
 			page_validation_features.shape = (s[0], s[1] * s[2] * s[3])
-			print page_validation_features.shape
 
 
 		validation_labels = bookfunctions.get_all_labels(self.validation_set, \
@@ -114,7 +112,7 @@ class ImageLocalizer:
 
 			print "validating with c = " + str(c)
 			temp_classifier = ssvm.OneSlackSSVM(model=self.crf, C=c, n_jobs=-1,
-				verbose=2, logger=self.logger, tol=10)
+				verbose=2, logger=self.logger, tol=.01)
 
 			# Fit the classifier:
 			temp_classifier.fit(self.train_features, self.train_labels)
@@ -134,7 +132,6 @@ class ImageLocalizer:
 				validation_predicted_pages = self.page_classifier.predict( \
 					page_validation_features)
 				for i, page in enumerate(validation_predicted_pages):
-					print page
 					if page != 0:
 						# Replace any page that has no images according to the
 						# page classifier, with a page that is fully classified
