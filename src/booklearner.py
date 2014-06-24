@@ -5,6 +5,7 @@ from numpy import array
 import argparse
 
 import Image
+import random
 
 from scipy import misc
 
@@ -50,6 +51,7 @@ class BookLearner:
 
 	def train(self):
 		""" Trains the svm. self.train_set is used as the training set """
+		random.shuffle(self.train_set)
 		for book in self.train_set:
 			# read its descriptors and labels
 			print "Calculating data for book %s" % (book)
@@ -147,28 +149,29 @@ class BookLearner:
 				# loading this configuration's data
 				block_and_cells = (self.number_of_blocks, cells_per_block)
 				# Check if the needed hog features are already saved:
-				if data.has_key('hog_features') and \
-					data['hog_features'].has_key(block_and_cells):
-					current_descriptor = data['hog_features'][block_and_cells]
-				else:
-					# Find the image file
-					base = os.path.basename(annotated_image)
-					name = os.path.splitext(base)[0]
-					image_name = self.input_folder + os.sep + book + os.sep + \
-						'raw' + os.sep + name + '.png'
-					image = misc.imread(image_name)
-					current_descriptor = self.calculate_hog(image)
+				# if data.has_key('hog_features') and \
+				# 	data['hog_features'].has_key(block_and_cells):
+				# 	current_descriptor = data['hog_features'][block_and_cells]
+				# else:
+				# Find the image file
+				base = os.path.basename(annotated_image)
+				name = os.path.splitext(base)[0]
+				image_name = self.input_folder + os.sep + book + os.sep + \
+					'raw' + os.sep + name + '.png'
+				image = misc.imread(image_name)
+				if data['type'] == 'bagger':
+					current_descriptor = self.calculate_and_show_hog(image)
 					# If needed, create the dictionary in 'hog_features'
-					if not(data.has_key('hog_features')) or \
-						type(data['hog_features']) != dict:
-						data['hog_features'] = {}
-					data['hog_features'][block_and_cells] = current_descriptor
-					# write the new data to the original file:
-					f.seek(0)
-					f.write(str(data))
-					# Remove any remaining text from the previous file contents
-					f.truncate()
-				descriptors.append(current_descriptor)
+					# if not(data.has_key('hog_features')) or \
+					# 	type(data['hog_features']) != dict:
+					# 	data['hog_features'] = {}
+					# data['hog_features'][block_and_cells] = current_descriptor
+					# # write the new data to the original file:
+					# f.seek(0)
+					# f.write(str(data))
+					# # Remove any remaining text from the previous file contents
+					# f.truncate()
+					descriptors.append(current_descriptor)
 		return descriptors, labels
 
 if __name__ == '__main__':
