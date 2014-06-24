@@ -38,14 +38,14 @@ class PageClassifier:
 		# Reshape all features to 1 feature vector
 		self.train_features.shape = (s[0], s[1] * s[2] * s[3])
 		self.train_labels = bookfunctions.get_all_page_labels(self.train_set, \
-			self.number_of_blocks, overlap=False)
+			self.number_of_blocks)
 		self.validation_features = bookfunctions.get_all_features(self.validation_set, \
 			self.number_of_blocks)
 		s = self.validation_features.shape
 		# Reshape all features to 1 feature vector
 		self.validation_features.shape = (s[0], s[1] * s[2] * s[3])
 		self.validation_labels = bookfunctions.get_all_page_labels(self.validation_set, \
-			self.number_of_blocks, overlap=False)
+			self.number_of_blocks)
 
 	def validate(self):
 		""" Tweaks C for the svc. self.validation_set is used for validating """

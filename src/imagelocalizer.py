@@ -5,6 +5,7 @@ import numpy as np
 import random
 from numpy import array
 import argparse
+import copy
 
 import bookfunctions
 from weightedgridcrf import WeightedGridCRF
@@ -79,10 +80,15 @@ class ImageLocalizer:
 			self.number_of_blocks, self.overlap, self.svm_path)
 
 		if self.use_page_classifier:
-			flat_validation_features = validation_features
-			s = validation_features.shape
+			# FIXME: number of blocks is fixed to what the page classifier has
+			# learned on in my test case, for now.
+			page_validation_features = bookfunctions.get_all_features(self.validation_set, \
+				(5,5))
+			s = page_validation_features.shape
+			print "SHAPE", str(s)
 			# Reshape all features to 1 feature vector
-			flat_validation_features.shape = (s[0], s[1] * s[2] * s[3])
+			page_validation_features.shape = (s[0], s[1] * s[2] * s[3])
+			print page_validation_features.shape
 
 
 		validation_labels = bookfunctions.get_all_labels(self.validation_set, \
@@ -108,14 +114,14 @@ class ImageLocalizer:
 
 			print "validating with c = " + str(c)
 			temp_classifier = ssvm.OneSlackSSVM(model=self.crf, C=c, n_jobs=-1,
-				verbose=3, logger=self.logger, tol=.01)
+				verbose=2, logger=self.logger, tol=10)
 
 			# Fit the classifier:
 			temp_classifier.fit(self.train_features, self.train_labels)
 
 			# Write the ssvm parameters!
-			with open(get_log_path('param', c, self.use_svm, self.overlap), 'w')\
-					as f:
+			with open(get_log_path('param', c, self.use_svm, self.overlap,
+				self.use_page_classifier), 'w') as f:
 				f.write(str(temp_classifier.get_params()))
 
 			print "validation features shape: %s" + str(np.shape(validation_features))
@@ -126,8 +132,9 @@ class ImageLocalizer:
 			if self.use_page_classifier:
 				# Get the page predictions, which have pretttyy high accuracy
 				validation_predicted_pages = self.page_classifier.predict( \
-					flat_validation_features)
-				for i, page in enumerate(validation_predicted_labels):
+					page_validation_features)
+				for i, page in enumerate(validation_predicted_pages):
+					print page
 					if page != 0:
 						# Replace any page that has no images according to the
 						# page classifier, with a page that is fully classified
@@ -158,11 +165,10 @@ class ImageLocalizer:
 
 			if f > best_f:
 				best_f = f
-				best_c = c
 				self.classifier = temp_classifier
 
 		print "F-score for best c: %s" % str(best_f)
-		return best_c
+		return best_f
 
 
 	def test(self):

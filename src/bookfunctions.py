@@ -308,7 +308,7 @@ def get_all_labels(pages_data, number_of_blocks, overlap=False):
 				number_of_blocks, overlap=overlap))
 	return np.array(labels)
 
-def get_all_page_labels(pages_data, number_of_blocks, overlap=False):
+def get_all_page_labels(pages_data, number_of_blocks):
 	""" returns all labels for the pages stored in pages_data. pages_data is
 	a tuple with a list of all the paths to all the image pages, and a list of
 	all the paths to the annotated data files"""
