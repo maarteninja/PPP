@@ -1,0 +1,1409 @@
+train set size (4032, 2), validation set size (1009, 2)
+train set features size (4032, 19, 9, 1)
+calculating hog locations for ../data/journaelOfDaghRegister/annotated/500_0009.py in mode r+
+calculating hog locations for ../data/journaelOfDaghRegister/annotated/500_0014.py in mode r+
+calculating hog locations for ../data/staatZugtigeScheepsTogtenEnKrygsBe/annotated/500_0064.py in mode r+
+calculating hog locations for ../data/reyesVanEngeland/annotated/500_0021.py in mode r+
+calculating hog locations for ../data/naauwKeurigeVoyagieVanNicolaasClena/annotated/500_0003.py in mode r+
+calculating hog locations for ../data/relationDesVoyages/annotated/500_0451.py in mode r+
+calculating hog locations for ../data/naauwKeurigeAanteekeningen/annotated/500_0006.py in mode r+
+calculating hog locations for ../data/naauwKeurigeAanteekeningen/annotated/500_0061.py in mode r+
+calculating hog locations for ../data/roemwaardigeScheepsTogtenenDappere/annotated/500_0003.py in mode r+
+calculating hog locations for ../data/roemwaardigeScheepsTogtenenDappere/annotated/500_0158.py in mode r+
+calculating hog locations for ../data/deEersteScheepsTogtGedaanNaOostIn/annotated/500_0021.py in mode r+
+calculating hog locations for ../data/aanzienlykeScheepsTogt/annotated/500_0006.py in mode r+
+calculating hog locations for ../data/aanzienlykeScheepsTogt/annotated/500_0036.py in mode r+
+calculating hog locations for ../data/aanzienlykeScheepsTogt/annotated/500_0106.py in mode r+
+calculating hog locations for ../data/lesVoyagesDeJeanStruysEnMoscovie/annotated/500_0013.py in mode r+
+calculating hog locations for ../data/lesVoyagesDeJeanStruysEnMoscovie/annotated/500_0338.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingVanMoreaEertijt/annotated/500_0019.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingVanMoreaEertijt/annotated/500_0104.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingVanMoreaEertijt/annotated/500_0124.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingVanMoreaEertijt/annotated/500_0184.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingVanMoreaEertijt/annotated/500_0199.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingVanMoreaEertijt/annotated/500_0354.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingVanMoreaEertijt/annotated/500_0504.py in mode r+
+calculating hog locations for ../data/lesSixVoyagesDeJeanBaptisteTaverni/annotated/500_0029.py in mode r+
+calculating hog locations for ../data/drieScheepsTogtenNaHetGoud/annotated/500_0005.py in mode r+
+calculating hog locations for ../data/drieScheepsTogtenNaHetGoud/annotated/500_0075.py in mode r+
+calculating hog locations for ../data/eersteSCheepsTogtVanVascoDaGamma/annotated/500_0052.py in mode r+
+calculating hog locations for ../data/eersteSCheepsTogtVanVascoDaGamma/annotated/500_0057.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0009.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0019.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0024.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0139.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0154.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0214.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0229.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0299.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0304.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0319.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0339.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0349.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0374.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0474.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0484.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0489.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0514.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0524.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0554.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0569.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0574.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0609.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0614.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0619.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0624.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0654.py in mode r+
+calculating hog locations for ../data/naukeurigeBeschryvingDerEilanden/annotated/500_0674.py in mode r+
+calculating hog locations for ../data/lhistoireUniverselleDuSieurDavign/annotated/500_0003.py in mode r+
+calculating hog locations for ../data/lhistoireUniverselleDuSieurDavign/annotated/500_0403.py in mode r+
+calculating hog locations for ../data/lhistoireUniverselleDuSieurDavign/annotated/500_0483.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0017.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0032.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0057.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0062.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0072.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0097.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0102.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0112.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0122.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0132.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0147.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0157.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0162.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0177.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0197.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0237.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0247.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0252.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0262.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0317.py in mode r+
+calculating hog locations for ../data/atlas/annotated/500_0322.py in mode r+
+validation set features size after concatenate (1009, 19, 9, 1). validation
+		labels size: (1009, 19, 9)
+class weights: [ 0.96457144  0.03542856]
+validating with c = 10
+Training 1-slack dual structural SVM
+iteration 0
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 11.687295 difference to last: 12.687295
+1 support vectors out of 2 points
+cutting plane objective: 0.000391, primal objective 471231.731383
+iteration 1
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.277941 difference to last: 6.277941
+1 support vectors out of 3 points
+cutting plane objective: 0.470851, primal objective 253126.599147
+iteration 2
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 113.405063 difference to last: 113.405063
+1 support vectors out of 4 points
+cutting plane objective: 0.521343, primal objective 4572492.620925
+iteration 3
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 31.989651 difference to last: 31.989651
+1 support vectors out of 5 points
+cutting plane objective: 1.043828, primal objective 1289823.247665
+iteration 4
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 29.466224 difference to last: 29.466224
+1 support vectors out of 6 points
+cutting plane objective: 1.231620, primal objective 1188079.180946
+iteration 5
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 14.485157 difference to last: 14.485157
+2 support vectors out of 7 points
+cutting plane objective: 3.286003, primal objective 584042.754548
+iteration 6
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 11.173910 difference to last: 11.173910
+4 support vectors out of 8 points
+cutting plane objective: 184015.710005, primal objective 450535.354022
+iteration 7
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 13.431400 difference to last: 8.867522
+4 support vectors out of 6 points
+cutting plane objective: 184485.172534, primal objective 541554.193472
+iteration 8
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 7.803739 difference to last: 3.228216
+4 support vectors out of 7 points
+cutting plane objective: 185132.980704, primal objective 314646.875726
+iteration 9
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.453833 difference to last: 1.862243
+4 support vectors out of 8 points
+cutting plane objective: 187553.116994, primal objective 260218.639352
+iteration 10
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 14.267500 difference to last: 9.615888
+4 support vectors out of 9 points
+cutting plane objective: 188885.066702, primal objective 575265.719799
+iteration 11
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 7.400684 difference to last: 2.716037
+4 support vectors out of 10 points
+cutting plane objective: 189932.322243, primal objective 298395.724601
+iteration 12
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.046312 difference to last: 1.335691
+4 support vectors out of 11 points
+cutting plane objective: 192934.416975, primal objective 243787.469048
+iteration 13
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.412056 difference to last: 1.626983
+4 support vectors out of 12 points
+cutting plane objective: 212942.404582, primal objective 258534.355574
+iteration 14
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 7.014580 difference to last: 1.733290
+4 support vectors out of 13 points
+cutting plane objective: 220781.988840, primal objective 282828.682097
+iteration 15
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.969384 difference to last: 0.493641
+4 support vectors out of 14 points
+cutting plane objective: 230657.660913, primal objective 240685.678337
+iteration 16
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.977285 difference to last: 0.256610
+4 support vectors out of 15 points
+cutting plane objective: 231212.914160, primal objective 241004.213666
+iteration 17
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.913748 difference to last: 0.179304
+4 support vectors out of 16 points
+cutting plane objective: 233588.080670, primal objective 238442.473909
+iteration 18
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.926720 difference to last: 0.133365
+4 support vectors out of 17 points
+cutting plane objective: 234238.055189, primal objective 238965.405540
+iteration 19
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.894892 difference to last: 0.085418
+4 support vectors out of 18 points
+cutting plane objective: 234683.740589, primal objective 237682.126406
+iteration 20
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.878458 difference to last: 0.057931
+4 support vectors out of 19 points
+cutting plane objective: 235632.673503, primal objective 237019.536269
+iteration 21
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.905519 difference to last: 0.061457
+4 support vectors out of 20 points
+cutting plane objective: 236042.855348, primal objective 238110.644785
+iteration 22
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.876734 difference to last: 0.022500
+4 support vectors out of 21 points
+cutting plane objective: 236211.496470, primal objective 236950.038549
+iteration 23
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.882877 difference to last: 0.024458
+4 support vectors out of 22 points
+cutting plane objective: 236427.719381, primal objective 237197.669640
+iteration 24
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.878925 difference to last: 0.015141
+4 support vectors out of 23 points
+cutting plane objective: 236435.416211, primal objective 237038.347357
+iteration 25
+OneSlackSSVM(C=10, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.871309 difference to last: 0.007337
+new constraint too weak.
+no additional constraints
+final primal objective: 236731.297203 gap: 295.880991
+validation features shape: %s(1009, 19, 9, 1)
+C = 10
+
+				Precision:
+					Image: 0.503602
+					Text: 0.986606
+				Recall:
+					Image: 0.671167
+					Text: 0.973413
+				Fscore:
+					Image: 0.575434
+					Text: 0.979965
+				Support:
+					Image: 6666.000000
+					Text: 165873.000000
+				
+validating with c = 100
+Training 1-slack dual structural SVM
+iteration 0
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 11.687295 difference to last: 12.687295
+1 support vectors out of 2 points
+cutting plane objective: 0.000391, primal objective 4712317.313828
+iteration 1
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.277912 difference to last: 6.277912
+1 support vectors out of 3 points
+cutting plane objective: 0.470881, primal objective 2531254.111809
+iteration 2
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 113.394992 difference to last: 113.394992
+1 support vectors out of 4 points
+cutting plane objective: 0.521363, primal objective 45720861.214877
+iteration 3
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 31.990117 difference to last: 31.990117
+1 support vectors out of 5 points
+cutting plane objective: 1.043802, primal objective 12898415.889212
+iteration 4
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 29.465785 difference to last: 29.465785
+1 support vectors out of 6 points
+cutting plane objective: 1.231644, primal objective 11880605.726839
+iteration 5
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 14.485308 difference to last: 14.485308
+1 support vectors out of 7 points
+cutting plane objective: 3.285914, primal objective 5840477.470025
+iteration 6
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 11.173909 difference to last: 11.173909
+4 support vectors out of 8 points
+cutting plane objective: 1840064.281956, primal objective 4505323.422697
+iteration 7
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 13.432881 difference to last: 8.869227
+4 support vectors out of 6 points
+cutting plane objective: 1844766.334924, primal objective 5416137.766307
+iteration 8
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 7.804022 difference to last: 3.228707
+4 support vectors out of 7 points
+cutting plane objective: 1851253.157173, primal objective 3146581.910738
+iteration 9
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.453837 difference to last: 1.862434
+4 support vectors out of 8 points
+cutting plane objective: 1875484.956545, primal objective 2602187.127269
+iteration 10
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 14.268803 difference to last: 9.617303
+4 support vectors out of 9 points
+cutting plane objective: 1888797.373863, primal objective 5753181.370609
+iteration 11
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 7.400824 difference to last: 2.716307
+4 support vectors out of 10 points
+cutting plane objective: 1899263.841162, primal objective 2984012.251047
+iteration 12
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.046357 difference to last: 1.335881
+4 support vectors out of 11 points
+cutting plane objective: 1929269.387487, primal objective 2437891.199969
+iteration 13
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.412251 difference to last: 1.627357
+4 support vectors out of 12 points
+cutting plane objective: 2129394.202990, primal objective 2585419.817938
+iteration 14
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 7.014698 difference to last: 1.733464
+4 support vectors out of 13 points
+cutting plane objective: 2207815.430990, primal objective 2828326.988831
+iteration 15
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.969397 difference to last: 0.493664
+4 support vectors out of 14 points
+cutting plane objective: 2306574.952831, primal objective 2406860.948645
+iteration 16
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.977271 difference to last: 0.256597
+4 support vectors out of 15 points
+cutting plane objective: 2312129.762610, primal objective 2410035.899188
+iteration 17
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.913772 difference to last: 0.179321
+4 support vectors out of 16 points
+cutting plane objective: 2335859.554559, primal objective 2384432.835161
+iteration 18
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.926552 difference to last: 0.133250
+4 support vectors out of 17 points
+cutting plane objective: 2342374.963355, primal objective 2389585.992092
+iteration 19
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.894901 difference to last: 0.085438
+4 support vectors out of 18 points
+cutting plane objective: 2346846.798043, primal objective 2376823.999892
+iteration 20
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.878369 difference to last: 0.057816
+4 support vectors out of 19 points
+cutting plane objective: 2356478.231937, primal objective 2370158.337960
+iteration 21
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.906679 difference to last: 0.062239
+4 support vectors out of 20 points
+cutting plane objective: 2360492.492018, primal objective 2381573.186486
+iteration 22
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.876891 difference to last: 0.022492
+4 support vectors out of 21 points
+cutting plane objective: 2362180.811660, primal objective 2369562.426565
+iteration 23
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.882483 difference to last: 0.023900
+4 support vectors out of 22 points
+cutting plane objective: 2364229.957302, primal objective 2371817.285533
+iteration 24
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.878606 difference to last: 0.014941
+5 support vectors out of 23 points
+cutting plane objective: 2364360.535623, primal objective 2370254.102305
+iteration 25
+OneSlackSSVM(C=100, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_100_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.871257 difference to last: 0.007265
+new constraint too weak.
+no additional constraints
+final primal objective: 2367290.803704 gap: 2930.268081
+validation features shape: %s(1009, 19, 9, 1)
+C = 100
+
+				Precision:
+					Image: 0.503602
+					Text: 0.986606
+				Recall:
+					Image: 0.671167
+					Text: 0.973413
+				Fscore:
+					Image: 0.575434
+					Text: 0.979965
+				Support:
+					Image: 6666.000000
+					Text: 165873.000000
+				
+validating with c = 1000
+Training 1-slack dual structural SVM
+iteration 0
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 11.687295 difference to last: 12.687295
+1 support vectors out of 2 points
+cutting plane objective: 0.000391, primal objective 47123173.138283
+iteration 1
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.277919 difference to last: 6.277919
+1 support vectors out of 3 points
+cutting plane objective: 0.470881, primal objective 25312568.832096
+iteration 2
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 113.394998 difference to last: 113.394998
+1 support vectors out of 4 points
+cutting plane objective: 0.521363, primal objective 457208633.173749
+iteration 3
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 31.990115 difference to last: 31.990115
+1 support vectors out of 5 points
+cutting plane objective: 1.043802, primal objective 128984146.022046
+iteration 4
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 29.465147 difference to last: 29.465147
+1 support vectors out of 6 points
+cutting plane objective: 1.231644, primal objective 118803475.234221
+iteration 5
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 14.485308 difference to last: 14.485308
+1 support vectors out of 7 points
+cutting plane objective: 3.285915, primal objective 58404765.062287
+iteration 6
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 11.173909 difference to last: 11.173909
+4 support vectors out of 8 points
+cutting plane objective: 18400648.541127, primal objective 45053205.565116
+iteration 7
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 13.433114 difference to last: 8.869461
+4 support vectors out of 6 points
+cutting plane objective: 18447660.803025, primal objective 54162314.522930
+iteration 8
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 7.804103 difference to last: 3.228789
+4 support vectors out of 7 points
+cutting plane objective: 18512528.405604, primal objective 31466144.402554
+iteration 9
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.453874 difference to last: 1.862473
+4 support vectors out of 8 points
+cutting plane objective: 18754826.602669, primal objective 26022020.669697
+iteration 10
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 14.267122 difference to last: 9.615627
+4 support vectors out of 9 points
+cutting plane objective: 18887924.422228, primal objective 57525036.959073
+iteration 11
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 7.400785 difference to last: 2.716278
+4 support vectors out of 10 points
+cutting plane objective: 18992590.016093, primal objective 29839966.357266
+iteration 12
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.046350 difference to last: 1.335884
+4 support vectors out of 11 points
+cutting plane objective: 19292654.464987, primal objective 24378883.789250
+iteration 13
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.412280 difference to last: 1.627396
+4 support vectors out of 12 points
+cutting plane objective: 21293882.200039, primal objective 25854314.805073
+iteration 14
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 7.014661 difference to last: 1.733440
+4 support vectors out of 13 points
+cutting plane objective: 22078139.562490, primal objective 28283114.908624
+iteration 15
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.969394 difference to last: 0.493663
+4 support vectors out of 14 points
+cutting plane objective: 23065756.839871, primal objective 24068597.979262
+iteration 16
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.977267 difference to last: 0.256592
+4 support vectors out of 15 points
+cutting plane objective: 23121269.917188, primal objective 24100340.854964
+iteration 17
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.913743 difference to last: 0.179301
+4 support vectors out of 16 points
+cutting plane objective: 23358793.672019, primal objective 23844210.131708
+iteration 18
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.926725 difference to last: 0.133372
+4 support vectors out of 17 points
+cutting plane objective: 23423793.435239, primal objective 23896556.517763
+iteration 19
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.894900 difference to last: 0.085428
+4 support vectors out of 18 points
+cutting plane objective: 23468363.301848, primal objective 23768238.686433
+iteration 20
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.878458 difference to last: 0.057931
+4 support vectors out of 19 points
+cutting plane objective: 23563253.834988, primal objective 23701943.081011
+iteration 21
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.905519 difference to last: 0.061457
+4 support vectors out of 20 points
+cutting plane objective: 23604274.017965, primal objective 23811051.596702
+iteration 22
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.876734 difference to last: 0.022499
+4 support vectors out of 21 points
+cutting plane objective: 23621141.252484, primal objective 23694992.919446
+iteration 23
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.882876 difference to last: 0.024458
+4 support vectors out of 22 points
+cutting plane objective: 23642770.154271, primal objective 23719757.854970
+iteration 24
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.878961 difference to last: 0.015177
+4 support vectors out of 23 points
+cutting plane objective: 23643529.498723, primal objective 23703970.994322
+iteration 25
+OneSlackSSVM(C=1000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_1000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.871310 difference to last: 0.007339
+new constraint too weak.
+no additional constraints
+final primal objective: 23673123.919420 gap: 29594.420697
+validation features shape: %s(1009, 19, 9, 1)
+C = 1000
+
+				Precision:
+					Image: 0.503602
+					Text: 0.986606
+				Recall:
+					Image: 0.671167
+					Text: 0.973413
+				Fscore:
+					Image: 0.575434
+					Text: 0.979965
+				Support:
+					Image: 6666.000000
+					Text: 165873.000000
+				
+validating with c = 10000
+Training 1-slack dual structural SVM
+iteration 0
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 11.687295 difference to last: 12.687295
+1 support vectors out of 2 points
+cutting plane objective: 0.000391, primal objective 471231731.382829
+iteration 1
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.277963 difference to last: 6.277963
+1 support vectors out of 3 points
+cutting plane objective: 0.470851, primal objective 253127483.244925
+iteration 2
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 113.405073 difference to last: 113.405073
+1 support vectors out of 4 points
+cutting plane objective: 0.521343, primal objective 4572492550.439605
+iteration 3
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 31.989577 difference to last: 31.989577
+1 support vectors out of 5 points
+cutting plane objective: 1.043826, primal objective 1289819748.416761
+iteration 4
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 29.466138 difference to last: 29.466138
+1 support vectors out of 6 points
+cutting plane objective: 1.231618, primal objective 1188074673.447279
+iteration 5
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 14.485178 difference to last: 14.485178
+1 support vectors out of 7 points
+cutting plane objective: 3.286003, primal objective 584042363.538974
+iteration 6
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 11.173910 difference to last: 11.173910
+4 support vectors out of 8 points
+cutting plane objective: 184015491.225658, primal objective 450532074.200259
+iteration 7
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 13.431107 difference to last: 8.867226
+4 support vectors out of 6 points
+cutting plane objective: 184485045.324580, primal objective 541542236.707335
+iteration 8
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 7.803617 difference to last: 3.228093
+4 support vectors out of 7 points
+cutting plane objective: 185132904.511324, primal objective 314641838.643520
+iteration 9
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.453778 difference to last: 1.862186
+4 support vectors out of 8 points
+cutting plane objective: 187554565.716697, primal objective 260216319.213340
+iteration 10
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 14.280027 difference to last: 9.628375
+4 support vectors out of 9 points
+cutting plane objective: 188887110.505918, primal objective 575770681.527972
+iteration 11
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 7.400916 difference to last: 2.716215
+4 support vectors out of 10 points
+cutting plane objective: 189933533.067478, primal objective 298404918.341820
+iteration 12
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.046326 difference to last: 1.335672
+4 support vectors out of 11 points
+cutting plane objective: 192932671.090722, primal objective 243787846.819178
+iteration 13
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 6.412023 difference to last: 1.626986
+4 support vectors out of 12 points
+cutting plane objective: 212944174.008081, primal objective 258532786.677412
+iteration 14
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 7.014763 difference to last: 1.733409
+4 support vectors out of 13 points
+cutting plane objective: 220782361.016638, primal objective 282835229.955934
+iteration 15
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.969393 difference to last: 0.493639
+4 support vectors out of 14 points
+cutting plane objective: 230657014.689816, primal objective 240685908.654009
+iteration 16
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.977265 difference to last: 0.256602
+4 support vectors out of 15 points
+cutting plane objective: 231212703.626814, primal objective 241003338.310078
+iteration 17
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.913780 difference to last: 0.179336
+4 support vectors out of 16 points
+cutting plane objective: 233586001.885689, primal objective 238443595.194312
+iteration 18
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.926561 difference to last: 0.133257
+4 support vectors out of 17 points
+cutting plane objective: 234237322.226169, primal objective 238958942.118750
+iteration 19
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.894894 difference to last: 0.085436
+4 support vectors out of 18 points
+cutting plane objective: 234685411.849751, primal objective 237682144.901005
+iteration 20
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.878368 difference to last: 0.057797
+4 support vectors out of 19 points
+cutting plane objective: 235648164.136752, primal objective 237015784.090576
+iteration 21
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.906651 difference to last: 0.062202
+4 support vectors out of 20 points
+cutting plane objective: 236049257.876343, primal objective 238156173.976115
+iteration 22
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.876889 difference to last: 0.022489
+4 support vectors out of 21 points
+cutting plane objective: 236218073.050562, primal objective 236956152.304196
+iteration 23
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.882483 difference to last: 0.023900
+4 support vectors out of 22 points
+cutting plane objective: 236422988.063200, primal objective 237181719.986116
+iteration 24
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.878606 difference to last: 0.014941
+5 support vectors out of 23 points
+cutting plane objective: 236436040.404369, primal objective 237025403.225150
+iteration 25
+OneSlackSSVM(C=10000, break_on_bad=False, cache_tol='auto',
+       check_constraints=False, inactive_threshold=1e-05,
+       inactive_window=50, inference_cache=0,
+       logger=SaveLogger(file_name="../models/model_c_10000_svm_1_overlap_1.py", save_every=15),
+       max_iter=10000,
+       model=WeightedGridCRF(n_states: 2, inference_method: ad3),
+       n_jobs=-1, negativity_constraint=None, show_loss_every=0,
+       switch_to=None, tol=0.01, verbose=3)
+New violation: 5.871257 difference to last: 0.007265
+new constraint too weak.
+no additional constraints
+final primal objective: 236729070.057103 gap: 293029.652734
+validation features shape: %s(1009, 19, 9, 1)
+C = 10000
+
+				Precision:
+					Image: 0.503602
+					Text: 0.986606
+				Recall:
+					Image: 0.671167
+					Text: 0.973413
+				Fscore:
+					Image: 0.575434
+					Text: 0.979965
+				Support:
+					Image: 6666.000000
+					Text: 165873.000000
+				
+F-score for best c: 0.575434083601

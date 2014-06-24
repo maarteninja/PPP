@@ -1,3 +1,14 @@
 *.swp
 *.pyc
 data/*
+models/*
+*_backup/*
+presentation/*.pdf
+report/*.pdf
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+
