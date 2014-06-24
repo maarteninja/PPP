@@ -1,0 +1,92 @@
+%\documentclass[aspectratio=169]{beamer}
+\documentclass{beamer}
+\usepackage[utf8x]{inputenc}
+%\usepackage{default}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{transparent}
+\usepackage{listings}
+\usepackage{qtree}
+
+\title{Plucking Pictures from Publications}
+\subtitle{I don't know what I'm doing!}
+\author{Maarten Inja \and Maarten de Waard}
+\institute[UvA]{University of Amsterdam}
+\date[2014]{Intelligent Systems Project, June 26, 2014}
+\logo{\includegraphics[width=45px]{resources/uva}}
+\usetheme{Berkeley}
+\usecolortheme{sidebartab}
+\usefonttheme{structuresmallcapsserif}
+\newcommand{\slide}[2]
+{
+\begin{frame}
+\frametitle{#1} 
+
+#2
+
+\end{frame}
+}
+
+\begin{document}
+
+% \usebackgroundtemplate{
+% {\transparent{0.5}\includegraphics[width=\paperwidth, % height=\paperheight]{resources/dna}}
+% }
+\begin{frame}
+\titlepage
+\end{frame}
+
+\slide{Table of Contents}
+{
+	\tableofcontents
+}
+
+\section{Introduction}
+\slide{Image Segmentation}
+{
+% We want to introduce the problem:
+%	- Tell about image segmentation
+%		Segment image into several classes..?
+	What do we want to tell about image segmentation?
+}
+\subsection{Dataset}
+\slide{Dataset - Overview}
+{
+	\includegraphics[width=.8\paperwidth]{resources/example1}
+}
+\slide{Dataset - Problem}
+{
+	\includegraphics[width=.8\paperwidth]{resources/example2}
+}
+
+\section{Methods}
+% Briefly explain HOG features
+\slide{Features}
+{
+	
+}
+
+
+\subsection{Classification}
+% Explain SVM i.c.w. HOG features for pages
+
+\subsection{Localization}
+% Explain CRF and SSVM
+
+\section{Results}
+% Show results for classification
+% Show results for different usages of SSVM
+
+\section{Demo}
+% Show which images are found (and which are not?) in a live demo
+
+\section{Future Work}
+% Improvements: 
+% - Different kinds of features
+% - 
+
+\section{}
+
+\slide{Questions and Discussion}
+{}
+\end{document}
