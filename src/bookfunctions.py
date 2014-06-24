@@ -215,7 +215,7 @@ def get_hog_locations_path(f, data, page_path, number_of_blocks):
 
 	return hog_locations
 
-def get_hog_locations_pages_data(pages_data, number_of_blocks):
+def get_hog_locations_pages_data(pages_data, number_of_blocks, overlap=False):
 	"""returns a list of all hog location extracted  from pages_data. pages_data
 	is a tuple with a list of all the paths to all the image pages, and a list of
 	all the paths to the annotated data files
@@ -226,8 +226,11 @@ def get_hog_locations_pages_data(pages_data, number_of_blocks):
 	for page_path, data_path in pages_data:
 		with open(data_path, 'r+') as f:
 			data = get_data(f)
-			hog_locations.append(get_hog_locations_path(f, data, \
-				page_path, number_of_blocks))
+			locations = get_hog_locations_path(f, data, page_path, number_of_blocks)
+			if overlap:
+				locations = concatenate_hog_locations(locations, number_of_blocks)
+			hog_locations.append(locations)
+
 	return hog_locations
 
 def get_hog_locations(f, data, annotated_image, input_folder, book, \
@@ -442,3 +445,41 @@ def get_features_from_pages_data(pages_data, number_of_blocks, overlap, svm_path
 		features = np.array(svm.decision_function(features))
 		features.shape = original_shape
 	return features
+
+def transform_locations(locations, page_paths, number_of_blocks, overlap=False):
+	transformed = []
+	for locations, page_path in zip(locations, page_paths):
+		image = misc.imread(page_path)
+		image_height, image_width, ignore = image.shape
+
+		block_width = image_width / number_of_blocks[1]
+		block_height = image_height / number_of_blocks[0]
+
+		# if overlaping we concatenate blocks and it doubles the width and height
+		if overlap:
+			block_width *= 2
+			block_height *= 2
+
+		transformed_page = []
+		for y, x in locations:
+			transformed_page.append((y - block_height/2, x - block_width/2 , \
+				y + block_height/2, x + block_width/2))
+		transformed.append(transformed_page)
+	return transformed
+
+def add_labels_to_boxes(boxes, labels):
+	boxes_shape = np.shape(boxes)
+	labels_shape = np.shape(labels)
+	boxes = np.reshape(boxes, (boxes_shape[0], labels_shape[1], labels_shape[2], 4))
+
+	#print boxes[0][0][0][0]
+	#print boxes[0][0][0][1]
+	#print boxes[0][0][0][2]
+	#print boxes[0][0][0][3]
+
+	for n in range(labels_shape[0]):
+		for i in range(labels_shape[1]):
+			for j in range(labels_shape[2]):
+				boxes[n][i][j].append(labels[n][i][j])
+	print np.shape(boxes)
+	return boxes
