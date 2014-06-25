@@ -426,12 +426,7 @@ Elzeviriana,
 
 officina Leiden, 1627.
 
-Commelin, Isaac. Begin ende Voortgangh, van de Vereenighde Nederlantsche
-Geoctroyeerde 
-
-Oost-indische Compagnie. Vervatende De voornaemste Reysen... Amsterdam: Joannes 
-
-Janssonius, Joannes Janssonius!07713401X!, 1646.
+Commelin, Isaac. Begin ende Voortgangh, van de Vereenighde Nederlantsche Geoctroyeerde Oost-indische Compagnie. Vervatende De voornaemste Reysen... Amsterdam: Joannes Janssonius, Joannes Janssonius!07713401X!, 1646.
 
 Commelin, Isaac, and Vereenigde Oost-Indische Compagnie. Begin ende voortgangh,
 van 
@@ -551,27 +546,7 @@ Jakob van
 
 Meurs , Meurs, Jacob van Amsterdam, 1672.
 
-———. Gedenkwaerdig bedryf der Nederlandsche Oost-Indische Maetschappye op de
-kuste en in 
-
-het Keizerrĳk van Taising of Sina: behelzende het Tweede gezandschap aen den
-onder-koning 
-
-Singlamong en veldheer Taising Lipoui, door Jan van Kampen en Konstantyn Nobel.
-Vervolgt 
-
-met een verhael van het voorgevallen des jaers zestien hondert drie en
-vierenzestig, op de 
-
-kuste van Sina, en ontrent d’eilanden Tayowan, Formosa, Ay en Quemuy, onder ’t
-gezag van 
-
-Balthasar Bort; en het Derde gezandschap aen Konchy, Tartarsche Keizer van Sina
-en Oost-
-Tartarye: onder beleit van zĳne Ed. Pieter van Hoorn: beneffens een beschryving
-van geheel 
-
-Sina. t’Amsterdam: by Jacob van Meurs , Meurs, Jacob van Amsterdam, 1670.
+———. Gedenkwaerdig bedryf der Nederlandsche Oost-Indische Maetschappye op de kuste en in het Keizerrĳk van Taising of Sina: behelzende het Tweede gezandschap aen den onder-koning Singlamong en veldheer Taising Lipoui, door Jan van Kampen en Konstantyn Nobel.  Vervolgt met een verhael van het voorgevallen des jaers zestien hondert drie en vierenzestig, op de kuste van Sina, en ontrent d’eilanden Tayowan, Formosa, Ay en Quemuy, onder ’t gezag van Balthasar Bort; en het Derde gezandschap aen Konchy, Tartarsche Keizer van Sina en Oost- Tartarye: onder beleit van zĳne Ed. Pieter van Hoorn: beneffens een beschryving van geheel Sina. t’Amsterdam: by Jacob van Meurs , Meurs, Jacob van Amsterdam, 1670.
 
 ———. Naukeurige beschrĳvinge der Afrikaensche Eylanden: als Madagaskar, of Sant
 Laurens, 
@@ -588,16 +563,10 @@ Meurs,
 Jacob van Amsterdam, 1668.
 
 ———. Naukeurige Beschrĳvinge der Afrikaensche gewesten van Egypten, Barbaryen,
-Libyen, 
-
-Biledulgerid, Negroslant, Guinea, Ethiopiën, Abyssinie: vertoont in de
-Benamingen, 
-
-Grenspalen, Steden, Revieren, Gewassen, Dieren, Zeeden, Talen, Rĳkdommen,
-Godsdiensten 
-
-en Heerschappyen. T’Amsterdam: By Jacob van Meurs, Meurs, Jacob van Amsterdam,
-1668.
+Libyen, Biledulgerid, Negroslant, Guinea, Ethiopiën, Abyssinie: vertoont in de
+Benamingen, Grenspalen, Steden, Revieren, Gewassen, Dieren, Zeeden, Talen,
+Rĳkdommen, Godsdiensten en Heerschappyen. T’Amsterdam: By Jacob van Meurs,
+Meurs, Jacob van Amsterdam, 1668.  
 
 ———. Naukeurige beschrĳvinge der Afrikaensche gewesten van Egypten, Barbaryen,
 Lybiën, 
@@ -2313,18 +2282,10 @@ geleegen, door den Engelssen ridder Walther Ralegh, gedaan in de jaren 1595,
 1596, 1597 : 
 
 behelsende een naauw-keurige beschrĳving van dit land, der selver eylanden,
-gebergtens, 
-
-goud- en silver-mĳnen, rivieren, seldsame water-vallen, rotsen, vrugtbare
-lands-douwen, 
-
-afkomst der volkeren, gewoontens der inwoonders, suyp-feesten, gediertens,
-water-gedrogten, 
-
-vrugten, vogelen en vissen, &c. Te Leyden: By Pieter vander Aa , Aa, Pieter van
-der I, 
-
-Leiden, 1706.
+gebergtens, goud- en silver-mĳnen, rivieren, seldsame water-vallen, rotsen,
+vrugtbare lands-douwen, afkomst der volkeren, gewoontens der inwoonders,
+suyp-feesten, gediertens, water-gedrogten, vrugten, vogelen en vissen, &c. Te
+Leyden: By Pieter vander Aa , Aa, Pieter van der I, Leiden, 1706.
 
 Rauwolf, Leonhard-1596. Seer aanmerkelyke reysen, na en door Syrien, ’t Joodsche
 land, 
@@ -2361,17 +2322,11 @@ Assyria,
 Chaldea &c. London: printed for SSmith and BWalford, 1693.
 
 Ray, John. Observations Topographical, Moral, and Physiological; Made in a
-Journey through 
-
-Part of the Low-Countries, Germany, Italy, and France : with a Catalogue of
-Plants Not 
-
-Native of England, Found Spontaneously Growing in Those Parts, and Their
-Virtues. 
-
-London: printed for John Martyn, Printer to the Royal Society, at the Bell in
-StPaul’s Church-
-yard, Martin, John Londen, Clark, Andrea Londen, 1673.
+Journey through Part of the Low-Countries, Germany, Italy, and France : with a
+Catalogue of Plants Not Native of England, Found Spontaneously Growing in Those
+Parts, and Their Virtues.  London: printed for John Martyn, Printer to the Royal
+Society, at the Bell in StPaul’s Church- yard, Martin, John Londen, Clark,
+Andrea Londen, 1673.
 
 Rohan, Henri duc de. Interets et maximes des princes & des estats souverains. A
 Cologne: chés 
@@ -2389,14 +2344,8 @@ tĳdt toe.
 
 Dordrecht: AAndriessz, Andriessz, Abraham Dordrecht, 1662.
 
-———. ’sWeerelds gods-diensten of, Vertoog van alle de religien en ketteryen in
-Asia, Africa, 
-
-America en Europa, van ’t begin des weereldts, tot desen tegenwoordigen tĳdt
-toe. 5e dr.. Tot 
-
-Amsterdam: by Michiel de Groot, Groot, Michiel de Amsterdam, 1671.
-
+———. ’sWeerelds gods-diensten of, Vertoog van alle de religien en ketteryen in Asia, Africa, America en Europa, van ’t begin des weereldts, tot desen tegenwoordigen tĳdt toe. 5e dr.. Tot Amsterdam: by Michiel de Groot, Groot, Michiel de Amsterdam, 1671. 
+ 
 Roy, Jacob Jansz de 1691 fl. Hachelĳke reystogt van Jacob Jansz de Roy, na
 Borneo en Atchin, 
 
@@ -2473,12 +2422,8 @@ landziektens, planten, dieren, mineralen en andere zaken tot de natuurlyke
 historie dienende. 
 
 I: Behelzende de tegenwoordige staet der Keizerryken China en Japan, als mede
-van de 
-
-Ladrones, Filippynsche en Molukkische eilanden, en van Makassar. Te Amsterdam:
-by Isaak 
-
-Tirion, Tirion, Isaak Amsterdam, 1729.
+van de Ladrones, Filippynsche en Molukkische eilanden, en van Makassar. Te
+Amsterdam: by Isaak uV
 
 Sanderson, John. Seer gedenckwaerdige vojagien, van Johan Sanderson, Hendrick
 Timberly, 
@@ -2490,22 +2435,7 @@ van ’t Heylige Landt, en voornamelĳck van het oudt en nieuw Jerusalem en Temp
 
 Salomons ... Amsterdam: Jochem van Dyck, Dyck, Joachim van Amsterdam, 1678.
 
-Sandys, George. Sandys Voyagien, behelsende een historie van de oorspronckelĳcke
-ende 
-
-tegenwoordige standt des Turcksen rĳcks : ... als mede, van Aegypten;
-d’antiquiteyt ..., 
-
-neffens een beschrijvinge van het H. Landt; ... Eyndlyck, Italien beschreven met
-hare 
-
-naburighe eylanden ... t’Amsterdam: by Jacob Benjamin, boeckverkooper#op de
-hoeck van 
-
-de Raem-steegh, achter d’Appel-Marckt#, Benjamin, Jacob Amsterdam, Boeteman,
-Pieter 
-
-Dircksz Amsterdam, 1653.
+Sandys, George. Sandys Voyagien, behelsende een historie van de oorspronckelĳcke ende tegenwoordige standt des Turcksen rĳcks : ... als mede, van Aegypten; d’antiquiteyt ..., neffens een beschrijvinge van het H. Landt; ... Eyndlyck, Italien beschreven met hare naburighe eylanden ... t’Amsterdam: by Jacob Benjamin, boeckverkooper#op de hoeck van de Raem-steegh, achter d’Appel-Marckt#, Benjamin, Jacob Amsterdam, Boeteman, Pieter Dircksz Amsterdam, 1653.
 
 Saris, John ca. Agtste Oost-Indische reys op kosten van d’Engelsche Maatschappy,
 gedaan met 
@@ -2721,31 +2651,7 @@ Pieter
 
 vander Aa , Aa, Pieter van der I, Leiden, 1706.
 
-Struys, Jan ca. J.J. Struys Drie aanmerkelijke en seer rampspoedige reysen, door
-Italien, 
-
-Griekenlandt, Lĳflandt, Moscovien, Tartarĳen, Meden, Persien, Oost-Indien,
-Japan, en 
-
-verscheyden andere gewesten ... : Aangevangen anno 1647. en voor de derde, of
-laatste reyse 
-
-t’huys gekomen 1673. begrijpende soo in alles den tijdt van 26 jaren. Nevens
-twee brieven ... 
-
-daar in ook een verhaal der ... sware ongemakken, uytgestaan by D. Butler, door
-hem selfs 
-
-geschreven uyt Ispahan. Met verscheydene curieuse koopere platen, door den
-auteur selfs 
-
-na het leven geteekent, verçiert. t’Amsterdam: by Jacob van Meurs, #op de
-Keysers-graft#, 
-
-en Johannes van Someren, #in de Kalverstraat#, Meurs, Jacob van Amsterdam,
-Someren, 
-
-Joannes van Amsterdam, 1676.
+Struys, Jan ca. J.J. Struys Drie aanmerkelijke en seer rampspoedige reysen, door Italien, Griekenlandt, Lĳflandt, Moscovien, Tartarĳen, Meden, Persien, Oost-Indien, Japan, en verscheyden andere gewesten ... : Aangevangen anno 1647. en voor de derde, of laatste reyse t’huys gekomen 1673. begrijpende soo in alles den tijdt van 26 jaren. Nevens twee brieven ...  daar in ook een verhaal der ... sware ongemakken, uytgestaan by D. Butler, door hem selfs geschreven uyt Ispahan. Met verscheydene curieuse koopere platen, door den auteur selfs na het leven geteekent, verçiert. t’Amsterdam: by Jacob van Meurs, #op de Keysers-graft#, en Johannes van Someren, #in de Kalverstraat#, Meurs, Jacob van Amsterdam, Someren, Joannes van Amsterdam, 1676.
 
 ———. Joh. Jansz. Straussens Sehr schwere, wiederwertige und denckwürdige Reysen, 
 
@@ -2760,60 +2666,22 @@ Amsterdam,
 
 Someren, Joannes van Amsterdam, 1678.
 
-———. Les voyages de Jean Struys, en Moscovie, en Tartarie, en Perse, aux Indes,
-& en plusieurs 
-
-païs étrangers : accompagnés de remargues particulières sur la qualité, la
-religion ... à 
-
-Amstredam: chés la Veuve de Jacob van Meurs, Meurs, Jacob van wed, Amsterdam,
-1681.
-
-Surius, Bernardinus P. Fr. Den godtvruchtighen pelgrim, ofte Ierusalemsche
-reyse : in dry boecken 
-
-bedeylt, waer in veel ghedenckweerdighe saken verhaelt wordē, midtsgaders
-eenighe 
-
-gheestelycke betrachtinghen, paßende op de mysterien van ieder heylige plaetse.
-Vierden 
-
-druck met schoone kopere platen.. Tot Brussel: by Ian Momnaert , Mommaert, Jan
-Brussel, 
-
-1665.
+———. Les voyages de Jean Struys, en Moscovie, en Tartarie, en Perse, aux Indes, & en plusieurs païs étrangers : accompagnés de remargues particulières sur la qualité, la religion ... à Amstredam: chés la Veuve de Jacob van Meurs, Meurs, Jacob van wed, Amsterdam, 1681.  Surius, Bernardinus P. Fr. Den godtvruchtighen pelgrim, ofte Ierusalemsche reyse : in dry boecken bedeylt, waer in veel ghedenckweerdighe saken verhaelt wordē, midtsgaders eenighe gheestelycke betrachtinghen, paßende op de mysterien van ieder heylige plaetse.  Vierden druck met schoone kopere platen.. Tot Brussel: by Ian Momnaert , Mommaert, Jan Brussel, 1665.
 
 ———. Den godtvruchtighen pelgrim, ofte Ierusalemsche reyse, in dry boecken
-bedeylt, 
-
-waar in veel ghedenckweerdige saken verhaelt worden, mitsgaders eenighe
-gheestelycke 
-
-betrachtinghen passende op de mysterien van ieder heylige plaetse. Tweede druk /
-door den 
-
-autheur vermeerdert.. Tot Brussel: by Ian Mommaert , Mommaert, Jan Brussel,
-1653.
+bedeylt, waar in veel ghedenckweerdige saken verhaelt worden, mitsgaders eenighe
+gheestelycke betrachtinghen passende op de mysterien van ieder heylige plaetse.
+Tweede druk / door den autheur vermeerdert.. Tot Brussel: by Ian Mommaert ,
+Mommaert, Jan Brussel, 1653.
 
 T. S. De ongelukkige voyagie van Mr. T.S. Engels koopman, gedaan in den jare
-1648. en 
-
-vervolgens; behelzende zĳne zeldzame gevallen, hoe hy by de Algierse turken,
-genomen, en 
-
-door de binnenste deelen van Africa omgevoerd is; waarin met een het koningrĳk
-Algiers, 
-
-beneffens de daar rondomleggende steden en plaatzen van aanzien, open gelegt, en
-de 
-
-voornaamste koopmanschappen dier landstreeke, mitsgaders der inwoonderen
-handelingen 
-
-en levenswĳze, op het naauwkeurigste beschreeven worden. Te Leyden: by Pieter
-Vander Aa , 
-
-Aa, Pieter van der I, Leiden, 1707.
+1648. en vervolgens; behelzende zĳne zeldzame gevallen, hoe hy by de Algierse
+turken, genomen, en door de binnenste deelen van Africa omgevoerd is; waarin met
+een het koningrĳk Algiers, beneffens de daar rondomleggende steden en plaatzen
+van aanzien, open gelegt, en de voornaamste koopmanschappen dier landstreeke,
+mitsgaders der inwoonderen handelingen en levenswĳze, op het naauwkeurigste
+beschreeven worden. Te Leyden: by Pieter Vander Aa , Aa, Pieter van der I,
+Leiden, 1707.
 
 Tachard, Guy. Reis na Siam, gedaan door den ridder de Chaumont, gezant van zyn 
 
