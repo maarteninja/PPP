@@ -42,89 +42,36 @@
 }
 
 \section{Introduction}
-\slide{Image Segmentation}
-{
-% We want to introduce the problem:
-%	- Tell about image segmentation
-%		Segment image into several classes..?
-	What do we want to tell about image segmentation?
-}
-\subsection{Dataset}
-\slide{Dataset - Overview}
-{
-	\includegraphics[width=.8\paperwidth]{resources/example1}
-}
-\slide{Dataset - Problem}
-{
-	\includegraphics[width=.8\paperwidth]{resources/example2}
-}
+\input{introduction}
 
-\section{Methods}
-% Briefly explain HOG features
-\slide{Features}
-{
-	\begin{block}{Histogram of Oriented Gradients (HOG)}
-		HOG features contain the amount of gradients in a certain image patch.
-	\end{block}
-	\begin{block}{Steps for computing HOG Features\cite{dalal2005histograms}}
-	\begin{enumerate}
-		\item Global image normalisation
-		\item Compute the gradient images
-		\item Compute gradient histograms in 8 directions
-		\item Normalise across blocks
-		\item Flatten into a feature vector
-	\end{enumerate}
-	\end{block}
-}
-\begin{frame}[allowframebreaks]{HOG Examples}
-	\includegraphics[trim=200px 0px 100px 0px, clip=true, width=.8\paperwidth]{resources/text1}\\
-\framebreak
-	\includegraphics[trim=200px 0px 100px 0px, clip=true, width=.8\paperwidth]{resources/image1}\\
-\framebreak
-	\includegraphics[trim=200px 0px 100px 0px, clip=true, width=.8\paperwidth]{resources/text_and_image1}
-\end{frame}
+\section{Page Classification}
+\input{pageclas}
 
-\subsection{Classification}
-% Explain SVM i.c.w. HOG features for pages
-\slide{Classification using SVM}
-{
-	\begin{itemize}
-		\item All books are annotated with having either ``text'', ``images'' or
-		``nothing useful'' on it. Images get bounding boxes, which we will later
-		use.
-		\item Calculate 5x5 HOG features per page
-		\item Train a Support Vector Machine (SVM) on these feature vectors and
-		labels
-		\item Predict whether a page contains an image based on this SVM
-	\end{itemize}
-}
-\subsection{Localization}
-% Explain CRF and SSVM
-\slide{Conditional Random Fields}
-{
-	
-	\includegraphics[width=.5\paperwidth]{resources/crf}
-}
+\section{Image Localization}
+\input{imageloc}
 
-\section{Results}
+
 % Show results for classification
 % Show results for different usages of SSVM
 
 \section{Demo}
 % Show which images are found (and which are not?) in a live demo
 
-\section{Future Work}
 % Improvements: 
 % - Different kinds of features
 % - 
 
-\section{}
+\section{Discussion}
 
-\slide{Questions and Discussion}
+\slide{Discussion}
 {}
 \begin{frame}[allowframebreaks]
         \frametitle{References}
         \bibliographystyle{amsalpha}
         \bibliography{references.bib}
+\end{frame}
+
+\begin{frame}
+Questions?
 \end{frame}
 \end{document}
