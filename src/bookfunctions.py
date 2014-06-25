@@ -10,6 +10,8 @@ from skimage.feature import hog
 from scipy import misc
 import os, glob
 import numpy as np
+import matplotlib.pyplot as plt
+from skimage import data, color, exposure
 import pickle
 from pystruct.utils import SaveLogger
 from numpy import array
@@ -30,20 +32,50 @@ def remove_unannotated_books(input_folder, books):
 def calculate_hog(image, number_of_blocks):
 	""" calculates the hog features from an image (np array image) given
 	the number of bocks"""
-	pixels_per_cell = calculate_pixels_per_cell(image, number_of_blocks)
+	pixels_per_cell = calculate_pixels_per_cell_for_hog(image, number_of_blocks)
 	image = color.rgb2gray(image)
 	# The number of orientations should be kept fixed as long as we don't
 	# save them to the metafiles
 	return hog(image, orientations=8, pixels_per_cell=pixels_per_cell,
 		cells_per_block=(1, 1))
 
+def calculate_and_show_hog(image, number_of_blocks):
+	image = color.rgb2gray(image)
+	pixels_per_cell = calculate_pixels_per_cell_for_hog(image, number_of_blocks)
+	fd, hog_image = hog(image, orientations=8,
+		pixels_per_cell=pixels_per_cell, cells_per_block=(1, 1),
+		visualise=True)
+
+	fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4))
+
+	ax1.axis('off')
+	ax1.imshow(image, cmap=plt.cm.gray)
+	ax1.set_title('Input image')
+
+	# Rescale histogram for better display
+	hog_image_rescaled = exposure.rescale_intensity(hog_image, in_range=(0,
+		0.02))
+
+	ax2.axis('off')
+	ax2.imshow(hog_image_rescaled, cmap=plt.cm.gray)
+	ax2.set_title('Histogram of Oriented Gradients')
+	plt.show()
+	return fd
+
+def calculate_pixels_per_cell_for_hog(image, number_of_blocks):
+	""" calculates the amount of pixels in a hog feature cell given a number
+	of blocks and an image"""
+	s = np.shape(image)
+	pixels_vertical = int(float(s[0])/float(number_of_blocks[0]))
+	pixels_horizontal = int(float(s[1])/float(number_of_blocks[1]))
+	return (pixels_horizontal, pixels_vertical)
 
 def calculate_pixels_per_cell(image, number_of_blocks):
 	""" calculates the amount of pixels in a hog feature cell given a number
 	of blocks and an image"""
 	s = np.shape(image)
-	pixels_vertical = int(s[0]/number_of_blocks[0])
-	pixels_horizontal = int(s[1]/number_of_blocks[1])
+	pixels_vertical = int(round(float(s[0])/float(number_of_blocks[0])))
+	pixels_horizontal = int(round(float(s[1])/float(number_of_blocks[1])))
 	return (pixels_vertical, pixels_horizontal)
 
 def calculate_hog_locations(image, number_of_blocks):
@@ -125,6 +157,7 @@ def get_hog_features_page(f, data, page_path, number_of_blocks):
 
 	if data.has_key('hog_features') and \
 		data['hog_features'].has_key(block_and_cells):
+		print 'retrieving hog features for %s' % str(f.name)
 		descriptor = data['hog_features'][block_and_cells]
 	else:
 		print 'calculating hog features for %s' % str(f.name)
@@ -151,6 +184,7 @@ def get_hog_features_page(f, data, page_path, number_of_blocks):
 	# Reshape the descriptors to the pystruct desired shape
 	# We now have the 0'th index horizontal and the 1'th index
 	# vertical
+	print descriptor.shape
 	descriptor.shape = (number_of_blocks[1], number_of_blocks[0], 8)
 	# Transpose the first two axes, in order to get from x-y
 	# coordinates to y-x coordinates

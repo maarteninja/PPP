@@ -9,6 +9,7 @@ import os
 from copy import deepcopy
 import pygame
 from annotater import Annotater
+from sklearn.metrics import confusion_matrix, precision_recall_fscore_support 
 
 def process_image_boxes(image_boxes, page_paths, out_folder):
 	for n, page_path in enumerate(page_paths):
@@ -195,25 +196,49 @@ if __name__ == '__main__':
 	# input parameters
 	input_folder = args['input_folder']
 	number_of_blocks = tuple([int(a) for a in args['number_of_blocks'].split('x')])
-	#svm_path = '../models/svm_params_overlap_1.py' # if None or '', then nu svm is used
-	svm_path = False
-	ssvm_path = '../models/model_c_10_svm_0_overlap_1.py'
+	svm_path = '../models/svm_params_overlap_1.py' # if None or '', then no svm is used
+	# svm_path = False
+	ssvm_path = '../models/model_c_10_svm_1_overlap_1.py'
 	overlap = True
-	output_folder = '../output'
+	output_folder = '../output_testset'
 
 	# read all images from input folder
-	pages_data = bookfunctions.get_pages_and_data_from_book(input_folder)
+	#pages_data = bookfunctions.get_pages_and_data_from_book(input_folder)
+	pages_data = bookfunctions.get_pages_and_data_from_folder(input_folder)
 	#pages_data = pages_data[379:381]
 
+	true_labels = bookfunctions.get_all_labels(pages_data, \
+		number_of_blocks, overlap)
 	features = bookfunctions.get_features_from_pages_data(pages_data, \
 		number_of_blocks, overlap, svm_path)
 
 	# put features in ssvm
 	logger = SaveLogger(ssvm_path)
 	ssvm = logger.load()
-	print features.shape
-	predicted_labels = ssvm.predict(features)
-
+	predicted_labels = np.array(ssvm.predict(features))
+	prfs = precision_recall_fscore_support(true_labels.flatten(), \
+		predicted_labels.flatten())
+	cm = confusion_matrix(true_labels.flatten(),
+		predicted_labels.flatten())
+	print """
+		Precision:
+			Image: %f
+			Text: %f
+		Recall:
+			Image: %f
+			Text: %f
+		Fscore:
+			Image: %f
+			Text: %f
+		Support:
+			Image: %f
+			Text: %f
+		""" % tuple(np.ndarray.flatten(np.array(prfs)))
+	print "Predicted label:"
+	print "        0 ,      1"
+	print "0  5%d, 5%d       " % (cm[0][0], cm[0][1])
+	print "1  5%d, 5%d       " % (cm[1][0], cm[1][1])
+	exit()
 	### now actually obtain the image from the classified features
 
 	# get (or read from cache) all hog locations
