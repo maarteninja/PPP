@@ -9,31 +9,74 @@
 %	- Tell about image segmentation
 %		Segment image into several classes..?
 %	What do we want to tell about image segmentation?
-\begin{itemize}
-	\item Old books, from 16th and 17th century (Dutch golden age)  are
-scanned and digitally available
-	\item For some, the text is available seperately
-	\item Interesting idea: extract images to show those seperately as well
-\end{itemize}
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\begin{itemize}
+				\item Old books, from 16th and 17th century (Dutch golden age)  are
+			scanned and digitally available
+				\item For some, the text is available seperately
+				\item Goal: extract images to show those seperately as well
+			\end{itemize}
+		\end{column}
+		\begin{column}{.5\textwidth}
+			\includegraphics[width=.9\columnwidth]{resources/bookExample}
+		\end{column}
+	\end{columns}
 }
 
 \subsection{Dataset}
-% ik vind het best wel vreemd deze opdeling. Ik zou altijd 2 paginas laten
-% zien, en nooit iets een probleem noemen
 \slide{Dataset - Overview 1}
 {
-	\includegraphics[width=.8\paperwidth]{resources/example1}
+	Text pages:
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\includegraphics[width=.9\columnwidth]{../data/lhistoireUniverselleDuSieurDavign/raw/500_0043}
+		\end{column}
+		\begin{column}{.5\textwidth}
+			\includegraphics[width=.9\columnwidth]{../data/lesSixVoyagesDeJeanBaptisteTaverni/raw/500_0010}
+		\end{column}
+	\end{columns}
 }
 \slide{Dataset - Overview 2}
 {
+	Image pages:
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\includegraphics[width=.9\columnwidth]{../data/naukeurigeBeschryvingVanMoreaEertijt/raw/500_0008}
+		\end{column}
+		\begin{column}{.5\textwidth}
+			\includegraphics[width=.9\columnwidth]{../data/lesSixVoyagesDeJeanBaptisteTaverni/raw/500_0077}
+		\end{column}
+	\end{columns}
+}
+\slide{Dataset - Challenge 1}
+{
+	Difference in quality:
 	\includegraphics[width=.8\paperwidth]{resources/example2}
+}
+\slide{Dataset - Challenge 2}
+{
+	Pages with useless data:
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\includegraphics[width=.9\columnwidth]{../data/staatZugtigeScheepsTogtenEnKrygsBe/raw/500_0002}
+		\end{column}
+		\begin{column}{.5\textwidth}
+			\includegraphics[width=.9\columnwidth]{../data/atlas/raw/500_0004}
+		\end{column}
+	\end{columns}
+}
+\slide{Dataset - Challenge 3}
+{
+	Text and image on the same page
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\includegraphics[width=.9\columnwidth]{../data/tweeOngelukkigeScheepsTogtenNaOost/raw/500_0003.png}
+		\end{column}
+		\begin{column}{.5\textwidth}
+			\includegraphics[width=.9\columnwidth]{resources/text_and_image_example}
+		\end{column}
+	\end{columns}
 }
 
 
-\begin{frame}[allowframebreaks]{HOG Examples}
-	\includegraphics[trim=200px 0px 100px 0px, clip=true, width=.8\paperwidth]{resources/text1}\\
-\framebreak
-	\includegraphics[trim=200px 0px 100px 0px, clip=true, width=.8\paperwidth]{resources/image1}\\
-\framebreak
-	\includegraphics[trim=200px 0px 100px 0px, clip=true, width=.8\paperwidth]{resources/text_and_image1}
-\end{frame}

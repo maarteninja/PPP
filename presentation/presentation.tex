@@ -9,10 +9,10 @@
 \usepackage{qtree}
 \usepackage{amsmath}
 
-% Table of contents weg
-% slides nummeren
-% introslide over ons algehele probleem al een plaatje laten zien van de boeken
-% conclusie data set bekijken: challenges: verschil kwaliteit (in teksts neerzetten)
+% Table of contents weg (DONE)
+% slides nummeren (DONE)
+% introslide over ons algehele probleem al een plaatje laten zien van de boeken (DONE)
+% conclusie data set bekijken: challenges: verschil kwaliteit (in teksts neerzetten) (DONE)
 
 % Introslide laten zien (met onze 2 stappen, sfm en crfs ssvm), overview methode + annotater tool
 %   als 0de stap toevoegen
@@ -42,6 +42,15 @@
 \usetheme{Berkeley}
 \usecolortheme{sidebartab}
 \usefonttheme{structuresmallcapsserif}
+%\setbeamertemplate{footline}{\insertframenumber/\inserttotalframenumber}
+%\useoutertheme{infolines}
+% \addtobeamertemplate{navigation symbols}{}{%
+%     \usebeamerfont{footline}%
+%     \usebeamercolor[fg]{footline}%
+%     \hspace{1em}%
+%     \insertframenumber/\inserttotalframenumber
+% }
+
 \newcommand{\slide}[2]
 {
 \begin{frame}
@@ -51,6 +60,10 @@
 
 \end{frame}
 }
+\setbeamertemplate{sidebar right}{}
+\setbeamertemplate{footline}{%
+\hfill\usebeamertemplate***{navigation symbols}
+\hspace{1cm}\insertframenumber{}/\inserttotalframenumber}
 
 \begin{document}
 
@@ -60,11 +73,6 @@
 \begin{frame}
 \titlepage
 \end{frame}
-
-\slide{Table of Contents}
-{
-	\tableofcontents
-}
 
 \section{Introduction}
 \input{introduction}
