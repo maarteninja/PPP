@@ -18,8 +18,8 @@ HOG features:
 \begin{frame}
 \frametitle{Conditional Random Fields}
 \begin{itemize}
-\item What are CRFs?
-\item Why CRFs?
+\item Regard image as graph (patches $x_i$, images $y_i$)
+\item More interesting than a sliding window approach
 \item Solver: Structural Support Vector Machine (SSVM)
 \end{itemize}
 \includegraphics[width=.5\paperwidth]{resources/crf}
@@ -28,8 +28,8 @@ HOG features:
 \begin{frame}{CRF and SSVM}
 	CRF uses an ``energy function''
 % Shit, this wasn't a needed formula, but letting it in here just to be sure:
-%$$ E(\mathbf{x}, \mathbf{y}) - h\sum_i x_i - \beta \sum_{\{i, j\}} x_i x_j
-%- \eta \sum_i x_i y_i $$
+$$ E(\mathbf{x}, \mathbf{y}) = h\sum_i x_i - \beta \sum_{\{i, j\}} x_i x_j
+- \eta \sum_i x_i y_i $$
 Minimizes energy function of the graph
 Two options:
 \begin{itemize}
