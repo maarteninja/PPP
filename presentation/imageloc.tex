@@ -4,15 +4,17 @@
 Second step:
 \begin{itemize}
 \item find bounding boxes of images on new books
+\item classify whether patch is an image or text patch
+\item reconstruct images from patches
+\end{itemize}
+HOG features:
+\begin{itemize}
+\item 10x20 per page
+\item Additionally: concatenate features, 9x19 per page
 \end{itemize}
 \end{frame}
 
 \subsection{Method}
-\begin{frame}
-\frametitle{Features}
-Once again: HOG features
-\end{frame}
-
 \begin{frame}
 \frametitle{Conditional Random Fields}
 \begin{itemize}
