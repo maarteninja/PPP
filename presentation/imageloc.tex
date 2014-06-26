@@ -16,10 +16,10 @@ HOG features:
 
 \subsection{Method}
 \begin{frame}
-\frametitle{Conditional Random Fields}
+\frametitle{Conditional Random Fields (CRF)}
 \begin{itemize}
-\item Regard image as undirected graph (labels $x_i$, patches $y_i$)
-\item Decide label for $x_i$ on patch likeliness, neighborhood, and prior
+\item Regard image patches, and their labels, as an undirected graph (labels $x_i$, patches $y_i$)
+\item Decide label $x_i$ on patch likeliness, neighborhood, and prior
 \item Solver: Structural Support Vector Machine (SSVM)
 \end{itemize}
 $$ E(\mathbf{x}, \mathbf{y}) = h\sum_i x_i - \beta \sum_{\{i, j\}} x_i x_j
