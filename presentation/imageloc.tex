@@ -56,12 +56,14 @@ $$ E(\mathbf{x}, \mathbf{y}) = h\sum_i x_i - \beta \sum_{\{i, j\}} x_i x_j
 \frametitle{Two Stage Training}
 Require two stage training to prevent overfitting.
 \begin{itemize}
-\item Train SVM on $75\%$ of train set.
-\item Predict labels using the trained SVM on other the $25\%$.
+\item Train SVM on $75\%$ of train set, and predict labels on remainder for SSVM
 \item Repeat 4 times, with different splits
 \item Now $100\%$ of the SSVM features is available
 \item Once more: train SVM on $100\%$ of train set to obtain best model
 \end{itemize}
+\begin{center}
+\includegraphics[width=.5\paperwidth]{resources/twostage}
+\end{center}
 \end{frame}
 
 \subsection{Results}
