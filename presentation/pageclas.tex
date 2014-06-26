@@ -42,18 +42,19 @@ Local features to capture the difference between text and images:
 \end{frame}
 
 % Explain SVM i.c.w. HOG features for pages
-\slide{Classification using SVM}
-{
-	\begin{itemize}
-		\item All pages are annotated with having either ``text'', ``images'' or
-		``nothing useful'' on it. Images get bounding boxes, which we will later
-		use.
-		\item Calculate 5x5 HOG features per page
-		\item Train a Support Vector Machine (SVM) on these feature vectors and
-		labels
-		\item Predict whether a page contains an image based on this SVM
-	\end{itemize}
-}
+% Moved to introduction
+% \slide{Classification using SVM}
+% {
+% 	\begin{itemize}
+% 		\item All pages are annotated with having either ``text'', ``images'' or
+% 		``nothing useful'' on it. Images get bounding boxes, which we will later
+% 		use.
+% 		\item Calculate 5x5 HOG features per page
+% 		\item Train a Support Vector Machine (SVM) on these feature vectors and
+% 		labels
+% 		\item Predict whether a page contains an image based on this SVM
+% 	\end{itemize}
+% }
 
 \begin{frame}
 \frametitle{Test - Validation}

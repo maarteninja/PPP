@@ -79,4 +79,37 @@
 	\end{columns}
 }
 
-
+\subsection{Overview}
+\slide{Project Overview - Step 1}
+{
+	\begin{columns}
+		\begin{column}{.4\textwidth}
+			Step one: annotate
+			\begin{enumerate}
+				\item Create annotation tool
+				\item Classify page as either `text', `useless' or `containing an image'
+				\item Annotate bounding boxes of images
+			\end{enumerate}
+		\end{column}
+		\begin{column}{.6\textwidth}
+			\includegraphics[width=.8\columnwidth]{resources/screenshot_annotator}
+		\end{column}
+	\end{columns}
+}
+\slide{Project Overview - Step 2-3}
+{
+	Step two: classify pages
+	\begin{enumerate}
+		\item Calculate 5x5 HOG features per page
+		\item Train a Support Vector Machine (SVM) on these feature vectors and
+		labels
+		\item Predict whether a page contains an image based on this SVM
+	\end{enumerate}
+	Step three: localize images on pages
+	\begin{enumerate}
+		\item Calculate 10x20 HOGs per page, these are ``Patches''
+		\item Train a Structural Support Vector Machine (SSVM) on a
+			Conditional Random Field with these features
+		\item Predict per patch if its an image or text patch
+	\end{enumerate}
+}
