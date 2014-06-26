@@ -181,7 +181,6 @@ def get_hog_features_page(f, data, page_path, number_of_blocks):
 	# Reshape the descriptors to the pystruct desired shape
 	# We now have the 0'th index horizontal and the 1'th index
 	# vertical
-	print descriptor.shape
 	descriptor.shape = (number_of_blocks[1], number_of_blocks[0], 8)
 	# Transpose the first two axes, in order to get from x-y
 	# coordinates to y-x coordinates
@@ -415,7 +414,7 @@ def concatenate_features(features):
 # 	
 # 	
 
-def prepare_data(input_folder):
+def prepare_data(input_folder, validate_set=True):
 	pages_data = get_pages_and_data_from_folder(input_folder)
 	pages_data = pages_data
 	#print pages_data
@@ -424,7 +423,8 @@ def prepare_data(input_folder):
 
 	train_pages_data = []
 	validate_pages_data = []
-
+	if validate_set == False:
+		return pages_data
 	# take 20% for validate set
 	for i, p_d in enumerate(pages_data):
 		if i % 5 == 0:

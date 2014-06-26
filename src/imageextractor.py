@@ -196,10 +196,14 @@ if __name__ == '__main__':
 	# input parameters
 	input_folder = args['input_folder']
 	number_of_blocks = tuple([int(a) for a in args['number_of_blocks'].split('x')])
-	svm_path = '../models/svm_params_overlap_1.py' # if None or '', then no svm is used
-	# svm_path = False
-	ssvm_path = '../models/model_c_10_svm_1_overlap_1.py'
 	overlap = True
+	use_svm = False
+	if use_svm:
+		svm_path = '../models_backup/svm_params_overlap_%d.py' % (int(overlap)) # if None or '', then no svm is used
+	else:
+		svm_path = False
+	ssvm_path = '../models_backup/model_c_10_svm_%d_overlap_%d.py' % (int(use_svm), \
+		int(overlap))
 	output_folder = '../output_testset'
 
 	# read all images from input folder

@@ -90,31 +90,47 @@ class PageClassifier:
 		""" Tests the trained svm on the test set in self.test_set. train (or
 		some kind of "load" function  in later versions) has to be run first!
 		"""
+		self.classifier = \
+			bookfunctions.load_page_classifier(os.path.join('..', 'models',
+				'classifier_svm_params.py'))
+		self.test_set = bookfunctions.prepare_data(self.test_set,
+			validate_set=False)
 		test_descriptors = []
 		test_real_labels = []
-		for book in self.test_set:
-			# read its descriptors and labels
-			print "Calculating data for book %s" % (book)
-			descriptors, labels = self.read_book_data(book)
-			test_descriptors.extend(descriptors)
-			test_real_labels.extend(labels)
-		test_predicted_labels = self.classifier.predict(test_descriptors)
-		print confusion_matrix(test_real_labels, test_predicted_labels)
-		prfs = precision_recall_fscore_support(test_real_labels, \
+		self.test_features = bookfunctions.get_all_features(self.test_set, \
+			self.number_of_blocks)
+		s = self.test_features.shape
+		# Reshape all features to 1 feature vector
+		self.test_features.shape = (s[0], s[1] * s[2] * s[3])
+		self.test_labels = bookfunctions.get_all_page_labels(self.test_set, \
+			self.number_of_blocks)
+		# for book in self.test_set:
+		# 	# read its descriptors and labels
+		# 	print "Calculating data for book %s" % (book)
+		# 	descriptors, labels = self.read_book_data(book)
+		# 	test_descriptors.extend(descriptors)
+		# 	test_real_labels.extend(labels)
+		test_predicted_labels = self.classifier.predict(self.test_features)
+		print confusion_matrix(self.test_labels, test_predicted_labels)
+		prfs = precision_recall_fscore_support(self.test_labels, \
 			test_predicted_labels)
 		print """
 			Precision:
 				Image: %f
 				Text: %f
+				Bagger: %f
 			Recall:
 				Image: %f
 				Text: %f
+				Bagger: %f
 			Fscore:
 				Image: %f
 				Text: %f
+				Bagger: %f
 			Support:
 				Image: %f
 				Text: %f
+				Bagger: %f
 			""" % tuple(np.ndarray.flatten(np.array(prfs)))
 
 if __name__ == '__main__':
@@ -132,4 +148,6 @@ if __name__ == '__main__':
 	number_of_blocks = tuple([int(a) for a in args['number_of_blocks'].split('x')])
 
 	learner = PageClassifier(args['input_folder'], number_of_blocks)
+	learner.test_set = args['input_folder']
 	learner.validate()
+	#learner.test()
