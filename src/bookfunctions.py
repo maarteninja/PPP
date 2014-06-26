@@ -28,7 +28,6 @@ def remove_unannotated_books(input_folder, books):
 			return_books.append(book)
 	return return_books
 
-
 def calculate_hog(image, number_of_blocks):
 	""" calculates the hog features from an image (np array image) given
 	the number of bocks"""
@@ -102,7 +101,6 @@ def calculate_hog_locations(image, number_of_blocks):
 			coordinates.append((y, x))
 	return coordinates
 
-
 def read_image_from_annotation_file(input_folder, annotated_image, book):
 	""" Given the path of an annotation .py file, finds the corresponding
 	image and returns it as returned by misc.imread
@@ -113,7 +111,6 @@ def read_image_from_annotation_file(input_folder, annotated_image, book):
 	image_name = input_folder + os.sep + book + os.sep + \
 		'raw' + os.sep + name + '.png'
 	return misc.imread(image_name)
-
 
 def get_bounding_boxes_from_page(page_path, model, number_of_blocks):
 	""" reads 1 image from path, calcualtes hog features for that image,
@@ -273,7 +270,6 @@ def get_hog_locations(f, data, annotated_image, input_folder, book, \
 	calls get_hog_locations_path """
 	page_path = get_page_path(annotated, input_folder, book)
 	return get_hog_locations_path(f, data, page_path, number_of_blocks)
-
 
 def get_labels_path(f, data, data_path, page_path, number_of_blocks, \
 		overlap=False):
