@@ -57,23 +57,46 @@ Local features to capture the difference between text and images:
 % }
 
 \begin{frame}
-\frametitle{Test - Validation}
+\frametitle{Train - Validation - Test}
+
+\begin{block}{Train - Validation}
 \begin{itemize}
 \item Merge the sets of all annotated book pages into one set
 \item Split this set into train set ($80\%$) and validation set($20\%$)
 \item Use validation set to set parameters ($C$)
+\item Use F2-score in order to focus on recall (preprocess for annotator)
 \end{itemize}
+\end{block}
 
-
+\begin{block}{Test}
+\begin{itemize}
+\item Run the learned classifier on newly downloaded books
+\end{itemize}
+\end{block}
 \end{frame}
 
 \subsection{Results}
 \begin{frame}
 \frametitle{Results}
-\begin{itemize}
-\item Run the learned classifier on new books
-\item Use F2-score in order to focus on recall (preprocess for annotator)
-\end{itemize}
-TODO: list results
+
+\begin{block}{Scores}
+\begin{tabular}{l l l }
+% & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
+  & \textbf{Image} & \textbf{Text}\\
+\textbf{Precision} & ? & ? \\
+\textbf{Recall} & ? & ? \\
+\textbf{F-score} & ? & ?  
+\end{tabular}
+\end{block}
+
+\begin{block}{Confusion matrix}
+\begin{tabular}{l l l }
+%& \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
+Real\textbackslash Predicted & \textbf{Image} & \textbf{Text} \\
+\textbf{Image} & ?  & ?  \\
+\textbf{Text} & ?  & ?
+\end{tabular}
+\end{block}
+
 
 \end{frame}
