@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage{algorithmicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{microtype}
+
+\newcommand{\todo}[1]{{\bfseries\sffamily{TODO: #1}}}
+
+\title{Plucking Pictures from Publications\\ \large
+Image Segmentation in Old Books}
+% \subtitle{I don't know what I'm doing!}
+\author{Maarten Inja (5872464) \and Maarten de Waard (5894883)}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+abstract
+\end{abstract}
+
+\section{Introduction}
+\label{sec:introduction}
+\input{introduction}
+
+\section{Page Classification}
+\label{sec:pageclas}
+\input{pageclas}
+\subsection{Method}
+\label{subsec:pageclasmethod}
+\input{pageclasmethod}
+\subsection{Results}
+\label{subsec:pageclasresults}
+\input{pageclasresults}
+
+\section{Image Localization}
+\label{sec:imageloc}
+\input{imageloc}
+\subsection{Method}
+\label{subsec:imagelocmethod}
+\input{imagelocmethod}
+\subsection{Results}
+\label{subsec:imagelocresults}
+\input{imagelocresults}
+
+\section{Discussion \& Conclusion}
+\label{sec:discussionconclusion}
+\input{discussionconclusion}
+
+\bibliographystyle{abbrv}
+\bibliography{references}
+\end{document}
+% vim: set spell :
