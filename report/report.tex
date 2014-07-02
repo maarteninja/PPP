@@ -1,4 +1,5 @@
-\documentclass{article}
+\documentclass[draft]{article} % <- compile with draft quickly without images
+%\documentclass{article}
 \usepackage{algorithmicx}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
@@ -7,6 +8,8 @@
 \usepackage{verbatim}
 \usepackage{graphicx}
 \usepackage{microtype}
+\usepackage{subcaption}
+\usepackage{url}
 
 \newcommand{\todo}[1]{{\bfseries\sffamily{TODO: #1}}}
 
@@ -22,18 +25,19 @@ Image Segmentation in Old Books}
 abstract
 \end{abstract}
 
-\section{Introduction}
-\label{sec:introduction}
+% note: zoals je een keer hebt verteld: de spelling doet het wel als je de
+% sections laat beginnen in de text files die je input!
+
 \input{introduction}
 
-\section{Page Classification}
-\label{sec:pageclas}
+\input{dataset}
+
+\input{annotator}
+
 \input{pageclas}
-\subsection{Method}
-\label{subsec:pageclasmethod}
+
 \input{pageclasmethod}
-\subsection{Results}
-\label{subsec:pageclasresults}
+
 \input{pageclasresults}
 
 \section{Image Localization}

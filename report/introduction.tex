@@ -1,32 +1,38 @@
+\section{Introduction}
+\label{sec:introduction}
+
 %\begin{document}
 Around the year 2011, Google digitally scanned in a great amount of books from
+\todo{citation needed, where is this information coming from? And why google?
+did not we have a different site as well?}
 the 16\textsuperscript{th} and 17\textsuperscript{th} century, also known as the
 Dutch ``Golden Age''. Many of these books are now available freely online to
-read and download. OCR techniques have been used in order to make each book's
+read and download. OCR techniques have been used in order to make some of the book's
 text available and searchable. However, the images in the books can only be
-found by scrolling through the entire books. Since images are quite sparse in
+found by scrolling through an entire book. Since images are quite sparse in
 these kind of books, this can be a tedious task.
 
-\todo{Meer intro, o.a. Image Segmentation}
+Our goal is to extract these images automatically. This could be used to offer
+the images separately to users, or make them searchable. Similar to the text
+now.
 
-\todo{Layout of report with section description}
+We have divided the this task in several subtasks. We approached the task as a
+supervised learning problem, so in section \ref{sec:annotator} we first discuss the
+annotator program we built to quickly obtain an annotated set of book pages.
 
-\section{Dataset}
-\todo{More elaborate description (with examples) of books and book pages}
+As a proof of concept we first classify pages binary in section \ref{pageclas}.
+To separate the pages with images from those without could mean a speed up in the
+annotating process: imagine if one
+would only have to specify where the images are on a page, rather than go
+through hundreds of pages without any images at all.
 
-\todo{Add (reference to) statistics of data:}
-\begin{table}
-\centering
-\begin{tabular}{l l}
-Total amount of pages: & 5960 \\
-Mean pages per book: & 236 \\
-Standard deviation: & 223 \\
-\hline
-Total amount of images: & 525 \\
-Mean images per book: & 22.8 \\
-Standard deviation: & 49.8
-\end{tabular}
-\caption{Dataset statistics}
-\label{tab:statistics}
-\end{table}
+Finally, the last step involves the actual problem we find
+the bounding boxes of images in section \ref{sec:imageloc} so that the actual
+images can be extracted and presented separately.
+
+However, to get familiar with the problem, the dataset is laid out, and some
+challenges that arise with this dataset, in section \ref{sec:dataset}.
+
+All the code and the produces programs are available publicly at
+\url{https://github.com/maarteninja/PPP}
 
