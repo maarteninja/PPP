@@ -1,0 +1,60 @@
+\documentclass[draft]{article} % <- compile with draft quickly without images
+%\documentclass{article}
+\usepackage{algorithmicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{subcaption}
+\usepackage{url}
+
+\newcommand{\todo}[1]{{\bfseries\sffamily{TODO: #1}}}
+
+\title{Plucking Pictures from Publications\\ \large
+Image Segmentation in Old Books}
+\author{Maarten Inja (5872464) \and Maarten de Waard (5894883)}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+abstract
+\end{abstract}
+
+% note: zoals je een keer hebt verteld: de spelling doet het wel als je de
+% sections laat beginnen in de text files die je input!
+
+\input{introduction}
+
+\input{dataset}
+
+\input{annotator}
+
+\input{pageclas}
+
+\input{pageclasmethod}
+
+\input{pageclasresults}
+
+\section{Image Localization}
+\label{sec:imageloc}
+\input{imageloc}
+\subsection{Method}
+\label{subsec:imagelocmethod}
+\input{imagelocmethod}
+\subsection{Results}
+\label{subsec:imagelocresults}
+\input{imagelocresults}
+
+\section{Discussion \& Conclusion}
+\label{sec:discussionconclusion}
+\input{discussionconclusion}
+
+\bibliographystyle{abbrv}
+\bibliography{references}
+\end{document}
+% vim: set spell :

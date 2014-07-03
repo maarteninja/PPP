@@ -57,32 +57,71 @@ Local features to capture the difference between text and images:
 % }
 
 \begin{frame}
-\frametitle{Test - Validation}
+\frametitle{Train - Validation - Test}
+
+\begin{block}{Train - Validation}
 \begin{itemize}
-\item Merge the sets of all annoated book pages into one set
+\item Merge the sets of all annotated book pages into one set
 \item Split this set into train set ($80\%$) and validation set($20\%$)
 \item Use validation set to set parameters ($C$)
+\item Use F2-score in order to focus on recall (preprocess for annotator)
 \end{itemize}
+\end{block}
 
-\begin{center}
-\begin{tabular}{l l}
-mean pages per book: & 236\\
-standard deviation: & 223\\
-mean images per book: & 22.8\\
-standard deviation: & 49.8
-\end{tabular}
-\end{center}
-
-
+\begin{block}{Test}
+\begin{itemize}
+\item Run the learned classifier on newly downloaded books
+\end{itemize}
+\end{block}
 \end{frame}
 
 \subsection{Results}
 \begin{frame}
 \frametitle{Results}
-\begin{itemize}
-\item Run the learned classifier on new books
-\item Use F2-score in order to focus on recall (preprocess for annotator)
-\end{itemize}
-TODO: list results
+
+\begin{block}{Scores}
+\begin{tabular}{l l l l}
+% & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
+  & \textbf{Image} & \textbf{Text} & \textbf{Nothing} \\
+\textbf{Precision} & 0.60  & 0.995 & 0.970 \\
+\textbf{Recall} & 0.964  & 0.921 & 0.964 \\
+\textbf{F-score} & 0.741 & 0.956 & 0.967
+\end{tabular}
+\end{block}
+
+\begin{block}{Confusion matrix}
+\begin{tabular}{l l l l}
+%& \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
+Real\textbackslash Predicted & \textbf{Nothing} & \textbf{Image} & \textbf{Text} \\
+\textbf{Nothing} & 271 & 9 & 1 \\
+\textbf{Image} & 169 & 2074 & 9 \\
+\textbf{Text} & 10 & 2 & 323
+\end{tabular}
+\end{block}
+
+
+%MET BAGGER
+%[[ 271    9    1]
+%[ 169 2074    9]
+%[  10    2  323]]
+
+%                       Precision:
+%                               Image: 0.602222
+%                               Text: 0.994724
+%                               Bagger: 0.969970
+%                       Recall:
+%                               Image: 0.964413
+%                               Text: 0.920959
+%                               Bagger: 0.964179
+%                       Fscore:
+%                               Image: 0.741450
+%                               Text: 0.956421
+%                               Bagger: 0.967066
+%                       Support:
+%                               Image: 281.000000
+%                               Text: 2252.000000
+%                               Bagger: 335.000000
+%
+
 
 \end{frame}

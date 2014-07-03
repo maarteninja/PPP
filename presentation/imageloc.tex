@@ -16,10 +16,10 @@ HOG features:
 
 \subsection{Method}
 \begin{frame}
-\frametitle{Conditional Random Fields}
+\frametitle{Conditional Random Fields (CRF)}
 \begin{itemize}
-\item Regard image as undirected graph (labels $x_i$, patches $y_i$)
-\item Decide label for $x_i$ on patch likeliness, neighborhood, and prior
+\item Regard image patches, and their labels, as an undirected graph (labels $x_i$, patches $y_i$)
+\item Decide label $x_i$ on patch likeliness, neighborhood, and prior
 \item Solver: Structural Support Vector Machine (SSVM)
 \end{itemize}
 $$ E(\mathbf{x}, \mathbf{y}) = h\sum_i x_i - \beta \sum_{\{i, j\}} x_i x_j
@@ -68,7 +68,54 @@ Require two stage training to prevent overfitting.
 
 \subsection{Results}
 
+
 \begin{frame}
-\frametitle{Results}
-insert results here
+\frametitle{Results, Single Features}
+
+\begin{block}{Scores}
+\begin{tabular}{l l l  | l l}
+ & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
+& \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} \\
+\textbf{Precision} & 0.271 & 0.979 & 0.271 & 0.979 \\
+\textbf{Recall} & 0.700 & 0.884 & 0.700 & 0.884 \\
+\textbf{F-score} & 0.391 & 0.929 & 0.391 & 0.929
+\end{tabular}
+\end{block}
+
+\begin{block}{Confusion matrices}
+\begin{tabular}{l l l | l l }
+& \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
+Real\textbackslash Predicted & \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} \\
+\textbf{Image} &  523370&  59995& 523370 & 59995 \\
+\textbf{Text} &  562795&  5477440& 562795 & 5477440
+\end{tabular}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Results, Concatenated Features}
+
+\begin{block}{Scores}
+\begin{tabular}{l l l  | l l}
+ & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
+  & \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} \\
+\textbf{Precision} & 0.269 & 0.979 & 0.241 & 0.979 \\
+\textbf{Recall} & 0.743 & 0.854 &  0.750 & 0.830 \\
+\textbf{F-score} & 0.395 & 0.912 & 0.365 & 0.898
+\end{tabular}
+\end{block}
+
+\begin{block}{Confusion matrices}
+\begin{tabular}{l l l | l l }
+& \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
+Real\textbackslash Predicted & \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} \\
+\textbf{Image} & 524523 & 58481 & 524759 & 58245 \\
+\textbf{Text} & 566567 & 5390857 & 577927 & 5379497
+\end{tabular}
+\end{block}
+
+
+
 \end{frame}

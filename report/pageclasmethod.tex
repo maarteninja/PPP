@@ -1,0 +1,34 @@
+\subsection{Method}
+\label{subsec:pageclasmethod}
+Histogram of orientated gradients (HOG) features are
+to local image descriptors that can be used in image classification and object
+detection\cite{dalal2005histograms}. To obtain HOG features from an image, the
+image is divided into connected regions called cells. Each cells bins the
+orientation of the gradient of the pixels. These cells can then be normalized
+over a larger region called blocks to be more robust versus changes in
+illumination.
+
+\todo{insert used parameters here}
+
+
+% \begin{frame}
+% \frametitle{Features}
+% Local features to capture the difference between text and images:
+% 	\begin{block}{Histogram of Oriented Gradients (HOG)}
+% 		HOG features contain the amount of gradients in a certain image patch.
+% 	\end{block}
+% 	\begin{block}{Steps for computing HOG Features\cite{dalal2005histograms}}
+% 	\begin{enumerate}
+% 		\item Global image normalisation
+% 		\item Compute the gradient images
+% 		\item Compute gradient histograms in 8 directions
+% 		\item Normalise across blocks
+% 		\item Flatten into a feature vector
+% 	\end{enumerate}
+% 	\end{block}
+% \end{frame}
+
+\todo{Describe (shortly) the train, validation and test set}
+
+\todo{Describe learning the SVM}
+
