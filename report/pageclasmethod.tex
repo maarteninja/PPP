@@ -8,9 +8,6 @@ orientation of the gradient of the pixels. These cells can then be normalized
 over a larger region called blocks to be more robust versus changes in
 illumination.
 
-\todo{insert used parameters here}
-
-
 % \begin{frame}
 % \frametitle{Features}
 % Local features to capture the difference between text and images:
@@ -28,7 +25,17 @@ illumination.
 % 	\end{block}
 % \end{frame}
 
-\todo{Describe (shortly) the train, validation and test set}
+After calculating the hog features for all pages, one in five of the pages is
+selected for the validation set. The rest of the pages are used as training set.
+This ensures that all books are represented by both sets. The results in the
+next section are found on a freshly downloaded and annotated test set.
 
 \todo{Describe learning the SVM}
 
+% It is my (Maartens) opinion that we should describe our parameters for HOG
+% features at the same time as our parameters for the SVMs. Maybe we should even
+% move this to the "results" section.
+For the classifier, each page was divided into 5 by 5 blocks. Because the pages
+are quite alike in terms of lighting conditions \footnote{they are all scanned
+similarly, and pages are mostly black on white}, each block had only 1 cell. For
+calculating the HOG features, the gradients were binned into eight orientations. 

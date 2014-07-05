@@ -3,36 +3,41 @@
 
 %\begin{document}
 Around the year 2011, Google digitally scanned in a great amount of books from
-\todo{citation needed, where is this information coming from? And why google?
-did not we have a different site as well?}
-the 16\textsuperscript{th} and 17\textsuperscript{th} century, also known as the
-Dutch ``Golden Age''. Many of these books are now available freely online to
-read and download. OCR techniques have been used in order to make some of the book's
-text available and searchable. However, the images in the books can only be
-found by scrolling through an entire book. Since images are quite sparse in
-these kind of books, this can be a tedious task.
+%\todo{citation needed, where is this information coming from? And why google?
+%did not we have a different site as well?}
+% No we didn't. That site had only books from the 18th century and we didn't use
+% them (they weren't in the list). This info came from
+% http://booksearch.blogspot.nl/2011/05/books-from-16th-and-17th-centuries-now.html,
+% I don't know how we should cite it if we cite it...
+the 16\textsuperscript{th} and 17\textsuperscript{th}
+century\cite{bloomburg2011}, also known as the Dutch ``Golden Age''. Many of
+these books are now available freely online to read and download. OCR techniques
+have been used in order to make some of the book's text available and
+searchable. However, the images in the books can only be found by scrolling
+through an entire book. Since images are quite sparse in these kind of books,
+this can be a tedious task.
 
 Our goal is to extract these images automatically. This could be used to offer
 the images separately to users, or make them searchable. Similar to the text
-now.
+now. We approached the task as a supervised learning problem.
 
-We have divided the this task in several subtasks. We approached the task as a
-supervised learning problem, so in section \ref{sec:annotator} we first discuss the
-annotator program we built to quickly obtain an annotated set of book pages.
+We have divided the this task in several subtasks. In section
+\ref{sec:annotator} we first discuss the annotator program we built to quickly
+obtain an annotated set of book pages.
 
-As a proof of concept we first classify pages binary in section \ref{pageclas}.
-To separate the pages with images from those without could mean a speed up in the
-annotating process: imagine if one
+As a proof of concept we first do a binary classification of the pages in
+section \ref{sec:pageclas}.  Separating the pages with images from those without
+them, could result in a speed-up in the annotating process: imagine if one
 would only have to specify where the images are on a page, rather than go
 through hundreds of pages without any images at all.
 
-Finally, the last step involves the actual problem we find
-the bounding boxes of images in section \ref{sec:imageloc} so that the actual
-images can be extracted and presented separately.
+Finally, the last step involves the actual problem. We find the bounding boxes of
+images in section \ref{sec:imageloc} so that the actual images can be extracted
+and presented separately.
 
-However, to get familiar with the problem, the dataset is laid out, and some
-challenges that arise with this dataset, in section \ref{sec:dataset}.
+However, to get familiar with the problem, the dataset and some of the
+challenges that arise with it, are explained, in section \ref{sec:dataset}.
 
-All the code and the produces programs are available publicly at
+All the code and the produced programs are available publicly at
 \url{https://github.com/maarteninja/PPP}
 
