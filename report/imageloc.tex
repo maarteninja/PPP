@@ -1,2 +1,16 @@
+\section{Image Localization}
+\label{sec:imageloc}
 \todo{Explain goal of image localization, maybe (since this is a report and not
 a paper) also explain we don't want to use the easiest method}
+
+For the final application of this research, we need only the images, in stead of
+the entire page. Hog features have been used for localization, in combination
+with a sliding window approach\cite{harzallah2009combining,
+suard2006pedestrian}. With this approach, an image is divided into several,
+overlapping sub-images which are overlapping. Each window is then classified by
+the SVM in much the same way as the Page Classifier works. We wanted to try
+something new.
+
+A Conditional Random Field \cite{lafferty2001conditional} is a statistical model
+in which the labeling for each node is dependant of the labeling of the
+neighbouring nodes.

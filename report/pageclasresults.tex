@@ -16,7 +16,7 @@ calculating the HOG features, the gradients were binned into eight orientations.
 This means the feature vectors for the Linear SVM have $8 \times 5 \times 5 =
 200$ dimensions. 
 For the SVM constant \emph{C} was validated with $10^c$, with $c = \{1 \dots
-6\}$, l2 (squared hinge) loss was used and the dual problem was solved. 
+6\}$, L2 (squared hinge) loss was used and the dual problem was solved. 
 
 \begin{table}
 \centering
@@ -49,9 +49,12 @@ Real\textbackslash Predicted & \textbf{Image} & \textbf{Text} & \textbf{Nothing}
 \label{tab:pageclascm}
 \end{table}
 
-Tables \ref{tab:pageclasresults} shows three measures of accuracy of the
-classifier on the test set. As can be seen, validating using the F2 measure
+Table \ref{tab:pageclasresults} shows three measures of accuracy of the
+classifier on the test set. As can be seen validating using the F2-score
 results in a big recall, but in relatively low precision on the image
 class as well. These results mean that when this classifier would be used as a
 preprocessing step for annotating, about $3.6\%$ of the pages containing images
-would not be annotated as such. 
+would not be annotated as such. Table \ref{tab:pageclascm} depicts the confusion
+matrix.
+
+
