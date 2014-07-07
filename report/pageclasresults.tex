@@ -1,8 +1,22 @@
 \subsection{Results}
 \label{subsec:pageclasresults}
 
-\todo{Explain rating (what were the evaluation criteria, why did we focus on
-F2-score during validation)}
+In order to use the page classification as a preproccessing step for annotating
+books, a page classifier would have to have a very high recall. Therefore, the
+results shown in this section, are validated using the F2 score on the image
+class. 
+
+% It is my (Maartens) opinion that we should describe our parameters for HOG
+% features at the same time as our parameters for the SVMs. Maybe we should even
+% move this to the "results" section.
+Each page was divided into 5 by 5 blocks. Because the pages
+are quite alike in terms of lighting conditions\footnote{they are all scanned
+similarly, and pages are mostly black on white}, each block had only 1 cell. For
+calculating the HOG features, the gradients were binned into eight orientations.
+This means the feature vectors for the Linear SVM have $8 \times 5 \times 5 =
+200$ dimensions. 
+For the SVM constant \emph{C} was validated with $10^c$, with $c = \{1 \dots
+6\}$, l2 (squared hinge) loss was used and the dual problem was solved. 
 
 \begin{table}
 \centering
@@ -12,9 +26,10 @@ F2-score during validation)}
   & \textbf{Image} & \textbf{Text} & \textbf{Nothing} \\\hline
 \textbf{Precision} & 0.60  & 0.995 & 0.970 \\
 \textbf{Recall} & 0.964  & 0.921 & 0.964 \\
-\textbf{F-score} & 0.741 & 0.956 & 0.967 \\\hline
+\textbf{F2-score} & 0.741 & 0.956 & 0.967 \\\hline
 \end{tabular}
-\caption{Results of page classifier}
+\caption{Resulting scores of the page classifier on each of the three annotated
+classes.}
 \label{tab:pageclasresults}
 \end{table}
 
@@ -24,13 +39,19 @@ F2-score during validation)}
 \begin{tabular}{l l l l}
 \hline
 %& \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
-Real\textbackslash Predicted & \textbf{Nothing} & \textbf{Image} & \textbf{Text} \\\hline
-\textbf{Nothing} & 271 & 9 & 1 \\
-\textbf{Image} & 169 & 2074 & 9 \\
-\textbf{Text} & 10 & 2 & 323\\
+Real\textbackslash Predicted & \textbf{Image} & \textbf{Text} & \textbf{Nothing} \\\hline
+\textbf{Image} & 271 & 9 & 1 \\
+\textbf{Text} & 169 & 2074 & 9 \\
+\textbf{Nothing} & 10 & 2 & 323\\
 \hline
 \end{tabular}
-\caption{pageclascm}
+\caption{Confusion matrix of the page classifier}
 \label{tab:pageclascm}
 \end{table}
-\todo{Explain results in table \ref{tab:pageclasresults} and \ref{tab:pageclascm}}
+
+Tables \ref{tab:pageclasresults} shows three measures of accuracy of the
+classifier on the test set. As can be seen, validating using the F2 measure
+results in a big recall, but in relatively low precision on the image
+class as well. These results mean that when this classifier would be used as a
+preprocessing step for annotating, about $3.6\%$ of the pages containing images
+would not be annotated as such. 

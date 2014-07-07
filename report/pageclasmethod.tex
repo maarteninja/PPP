@@ -30,12 +30,7 @@ selected for the validation set. The rest of the pages are used as training set.
 This ensures that all books are represented by both sets. The results in the
 next section are found on a freshly downloaded and annotated test set.
 
-\todo{Describe learning the SVM}
+The hog features are concatenated to one feature vector per page, and put in a
+Linear Support Vector Machine\cite{boser1992training} implemented in 
+LIBLINEAR\cite{fan2008liblinear}. 
 
-% It is my (Maartens) opinion that we should describe our parameters for HOG
-% features at the same time as our parameters for the SVMs. Maybe we should even
-% move this to the "results" section.
-For the classifier, each page was divided into 5 by 5 blocks. Because the pages
-are quite alike in terms of lighting conditions \footnote{they are all scanned
-similarly, and pages are mostly black on white}, each block had only 1 cell. For
-calculating the HOG features, the gradients were binned into eight orientations. 
