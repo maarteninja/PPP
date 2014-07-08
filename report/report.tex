@@ -1,5 +1,9 @@
 \documentclass{article} % <- compile with draft quickly without images
 %\documentclass{article}
+% TODO: Tweak this margin, I don't know what it should be originally, but we
+% need to provide one, in order to be able to change it with \newgeometry (in
+% order to fit all the figures on one page)
+\usepackage[margin=4cm]{geometry}
 \usepackage{algorithmicx}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
@@ -17,7 +21,11 @@
 
 \title{Plucking Pictures from Publications\\ \large
 Image Segmentation in Old Books}
-\author{Maarten Inja (5872464) \and Maarten de Waard (5894883)}
+% Added e-mail addresses because the dataset is available via e-mail (in order
+% to prevent legal disputes with Google Books if we put it online somewhere)
+\author{Maarten Inja (5872464)\\\small\url{maarten.inja@gmail.com} \and Maarten de
+Waard (5894883)\\\small\url{mrtndwrd@gmail.com}}
+
 % Op advies van Thomas:
 \date{Intelligent Systems Project, May 2014\\
 Supervisor: Thomas Mensink}
