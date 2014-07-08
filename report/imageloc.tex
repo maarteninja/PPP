@@ -1,16 +1,26 @@
 \section{Image Localization}
 \label{sec:imageloc}
-\todo{Explain goal of image localization, maybe (since this is a report and not
-a paper) also explain we don't want to use the easiest method}
 
 For the final application of this research, we need only the images, in stead of
-the entire page. Hog features have been used for localization, in combination
+the entire page. In the past, HOG features have been used for localization, in combination
 with a sliding window approach\cite{harzallah2009combining,
 suard2006pedestrian}. With this approach, an image is divided into several,
 overlapping sub-images which are overlapping. Each window is then classified by
 the SVM in much the same way as the Page Classifier works. We wanted to try
 something new.
 
-A Conditional Random Field \cite{lafferty2001conditional} is a statistical model
-in which the labeling for each node is dependant of the labeling of the
-neighbouring nodes.
+A Conditional Random Field \cite{lafferty2001conditional} is a graph-based
+statistical model in which the labeling for each node is dependant on the
+labeling of its neighbouring nodes. Typically, a CRF has an energy function, and
+a loss function that maximizes this energy function. This maximization can be
+solved using structured solvers. A Structured SVM \cite{joachims2009cutting} was
+selected as structured solver for this specific problem. 
+
+\todo{Maybe we should have a reason for choosing the Structured SVM (other than
+``it was in our library''), but I can't think of any...}
+
+\todo{I'm not sure if we want to cite this paper here: artan2010prostate. It
+does seem to be like what we're doing, but it's kind of hard to read and they
+use a cost-sensitive SVM (which apparently is not the same as an SSVM)}
+
+

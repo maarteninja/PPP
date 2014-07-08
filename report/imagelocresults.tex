@@ -1,19 +1,22 @@
 \todo{Explain how the results are measured (1 score per image patch)}
 
-\begin{table}
-\centering
-\begin{tabular}{@{\extracolsep{4pt}}l r r r r @{}}
-\hline
- & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
- \cline{2-3} \cline{4-5}
-  & \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} \\
-\textbf{Precision} & 0.269 & 0.979 & 0.241 & 0.979 \\
-\textbf{Recall} & 0.743 & 0.854 &  0.750 & 0.830 \\
-\textbf{F-score} & 0.395 & 0.912 & 0.365 & 0.898 \\\hline
-\end{tabular}
-\caption{scores for image localization}
-\label{tab:imagelocresults}
-\end{table}
+\begin{comment}
+% This table has been moved to next to the figure in imagelocmethod
+	\begin{table}
+	\centering
+	\begin{tabular}{@{\extracolsep{4pt}}l r r r r @{}}
+	\hline
+	 & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
+	 \cline{2-3} \cline{4-5}
+	  & \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} \\
+	\textbf{Precision} & 0.269 & 0.979 & 0.241 & 0.979 \\
+	\textbf{Recall} & 0.743 & 0.854 &  0.750 & 0.830 \\
+	\textbf{F-score} & 0.395 & 0.912 & 0.365 & 0.898 \\\hline
+	\end{tabular}
+	\caption{scores for image localization}
+	\label{tab:imagelocresults}
+	\end{table}
+\end{comment}
 
 \begin{table}
 \centering
@@ -30,4 +33,10 @@ Real\textbackslash Predicted & \textbf{Image} & \textbf{Text} & \textbf{Image} &
 \label{tab:imageloccm}
 \end{table}
 
-\todo{Explain results}
+\todo{Explain results, mention that the difference between Pre-trained and
+not pre-trained is bigger with more discriminative features (2x2 HOG in stead of
+1)}
+
+\todo{Visualisations of the results (if possible). Thomas mentioned showing some
+pages with the classification as a colored overlay, or a map of the labels under
+the page}

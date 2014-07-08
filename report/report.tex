@@ -4,9 +4,9 @@
 % need to provide one, in order to be able to change it with \newgeometry (in
 % order to fit all the figures on one page)
 \usepackage[margin=4cm]{geometry}
-\usepackage{algorithmicx}
-\usepackage{algorithm}
-\usepackage{algpseudocode}
+%\usepackage{algorithmicx}
+%\usepackage{algorithm}
+%\usepackage{algpseudocode}
 \usepackage{amssymb}
 \usepackage{xcolor}
 \usepackage{verbatim}
@@ -16,6 +16,9 @@
 \usepackage{subcaption}
 \usepackage{url}
 \usepackage{hyperref}
+\usepackage{floatrow}
+
+\newfloatcommand{capbtabbox}{table}[][\FBwidth]
 
 \newcommand{\todo}[1]{{\bfseries\sffamily{TODO: #1}}}
 

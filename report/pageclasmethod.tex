@@ -25,12 +25,12 @@ illumination.
 % 	\end{block}
 % \end{frame}
 
-After calculating the hog features for all pages, one in five of the pages is
+After calculating the HOG features for all pages, one in five of the pages is
 selected for the validation set. The rest of the pages are used as training set.
 This ensures that all books are represented by both sets. The results in the
 next section are found on a freshly downloaded and annotated test set.
 
-The hog features are concatenated to one feature vector per page, and put in a
+The HOG features are concatenated to one feature vector per page, and put in a
 Linear Support Vector Machine\cite{boser1992training} implemented in 
 LIBLINEAR\cite{fan2008liblinear}. 
 
