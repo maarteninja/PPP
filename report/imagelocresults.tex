@@ -1,35 +1,102 @@
 \todo{Explain how the results are measured (1 score per image patch)}
 
-\begin{comment}
+% SVM ONLY results with concatentatd features:
+% 		Precision:
+% 			Image: 0.153686
+% 			Text: 0.973459
+% 		Recall:
+% 			Image: 0.732032
+% 			Text: 0.709145
+% 		Fscore:
+% 			Image: 0.254038
+% 			Text: 0.820542
+% 		Support:
+% 			Image: 33004.000000
+% 			Text: 457424.000000
+% 		
+% Confusion matrix:
+% [[ 24160   8844]
+%  [133044 324380]]
+
+
 % This table has been moved to next to the figure in imagelocmethod
-	\begin{table}
-	\centering
-	\begin{tabular}{@{\extracolsep{4pt}}l r r r r @{}}
-	\hline
-	 & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
-	 \cline{2-3} \cline{4-5}
-	  & \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} \\
-	\textbf{Precision} & 0.269 & 0.979 & 0.241 & 0.979 \\
-	\textbf{Recall} & 0.743 & 0.854 &  0.750 & 0.830 \\
-	\textbf{F-score} & 0.395 & 0.912 & 0.365 & 0.898 \\\hline
-	\end{tabular}
-	\caption{scores for image localization}
-	\label{tab:imagelocresults}
-	\end{table}
-\end{comment}
+\begin{table}
+\centering
+\begin{tabular}{@{\extracolsep{4pt}}l r r r r r r @{}}
+\hline
+ & \multicolumn{2}{c}{\emph{SVM Only}}  & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
+ \cline{2-3} \cline{4-5} \cline{6-7}
+  & \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} \\
+\textbf{Precision} & 0.154 & 0.973 & 0.269 & 0.979 & 0.241 & 0.979 \\
+\textbf{Recall} & 0.732 & 0.709 & 0.743 & 0.854 &  0.750 & 0.830 \\
+\textbf{F-score} & 0.254 & 0.820 & 0.395 & 0.912 & 0.365 & 0.898 \\\hline
+\end{tabular}
+\caption{scores for image localization with concatenated features}
+\label{tab:imagelocresults}
+\end{table}
 
 \begin{table}
 \centering
 % Extra colsep creates fancy lines
-\begin{tabular}{@{\extracolsep{4pt}}l r r r r @{}}
+\begin{tabular}{@{\extracolsep{4pt}}l r r r r r r @{}}
 \hline
-& \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}}
-\\\cline{2-3}\cline{4-5}
-Real\textbackslash Predicted & \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} \\
-\textbf{Image} & 524523 & 58481 & 524759 & 58245 \\
-\textbf{Text} & 566567 & 5390857 & 577927 & 5379497 \\\hline
+& \multicolumn{2}{c}{\emph{SVM only}} & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}}
+\\\cline{2-3}\cline{4-5}\cline{6-7}
+Real\textbackslash Predicted & \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} \\
+\textbf{Image} & 24160 & 8844 & 524523 & 58481 & 524759 & 58245 \\
+\textbf{Text} & 133044 & 324380 & 566567 & 5390857 & 577927 & 5379497 \\\hline
 \end{tabular}
-\caption{Confusion Matrix for image localization}
+\caption{Confusion Matrix for image localization with concatenated features}
+\label{tab:imageloccm}
+\end{table}
+
+% Results on single features
+% 		Precision:
+% 			Image: 0.098697
+% 			Text: 0.972899
+% 		Recall:
+% 			Image: 0.736251
+% 			Text: 0.584757
+% 		Fscore:
+% 			Image: 0.174060
+% 			Text: 0.730468
+% 		Support:
+% 			Image: 33365.000000
+% 			Text: 540235.000000
+% 		
+% Confusion matrix:
+% [[ 24565   8800]
+%  [224329 315906]]
+
+
+\begin{table}
+\centering
+% Extra colsep creates fancy lines
+\begin{tabular}{@{\extracolsep{4pt}}l r r r r r r @{}}
+\hline
+& \multicolumn{2}{c}{\emph{SVM only}} & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}}
+\\\cline{2-3}\cline{4-5}\cline{6-7}
+& \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} \\
+\textbf{Precision} & 0.099 & 0.973 & 0.271 & 0.979 & 0.271 & 0.979 \\
+\textbf{Recall} & 0.736 & 0.585 & 0.700 & 0.884 & 0.700 & 0.884 \\
+\textbf{F-score} & 0.174 & 0.730 & 0.391 & 0.929 & 0.391 & 0.929\\\hline
+\end{tabular}
+\caption{Results for image localization with single features}
+\label{tab:imageloccm}
+\end{table}
+
+\begin{table}
+\centering
+% Extra colsep creates fancy lines
+\begin{tabular}{@{\extracolsep{4pt}}l r r r r r r @{}}
+\hline
+& \multicolumn{2}{c}{\emph{SVM only}} & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}}
+\\\cline{2-3}\cline{4-5}\cline{6-7}
+Real\textbackslash Predicted & \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} \\
+\textbf{Image} & 24565 & 8800 &  523370 &  59995 & 523370 & 59995 \\
+\textbf{Text} & 224329 & 315906 &  562795 &  5477440 & 562795 & 5477440\\\hline
+\end{tabular}
+\caption{Confusion Matrix for image localization with concatenated features}
 \label{tab:imageloccm}
 \end{table}
 

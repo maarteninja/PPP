@@ -1,3 +1,5 @@
+\begin{comment}
+% Well, this is how we would put two things next to each other if it's ever needed again:
 \begin{figure}
 \begin{floatrow}
 	\ffigbox{
@@ -8,9 +10,9 @@
 		\label{fig:crf}
 	}
 	\capbtabbox{%
-		\begin{tabular}{@{\extracolsep{4pt}}l r r r r @{}}
+		\begin{tabular}{@{\extracolsep{4pt}}l r r r r r r @{}}
 		\hline
-		 & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
+		 & \multicolumn{2}{c}{\emph{SVM only}} & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
 		 \cline{2-3} \cline{4-5}
 		  & \textbf{Image} & \textbf{Text} & \textbf{Image} & \textbf{Text} \\
 		\textbf{Precision} & 0.269 & 0.979 & 0.241 & 0.979 \\
@@ -19,10 +21,17 @@
 		\end{tabular}
 	}
 	{
-		\caption{scores for image localization}
+		\caption{scores for image localization with concatenated features}
 		\label{tab:imagelocresults}
 	}
 \end{floatrow}
+\end{figure}
+\end{comment}
+\begin{figure}
+		\includegraphics[width=.3\textwidth]{resources/crf}
+		\caption{An undirected graph, representing the graph that was used for
+		modeling our Conditional Random Field}
+		\label{fig:crf}
 \end{figure}
 A CRF provides the labelling for an undirected graph. In this case, a grid was
 used, shaped as figure \ref{fig:crf}, where $y_i$ is the percieved data for an
