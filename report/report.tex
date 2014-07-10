@@ -49,11 +49,13 @@ Supervisor: Thomas Mensink}
 
 \begin{abstract}
 In this report we show how we extract images from 16\textsuperscript{th} and
-17\textsuperscript{th} century books. These books contain diverse pages and a
-new annotator tool was built to create a train and test set. HOG features and a
-linear SVM was used to classify pages on whether or not they contain an image or
-only text. A conditional random field in combination with a 1-slack structured
-SVM  was used to localize and segmentate these images.
+17\textsuperscript{th} century books. First, an annotator tool was built to
+quickly annotate the diverse pages of these old books. Then a page classifier,
+based on HOG features and an SVM was built as a proof of concept and as a
+promising method to extend the annotator tool. Finally, we used a
+conditional random field in combination with a 1-slack structured SVM to
+incorporate the neighborhood of the assigned labels and segmentate the images.
+\todo{something about the results}
 \end{abstract}
 
 \input{introduction}
