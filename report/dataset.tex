@@ -34,43 +34,24 @@ contain something that we can neither classify as text nor as an image.
 \label{tab:statistics}
 \end{table}
 
-% Give the images some space!
-\newgeometry{margin=3cm}
-\begin{figure}[H]
-	\centering
-	\begin{subfigure}[b]{0.49\textwidth}
-		\includegraphics[width=.49\textwidth]{resources/pageImageExample}
-		\includegraphics[width=.49\textwidth]{resources/pageImageExample2}
-		\caption{Examples of pages that contain both text and images}
-		\label{fig:textImageExamples}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.49\textwidth}
-		\includegraphics[width=.49\textwidth]{resources/500_0043}
-		\includegraphics[width=.49\textwidth]{resources/500_0010}
-		\caption{Examples of pages that consist of text}
-		\label{fig:textExamples}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.49\textwidth}
-		\includegraphics[width=.49\textwidth]{resources/500_0008}
-		\includegraphics[width=.49\textwidth]{resources/500_0077}
-		\caption{Examples of pages that consist of images}
-		\label{fig:imageExamples}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.49\textwidth}
-		\includegraphics[width=.49\textwidth]{resources/good_quality}
-		\includegraphics[width=.49\textwidth]{resources/bad_quality}
-		\caption{The quality differs per book}
-		\label{fig:qualityExamples}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.49\textwidth}
-		\includegraphics[width=.49\textwidth]{resources/500_0002}
-		\includegraphics[width=.49\textwidth]{resources/500_0004}
-		\caption{Some pages contain neither text nor image}
-		\label{fig:baggerExamples}
-	\end{subfigure}
-	\caption{Examples of book pages from the dataset\todo{Fix the new page that
-	occurs before this figure}}
-	\label{fig:examples}
-\end{figure}
-\restoregeometry
+%\section{Annotator}
+\label{sec:annotator}
+
+An annotator was built, in order to quickly and easily annotate all the pages of
+a book. When a book is downloaded, the annotator cycles through all its pages.
+The user can then press a button on the keyboard indicating whether the page
+contains an image, text, or neither. When the page contains one or several
+images, the user has to drag a bounding box around the images, using the mouse,
+prior to pressing the keyboard button. Errors can be reversed if a page was
+skipped too quickly, or if the user felt a bounding box was drawn incorrectly.
+Because the majority of the pages are
+text pages and the user only has to press 1 button per page, books can be
+annotated fairly quickly with this tool.
+
+Using this annotator and the Google Books website, a training set of annotated
+book pages was created, containing 5960 pages from 23 books. The statistics of
+this dataset can be seen in table \ref{tab:statistics}. A separate test set
+containing 2868 pages from 4 books was created as well. Both sets can be
+requested via E-mail.
+
 

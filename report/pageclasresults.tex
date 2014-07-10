@@ -19,21 +19,6 @@ For the SVM constant \emph{C} was validated with $10^c$, with $c = \{1 \dots
 6\}$, L2 (squared hinge) loss was used and the dual problem was solved. 
 \todo{find out filter size (prob. 1x2 filter or something like that)}
 
-\begin{table}
-\centering
-\begin{tabular}{l r r r}
-\hline
-% & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
-  & \textbf{Image} & \textbf{Text} & \textbf{Nothing} \\\hline
-\textbf{Precision} & 0.600  & 0.995 & 0.970 \\
-\textbf{Recall} & 0.964  & 0.921 & 0.964 \\
-\textbf{F2-score} & 0.741 & 0.956 & 0.967 \\\hline
-\end{tabular}
-\caption{Resulting scores of the page classifier on each of the three annotated
-classes.}
-\label{tab:pageclasresults}
-\end{table}
-
 %%% I (Inja) received note that the confusion matrices are flawed and are not to
 %%% be included in the report
 %%\begin{table}
@@ -59,6 +44,19 @@ preprocessing step for annotating, about $3.6\%$ of the pages containing images
 would not be annotated as such.
 % Table \ref{tab:pageclascm} depicts the confusion matrix.
 
-\todo{conclusion on these results?}
+\begin{table}[h]
+\centering
+\begin{tabular}{l r r r}
+\hline
+% & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
+  & \textbf{Image} & \textbf{Text} & \textbf{Nothing} \\\hline
+\textbf{Precision} & 0.600  & 0.995 & 0.970 \\
+\textbf{Recall} & 0.964  & 0.921 & 0.964 \\
+\textbf{F2-score} & 0.741 & 0.956 & 0.967 \\\hline
+\end{tabular}
+\caption{Resulting scores of the page classifier on each of the three annotated
+classes.}
+\label{tab:pageclasresults}
+\end{table}
 
-
+\todo{some words on these results}

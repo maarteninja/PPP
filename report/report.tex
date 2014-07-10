@@ -1,5 +1,6 @@
-%\documentclass{article} % <- compile with draft quickly without images
-\documentclass{article}
+\documentclass[draft]{article} % <- compile with draft quickly without images
+%\documentclass{article}
+
 % TODO: Tweak this margin, I don't know what it should be originally, but we
 % need to provide one, in order to be able to change it with \newgeometry (in
 % order to fit all the figures on one page)
@@ -19,6 +20,7 @@
 \usepackage{floatrow}
 \usepackage{wrapfig}
 \usepackage{amsmath}
+\usepackage{appendix}
 
 
 \newfloatcommand{capbtabbox}{table}[][\FBwidth]
@@ -46,11 +48,13 @@ Supervisor: Thomas Mensink}
 %\end{figure}
 
 \begin{abstract}
-abstract
+In this report we show how we extract images from 16\textsuperscript{th} and
+17\textsuperscript{th} century books. These books contain diverse pages and a
+new annotator tool was built to create a train and test set. HOG features and a
+linear SVM was used to classify pages on whether or not they contain an image or
+only text. A conditional random field in combination with a 1-slack structured
+SVM  was used to localize and segmentate these images.
 \end{abstract}
-
-% note: zoals je een keer hebt verteld: de spelling doet het wel als je de
-% sections laat beginnen in de text files die je input!
 
 \input{introduction}
 
@@ -74,5 +78,9 @@ abstract
 
 \bibliographystyle{abbrv}
 \bibliography{references}
+
+\newpage
+\input{appendix}
+
 \end{document}
 % vim: set spell :
