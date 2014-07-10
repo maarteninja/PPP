@@ -84,7 +84,9 @@ weights in the loss function which results in non-convex optimization problem.
 This makes them hard to solve. To alleviate this, surrogate loss
 functions, which are convex and equivalent to the loss function are
 used. Popular surrogate loss constructions are \emph{margin rescaling} and
-\emph{slack rescaling}. Using Pystruct \cite{muller2013pystruct} a one slack
+\emph{slack rescaling}. The convex loss functions can be constructed using a
+cutting plane algorithm, which approximates the loss function further until
+$\epsilon$ convergence. Using Pystruct \cite{muller2013pystruct} a one slack
 structured SVM was trained \cite{joachims2009cutting} to solve the CRFs. The loss
 function was the Hamming loss, which counts the amount of patches incorrectly
 classified.
