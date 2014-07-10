@@ -79,9 +79,15 @@ the image patches correctly. However, this is not trivial as
 looping over all possible solutions is intractable, and a gradient descent
 algorithm ends up in a disappointingly low local maximum\cite{bishop2006pattern}.
 
-\todo{explain ssvm here} \cite{joachims2009cutting}. Implemented in
-Pystruct\cite{muller2013pystruct}. Uses Hamming loss.
-
+One of the problems of solving structured SVMs is the reliance on the
+weights in the loss function results in non-convex optimization problem,
+which makes them hard to solve. To alleviate this, surrogate loss
+functions, which are convex and equivalent to the loss function are
+used. Popular surrogate loss constructions are \emph{margin rescaling} and
+\emph{slack rescaling}. Using Pystruct \ref{muller2013pystruct} a one slack
+structured SVM was used \cite{joachims2009cutting} to solve the CRFs. The loss
+function was the Hamming loss, which counts the amount of patches incorrectly
+classified.
 
 Depending on the parameters of the HOG feature extraction the size of the
 feature vectors for the image patches can be large. This has significant impact
