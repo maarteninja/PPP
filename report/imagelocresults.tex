@@ -6,12 +6,12 @@ is required because from the image patches classified as \emph{image} the actual
 images are to be extracted. For this purpose the page is divided into 10 by 20
 blocks each with one cell. Optionally, features are concatenated to incorporate
 more information from the region. This results in 9 by 19 concatenated
-features: one feature, the features of the block to the right, to the bottom and
-the right bottom are concatenated into one.
+features in which a feature vector is built op from one HOG feature, the HOG to
+its right, its bottom and its right bottom, concatenated into one.
 
 If the preprocessing step of the linear SVM is used, we need to be careful and
-avoid over fitting by training the linear SVM on the same data as the structured
-SVM is trained. Therefor, we used two stage validation learning (see figure
+avoid overfitting by training the linear SVM on the same data as the structured
+SVM is trained on. Therefor, we used two stage validation learning (see figure
 \ref{fig:twostage}). In two stage validation, a different subset of
 the training data is repeatedly used to train the linear SVM. The resulting SVM
 assigns the
@@ -40,14 +40,14 @@ train, validation and test set has been used as in section \ref{sec:pageclas}.
 Tables \ref{tab:imageloccm} and \ref{tab:imagelocresults} show the results for
 these settings. The `SVM Only' columns show the results of the
 linear SVM for classifying single features. All scores are calculated per
-feature. The true labels are based on the annotated data: whether their centre
+image patch. The true labels are based on the annotated data: whether their centre
 is inside or outside a bounding box.
 
 First, the results for the single HOG features in table \ref{tab:imageloccm}.
 The extremely low precision indicates that these single HOG features are not
-indicative if an image patch belongs to an image or text. Presumably, this
+indicative for whether an image patch belongs to an image or text. Presumably, this
 large error propagates through to the pre-trained setting, resulting in a low
-recall for image patches there as well. The directly trained SVM was able to
+recall for image patches there as well. The directly trained SSVM was able to
 achieve much better results.
 
 \begin{table}
@@ -70,7 +70,7 @@ achieve much better results.
 \label{tab:imageloccm}
 \end{table}
 
-Second, the results for the concatenated features in table
+Secondly, the results for the concatenated features can be found in table
 \ref{tab:imagelocresults}. The concatenated features seem to convey more
 information about the image patch, as indicated by the rise in precision and
 recall for the linear SVM. As a result, the score difference 

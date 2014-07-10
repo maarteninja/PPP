@@ -3,9 +3,9 @@
 Histogram of orientated gradients (HOG) features are
 to local image descriptors that can be used in image classification and object
 detection\cite{dalal2005histograms}. To obtain HOG features from an image, the
-image is divided into connected regions called cells. Each cells bins the
+image is divided into connected regions called cells. Each cell bins the
 orientation of the gradient of the pixels. These cells can then be normalized
-over a larger region called blocks to be more robust versus changes in
+over a larger region called blocks to be more robust against changes in
 illumination.
 
 % \begin{frame}
@@ -27,8 +27,7 @@ illumination.
 
 After calculating the HOG features for all pages, one in five of the pages is
 selected for the validation set. The rest of the pages are used as training set.
-This ensures that all books are represented by both sets. The results in the
-next section are found on a freshly downloaded and annotated test set.
+This ensures that all books are represented by both sets. 
 
 The HOG features are concatenated to one feature vector per page, and put in a
 Linear Support Vector Machine\cite{boser1992training} implemented in 
