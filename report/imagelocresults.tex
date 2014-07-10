@@ -16,28 +16,31 @@ SVM is trained. Therefor, we used two stage validation learning (see figure
 the training data is used to train the linear SVM. The resulting SVM assigns the
 confidence score to rest of the training data in order to finally recreate the
 whole training data, but now with confidence scores without the risk of
-overfitting.
-\todo{several SVMs and the confidence scores can be used?! Could only find:
-\cite{duan2005best} which indicates exactly the opposite}
+overfitting\footnote{Note that we do not use Platt scaling to normalize the
+scores assigned by these different SVMs. Empirical results show that this does
+actually hurts performance a little, even though more one-vs-all and all-vs-all
+multi0class SVMs often exclude this step to safe time as well\cite{duan2005best}}.
+%\todo{several SVMs and the confidence scores can be used?! Could only find:
+%\cite{duan2005best} which indicates exactly the opposite}
 
 \begin{figure}
 \includegraphics[width=.5\textwidth]{resources/twostage}
-\label{fig:twostage}
 \caption{Visualization of two-stage validation training to generate data for the
 structured SVM}
+\label{fig:twostage}
 \end{figure}
 
 We experimented with 4 different settings: directly trained on the structured
 SVM and pre-trained with the linear SVM, we then tested both options with the
 concatenated features and with the regular features. The same division for the
 train, validation and test set has been used as in section \ref{sec:pageclas}.
-Tables \ref{tab:imagelocm} and \ref{tab:imagelocresults} show the results for
+Tables \ref{tab:imageloccm} and \ref{tab:imagelocresults} show the results for
 these settings. The `SVM Only' columns show the results of the
 linear SVM for classifying single features. All scores are calculated per
 feature. The true labels are based on the annotated data: whether their centre
 is inside or outside a bounding box.
 
-First, the results for the single HOG features in table \ref{tabl:imageloccm}.
+First, the results for the single HOG features in table \ref{tab:imageloccm}.
 The extremely low precision indicates that these single HOG features are not
 indicative if an image patch belongs to an image or text. Presumably, this
 large error propagates through to the pre-trained setting, resulting in a low

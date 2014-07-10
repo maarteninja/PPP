@@ -16,8 +16,10 @@ calculating the HOG features, the gradients were binned into eight orientations.
 This means the feature vectors for the Linear SVM have $8 \times 5 \times 5 =
 200$ dimensions. 
 For the SVM constant \emph{C} was validated with $10^c$, with $c = \{1 \dots
-6\}$, L2 (squared hinge) loss was used and the dual problem was solved. 
-\todo{find out filter size (prob. 1x2 filter or something like that)}
+6\}$, L2 (squared hinge) loss was used and the dual problem was solved. The
+gradient was calculated with a filter size of $1x2$ for each direction.
+%\todo{find out filter size (prob. 1x2 filter or something like that). its not
+%in the document}
 
 %%% I (Inja) received note that the confusion matrices are flawed and are not to
 %%% be included in the report
@@ -51,12 +53,11 @@ would not be annotated as such.
 % & \multicolumn{2}{c}{\emph{Pre-trained}} & \multicolumn{2}{c}{\emph{Direct}} \\
   & \textbf{Image} & \textbf{Text} & \textbf{Nothing} \\\hline
 \textbf{Precision} & 0.600  & 0.995 & 0.970 \\
-\textbf{Recall} & 0.964  & 0.921 & 0.964 \\
-\textbf{F2-score} & 0.741 & 0.956 & 0.967 \\\hline
+\textbf{Recall}    & 0.964  & 0.921 & 0.964 \\
+\textbf{F2-score} l& 0.741  & 0.956 & 0.967 \\\hline
 \end{tabular}
 \caption{Resulting scores of the page classifier on each of the three annotated
 classes.}
 \label{tab:pageclasresults}
 \end{table}
 
-\todo{some words on these results}

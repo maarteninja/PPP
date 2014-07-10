@@ -1,2 +1,23 @@
-DISCUSSION AND CONCLUSION
-\todo{Say we didn't use OCR and maybe why. Also name stroke transform}
+\section{Discussion}% \& Conclusion}
+\label{sec:discussionconclusion}
+
+%\todo{Say we didn't use OCR and maybe why. Also name stroke transform}
+We have laid the ground work to segmentate images from text in old books. An
+annotator was built which can be extended by implementing a filter
+based on the results of the page classifier SVM of section \ref{sec:pageclas}.
+
+Furthermore we have shown that a conditional random field with a 1-slack
+structured SVM improves upon the results of a linear SVM that ignores the
+neighborhood of its labels.
+
+We have deliberately not chosen to implement existing techniques such as OCR to
+recognize text as a feature for image patches, and a sliding window approach to
+segmentate images. While this may have hindered performance, we can sure tell
+that we have learned more.
+
+For future work the poor performance of the HOG features need to be
+investigated. Different parameters in the feature extraction phase, or even
+different features all together, might result in more descriptive features.
+Additionally, OCR for the features and a sliding window approach could be tried
+out.
+
