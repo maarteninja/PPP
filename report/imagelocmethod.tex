@@ -33,10 +33,10 @@
 
 The task is to learn a mapping from image patches $y$ to labels $x$. The
 observed image patches are HOG features, that are uniformly extracted from the
-image.  The labels are \emph{text} and \emph{image}. Figure \ref{fig:crf} shows
+image. The labels are \emph{text} and \emph{image}. Figure \ref{fig:crf} shows
 the structure of the CRF. A label $x_i$ is dependent on the corresponding image
-patch $y_i$ and its neighborhood.  \footnote{Note, that regularly $y$ is used
-for the labels and $x$ for the observed data.  However, following
+patch $y_i$ and its neighborhood. \footnote{Note, that normally $y$ is used
+to denote the labels and $x$ to denote the observed data.  However, following
 \cite{lafferty2001conditional, bishop2006pattern}, $y$ was used to denote those
 variables that obey the Markov property}.
 
@@ -80,12 +80,12 @@ looping over all possible solutions is intractable, and a gradient descent
 algorithm ends up in a disappointingly low local maximum\cite{bishop2006pattern}.
 
 One of the problems of solving structured SVMs is the reliance on the
-weights in the loss function results in non-convex optimization problem,
-which makes them hard to solve. To alleviate this, surrogate loss
+weights in the loss function which results in non-convex optimization problem.
+This makes them hard to solve. To alleviate this, surrogate loss
 functions, which are convex and equivalent to the loss function are
 used. Popular surrogate loss constructions are \emph{margin rescaling} and
 \emph{slack rescaling}. Using Pystruct \ref{muller2013pystruct} a one slack
-structured SVM was used \cite{joachims2009cutting} to solve the CRFs. The loss
+structured SVM was trained \cite{joachims2009cutting} to solve the CRFs. The loss
 function was the Hamming loss, which counts the amount of patches incorrectly
 classified.
 
@@ -96,7 +96,7 @@ step was implemented in which the feature vector for an image patch is first
 assigned a confidence score using a linear SVM. Training this linear SVM is done
 in the same manner as the SVM in section \ref{sec:pageclas} was trained on
 concatenated feature vectors to classify whole pages. This preprocessing step
-can reduce the feature vector to a feature scalar, which saves time for the
-structured SVM.
+can reduce the feature vector to a feature scalar, which saves the required time
+to find a solution for the structured SVM.
 
 

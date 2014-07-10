@@ -12,14 +12,15 @@ the right bottom are concatenated into one.
 If the preprocessing step of the linear SVM is used, we need to be careful and
 avoid over fitting by training the linear SVM on the same data as the structured
 SVM is trained. Therefor, we used two stage validation learning (see figure
-\ref{fig:twostage}). In two stage validation repeatedly, a different subset of
-the training data is used to train the linear SVM. The resulting SVM assigns the
+\ref{fig:twostage}). In two stage validation, a different subset of
+the training data is repeatedly used to train the linear SVM. The resulting SVM
+assigns the
 confidence score to rest of the training data in order to finally recreate the
-whole training data, but now with confidence scores without the risk of
+whole training data, but now with scores and without the risk of
 overfitting\footnote{Note that we do not use Platt scaling to normalize the
 scores assigned by these different SVMs. Empirical results show that this does
 actually hurts performance a little, even though more one-vs-all and all-vs-all
-multi0class SVMs often exclude this step to safe time as well\cite{duan2005best}}.
+multi-class SVMs often exclude this step to safe time as well\cite{duan2005best}}.
 %\todo{several SVMs and the confidence scores can be used?! Could only find:
 %\cite{duan2005best} which indicates exactly the opposite}
 
