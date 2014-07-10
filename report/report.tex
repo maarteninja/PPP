@@ -1,5 +1,5 @@
-\documentclass{article} % <- compile with draft quickly without images
-%\documentclass{article}
+%\documentclass{article} % <- compile with draft quickly without images
+\documentclass{article}
 % TODO: Tweak this margin, I don't know what it should be originally, but we
 % need to provide one, in order to be able to change it with \newgeometry (in
 % order to fit all the figures on one page)
@@ -17,6 +17,9 @@
 \usepackage{url}
 \usepackage{hyperref}
 \usepackage{floatrow}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+
 
 \newfloatcommand{capbtabbox}{table}[][\FBwidth]
 
@@ -35,6 +38,12 @@ Supervisor: Thomas Mensink}
 \begin{document}
 
 \maketitle
+
+%\begin{figure}[h!]
+%\begin{centering}
+%\includegraphics{resources/uva}
+%\end{centering}
+%\end{figure}
 
 \begin{abstract}
 abstract
@@ -56,11 +65,7 @@ abstract
 \input{pageclasresults}
 
 \input{imageloc}
-\subsection{Method}
-\label{subsec:imagelocmethod}
 \input{imagelocmethod}
-\subsection{Results}
-\label{subsec:imagelocresults}
 \input{imagelocresults}
 
 \section{Discussion \& Conclusion}
